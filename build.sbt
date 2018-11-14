@@ -11,5 +11,5 @@ libraryDependencies ++= Seq(
   "com.proofpoint" %% "commons-logging" % "1.0.4",
   "com.typesafe" % "config" % "1.3.2",
   "net.codingwell" %% "scala-guice" % "4.2.1",
-  "org.apache.kafka" % "kafka-streams" % "1.1.1"
+  "org.apache.kafka" %% "kafka-streams-scala" % "2.0.0"
 )
