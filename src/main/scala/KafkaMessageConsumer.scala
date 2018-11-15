@@ -2,9 +2,13 @@ import java.util.Properties
 import java.util.concurrent.TimeUnit
 
 import com.typesafe.config.Config
-import org.apache.kafka.streams.{KafkaStreams, StreamsBuilder, StreamsConfig}
+import org.apache.kafka.streams.scala.ImplicitConversions._
+import org.apache.kafka.streams.scala._
+import org.apache.kafka.streams.{KafkaStreams, StreamsConfig}
 
-class KafkaEventConsumer(config: Config, topic: String, messageProcessor: MessageProcessor) {
+class KafkaMessageConsumer(config: Config, topic: String, messageProcessor: MessageConsumer) {
+  import Serdes._
+
   private val bootstrapServers = config.getString("kafka.bootstrap.servers")
 
   val properties: Properties = {
