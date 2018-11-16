@@ -1,4 +1,4 @@
-package sim.json
+package com.proofpoint.json
 
 import java.io.InputStream
 

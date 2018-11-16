@@ -1,4 +1,4 @@
-package sim.s3
+package com.proofpoint.s3
 
 import java.io.{File, InputStream}
 import java.nio.ByteBuffer
@@ -7,8 +7,8 @@ import java.nio.file.Path
 import java.nio.file.StandardOpenOption.READ
 import java.util.concurrent.CompletionException
 
+import com.proofpoint.s3.S3.{bufferSize, client}
 import javax.inject.Inject
-import sim.s3.S3.{bufferSize, client}
 import software.amazon.awssdk.core.async.{AsyncRequestBody, AsyncResponseTransformer}
 import software.amazon.awssdk.services.s3.S3AsyncClient
 import software.amazon.awssdk.services.s3.model.ServerSideEncryption.AWS_KMS

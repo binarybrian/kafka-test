@@ -1,31 +1,37 @@
-package sim.kafka
+package com.proofpoint.kafka
 
 import java.util.Properties
 import java.util.concurrent.TimeUnit
 
+import com.proofpoint.commons.logging.Implicits.NoLoggingContext
+import com.proofpoint.commons.logging.Logging
 import com.typesafe.config.Config
 import org.apache.kafka.streams.scala.ImplicitConversions._
 import org.apache.kafka.streams.scala._
 import org.apache.kafka.streams.{KafkaStreams, StreamsConfig}
 
-class KafkaMessageConsumer(config: Config, topic: String, messageProcessor: MessageConsumer) {
+class KafkaMessageConsumer(config: Config, topic: String, messageProcessor: MessageProcessor) extends Logging {
   import Serdes._
 
   private val bootstrapServers = config.getString("kafka.bootstrap.servers")
 
-  val properties: Properties = {
+  private val properties: Properties = {
     val p = new Properties()
     p.put(StreamsConfig.APPLICATION_ID_CONFIG, "kafka-load-test")
     p.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers)
     p
   }
 
-  val builder: StreamsBuilder = new StreamsBuilder
+  private val builder: StreamsBuilder = new StreamsBuilder
   builder.stream[Array[Byte], String](topic)
     .foreach((_, value) => messageProcessor.processMessage(value))
 
-  val streams: KafkaStreams = new KafkaStreams(builder.build(), properties)
-  streams.start()
+  private val streams: KafkaStreams = new KafkaStreams(builder.build(), properties)
+
+  def start(): Unit = {
+    logger.info(s"Starting $topic message consumer...")
+    streams.start()
+  }
 
   sys.ShutdownHookThread {
     streams.close(10, TimeUnit.SECONDS)

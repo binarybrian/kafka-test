@@ -1,4 +1,4 @@
-package sim.kafka
+package com.proofpoint.kafka
 
 import java.util.Properties
 import java.util.concurrent.TimeUnit
