@@ -29,8 +29,6 @@ class KafkaMessageConsumer(config: Config, topic: String, messageProcessor: Mess
   private val builder: StreamsBuilder = new StreamsBuilder
   builder.stream[Array[Byte], String](topic)
     .foreach((key, value) => {
-      val blah = new String(key)
-      println(blah)
       messageProcessor.processMessage(value)
       val count = counter.getAndIncrement()
       val delta = System.currentTimeMillis() - startTime.get()
