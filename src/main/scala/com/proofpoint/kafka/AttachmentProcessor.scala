@@ -20,7 +20,9 @@ class AttachmentProcessor extends MessageProcessor with Logging {
         case Failure(exception) => logger.error(s"Failed to download attachment ${attachment.filename}", exception)
       }
       .onComplete {
-        case Success(content) => logger.info(s"Consumed $content")
+        case Success(content) if content.toInt % 15 == 0 => logger.info("FizzBuzz")
+        case Success(content) if content.toInt % 5 == 0 => logger.info("Buzz")
+        case Success(content) if content.toInt % 3 == 0 => logger.info("Fizz")
         case Failure(exception) => logger.error(s"Failed to process ${attachment.filename}", exception)
     }
   }
