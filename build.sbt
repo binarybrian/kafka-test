@@ -14,7 +14,7 @@ libraryDependencies ++= Seq(
   "log4j" % "log4j" % "1.2.17" % Runtime,
   "net.codingwell" %% "scala-guice" % "4.2.1",
   "net.logstash.logback" % "logstash-logback-encoder" % "5.2" % Runtime,
-  "org.apache.kafka" %% "kafka-streams-scala" % "2.0.0",
+  "org.apache.kafka" %% "kafka-streams-scala" % "2.0.1",
   "org.scala-lang.modules" %% "scala-java8-compat" % "0.9.0",
   "software.amazon.awssdk" % "s3" % "2.0.0-preview-13"
 )
