@@ -16,5 +16,10 @@ libraryDependencies ++= Seq(
   "net.logstash.logback" % "logstash-logback-encoder" % "5.2" % Runtime,
   "org.apache.kafka" %% "kafka-streams-scala" % "2.0.1",
   "org.scala-lang.modules" %% "scala-java8-compat" % "0.9.0",
-  "software.amazon.awssdk" % "s3" % "2.0.0-preview-13"
+  "software.amazon.awssdk" % "s3" % "2.0.0-preview-13",
+  "com.amazonaws" % "aws-java-sdk-core" % "1.11.456",
+  "com.amazonaws" % "aws-java-sdk-s3" % "1.11.456",
+  "com.github.seratch" %% "awscala" % "0.8.1",
+  "org.apache.tika" % "tika-core" % "1.19.1",
+  "org.apache.tika" % "tika-parsers" % "1.19.1"
 )

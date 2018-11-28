@@ -5,9 +5,12 @@ import com.proofpoint.commons.logging.Logging
 import com.proofpoint.json.Json
 import com.proofpoint.s3.S3
 import com.typesafe.config.ConfigFactory
+import software.amazon.awssdk.services.s3.model.S3Object
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.util.{Failure, Success}
+import scala.concurrent.duration.Duration
+import scala.concurrent.{Await, Future}
+import scala.util.{Failure, Success, Try}
 
 class AttachmentProcessor extends MessageProcessor with Logging {
   private val s3 = new S3
@@ -24,7 +27,7 @@ class AttachmentProcessor extends MessageProcessor with Logging {
         case Success(content) if content.toInt % 5 == 0 => logger.info("Buzz")
         case Success(content) if content.toInt % 3 == 0 => logger.info("Fizz")
         case Failure(exception) => logger.error(s"Failed to process ${attachment.filename}", exception)
-    }
+      }
   }
 }
 
@@ -35,4 +38,17 @@ object AttachmentConsumerApp extends App {
   val messageProcessor = new AttachmentProcessor
   val consumer = new KafkaMessageConsumer(config, attachmentTopic, messageProcessor)
   consumer.start()
+}
+
+object DeleteBucketApp extends App {
+
+  import scala.concurrent.ExecutionContext.Implicits.global
+
+  val bucketName = "infoprtct-watson-dev"
+  val s3 = new S3
+  val s3Objects = Await.result(s3.objects(bucketName), Duration.Inf)
+  s3Objects.foreach(s3Object => {
+    println(s"Deleting ${s3Object.key()}")
+    Await.result(s3.deleteObject(bucketName, s3Object.key()), Duration.Inf)
+  })
 }
