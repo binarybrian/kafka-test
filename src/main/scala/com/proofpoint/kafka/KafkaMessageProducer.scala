@@ -20,12 +20,15 @@ class KafkaMessageProducer(config: Config)(implicit executionContext: ExecutionC
   properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers)
   properties.put(KEY_SERIALIZER_CLASS_CONFIG, classOf[StringSerializer].getName)
   properties.put(VALUE_SERIALIZER_CLASS_CONFIG, classOf[StringSerializer].getName)
+  properties.put(MAX_REQUEST_SIZE_CONFIG, "4194304")
 
   private val producer = new KafkaProducer[String, String](properties)
 
   def send(topic: String, event: String): Unit = {
     producer.send(new ProducerRecord[String, String](topic, event), callback)
   }
+
+  def close(): Unit = producer.close(60, TimeUnit.SECONDS)
 
   private def callback(metadata: RecordMetadata, exception: Exception): Unit = {
     if (exception != null) logger.error(s"Unable to send message: $metadata", exception)

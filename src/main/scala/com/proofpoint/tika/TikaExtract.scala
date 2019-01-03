@@ -1,14 +1,30 @@
 package com.proofpoint.tika
 
+import java.io.{File, InputStream}
+
 import awscala.CredentialsLoader
 import awscala.Region0.US_EAST_1
 import awscala.s3.S3
 import com.amazonaws.ClientConfiguration
+import org.apache.tika.config.TikaConfig
 import org.apache.tika.metadata.Metadata
-import org.apache.tika.parser.{AutoDetectParser, ParseContext, Parser}
+import org.apache.tika.parser.{AutoDetectParser, ParseContext}
 import org.apache.tika.sax.BodyContentHandler
 
-object TikaExtract extends App{
+object TikaExtract {
+  def extract(inputStream: InputStream): String = {
+    val tikaConfig = new TikaConfig(new File("conf/tika_conf.xml"))
+    val parser = new AutoDetectParser(tikaConfig)
+    val metadata = new Metadata()
+    val handler = new BodyContentHandler(-1)
+    val parseContext = new ParseContext
+
+    parser.parse(inputStream, handler, metadata, parseContext)
+    handler.toString
+  }
+}
+
+object TikaExtractApp extends App{
   val s3Config = new ClientConfiguration()
   //val credentialsProvider = DefaultCredentialsProvider().getCredentials()
   val provider = CredentialsLoader.load
@@ -26,9 +42,8 @@ object TikaExtract extends App{
   val handler = new BodyContentHandler()
   val parseContext = new ParseContext
 
-  try {
-    parser.parse(inputStream, handler, metadata, parseContext)
-  }
+  parser.parse(inputStream, handler, metadata, parseContext)
+
   val content = handler.toString
   inputStream.close()
 

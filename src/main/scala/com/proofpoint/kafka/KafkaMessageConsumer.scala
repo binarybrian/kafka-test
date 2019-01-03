@@ -1,7 +1,7 @@
 package com.proofpoint.kafka
 
+import java.time.Duration
 import java.util.Properties
-import java.util.concurrent.TimeUnit
 
 import com.proofpoint.commons.logging.Implicits.NoLoggingContext
 import com.proofpoint.commons.logging.Logging
@@ -33,7 +33,9 @@ class KafkaMessageConsumer(config: Config, topic: String, messageProcessor: Mess
     streams.start()
   }
 
+  def stop(): Unit = streams.close(Duration.ofSeconds(60))
+
   sys.ShutdownHookThread {
-    streams.close(10, TimeUnit.SECONDS)
+    streams.close(Duration.ofSeconds(60))
   }
 }

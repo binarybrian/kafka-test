@@ -5,14 +5,13 @@ import com.proofpoint.commons.logging.Logging
 import com.proofpoint.json.Json
 import com.proofpoint.s3.S3
 import com.typesafe.config.ConfigFactory
-import software.amazon.awssdk.services.s3.model.S3Object
 
+import scala.concurrent.Await
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.Duration
-import scala.concurrent.{Await, Future}
-import scala.util.{Failure, Success, Try}
+import scala.util.{Failure, Success}
 
-class AttachmentProcessor extends MessageProcessor with Logging {
+class AttachmentMessageProcessor extends MessageProcessor with Logging {
   private val s3 = new S3
 
   override def processMessage(message: String): Unit = {
@@ -35,7 +34,7 @@ object AttachmentConsumerApp extends App {
   val config = ConfigFactory.load().resolve()
   val attachmentTopic = config.getString("kafka.topic.attachment")
 
-  val messageProcessor = new AttachmentProcessor
+  val messageProcessor = new AttachmentMessageProcessor
   val consumer = new KafkaMessageConsumer(config, attachmentTopic, messageProcessor)
   consumer.start()
 }
