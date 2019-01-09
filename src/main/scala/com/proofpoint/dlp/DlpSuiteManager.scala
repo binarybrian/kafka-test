@@ -5,9 +5,11 @@ import java.nio.charset.StandardCharsets
 import java.nio.file.{Files, Paths}
 import java.util.UUID
 
-import com.proofpoint.compress
+import com.proofpoint.{checkServiceStatus, compress}
+import com.proofpoint.dlp.DlpSuite._
 import com.proofpoint.tika.TikaExtract
 import com.typesafe.config.{Config, ConfigFactory}
+import org.omg.CORBA.portable.ResponseHandler
 
 import scala.collection.JavaConverters._
 import scala.concurrent.duration.Duration
@@ -15,7 +17,7 @@ import scala.concurrent.{Await, Future, Promise}
 import scala.io.Source
 import scala.util.Random
 
-case class DlpSuite(resourceFiles: Seq[String], numTests: Int, weights: Seq[Double] = Seq.empty) {
+case class DlpSuite(name: String, resourceFiles: Seq[String], numTests: Int, weights: Seq[Double] = Seq.empty) {
   def nextResource: String = {
     if (weights.isEmpty || weights.length != resourceFiles.length) {
       resourceFiles(Random.nextInt(resourceFiles.size))
@@ -41,16 +43,17 @@ case class DlpSuite(resourceFiles: Seq[String], numTests: Int, weights: Seq[Doub
 }
 
 object DlpSuite {
-  val simpleSuite = DlpSuite("dlp_small.docx", 1)
-  val largeSuite = DlpSuite("dlp_large.docx", 10)
-  val mixedSuite = DlpSuite(Seq("dlp_small.docx", "dlp_large.docx"), 100, Seq(0.8, 0.2))
-  val smallSuite = DlpSuite("dlp_small.docx", 1000)
+  val oneSmallSuite = DlpSuite("OneSmall", "dlp_small.docx", 1)
+  val oneLargeSuite = DlpSuite("OneLarge", "dlp_large.docx", 1)
+  val smallSuite = DlpSuite("small", "dlp_small.docx", 4000)
+  val largeSuite = DlpSuite("large" ,"dlp_large.docx", 4)
+  val mixedSuite = DlpSuite("mixed", Seq("dlp_small.docx", "dlp_large.docx"), 40, Seq(0.9, 0.1))
 
-  def apply(resourceFile: String, numTests: Int) = new DlpSuite(Seq(resourceFile), numTests)
+  def apply(name: String, resourceFile: String, numTests: Int) = new DlpSuite(name, Seq(resourceFile), numTests)
 }
 
-class DlpTestSuite(config: Config) {
-  private val producer = new DlpRequestProducer(config, this)
+class DlpSuiteManager(config: Config) extends DlpResponseMatcher {
+  private val producer = new DlpRequestProducer(config)
   private val consumer = new DlpResponseConsumer(config, this)
 
   private val p = Promise[Map[String, Long]]()
@@ -68,19 +71,25 @@ class DlpTestSuite(config: Config) {
 
     waitingDlp = dlpRequests.map(request => {
       val startTime = System.currentTimeMillis()
-      producer.send(request)
       request.logKey -> startTime
     }).toMap
+
+    dlpRequests.foreach(producer.sendRequest)
 
     f
   }
 
   def matchResponse(message: DlpResponse): Unit = {
     val logKey = message.logKey
-    finishedDlpBuilder += (logKey -> (System.currentTimeMillis() - waitingDlp(logKey)))
-    val finishedDlp = finishedDlpBuilder.result()
-    if (finishedDlp.size == waitingDlp.size) {
-      p.success(finishedDlp)
+    if (!waitingDlp.contains(logKey)) {
+      println(s"Skipping unknown logKey $logKey")
+    }
+    else {
+      finishedDlpBuilder += (logKey -> (System.currentTimeMillis() - waitingDlp(logKey)))
+      val finishedDlp = finishedDlpBuilder.result()
+      if (finishedDlp.size == waitingDlp.size) {
+        p.success(finishedDlp)
+      }
     }
   }
 
@@ -90,12 +99,12 @@ class DlpTestSuite(config: Config) {
   }
 }
 
-object DlpTestSuite {
+object DlpSuiteManager {
   def openResource(resourceName: String): String = {
     val tempDir = Paths.get(System.getProperty("java.io.tmpdir"))
     val filePath = tempDir.resolve(resourceName)
     if (Files.exists(filePath)) {
-      println(s"Reading from temporary resource $filePath")
+      //println(s"Reading from temporary resource $filePath")
       Files.readAllLines(filePath).asScala.mkString("\n")
     }
     else {
@@ -113,48 +122,35 @@ object DlpTestSuite {
     println(s"Extract time: ${System.currentTimeMillis() - startTime} ms")
     content
   }
-
-  def curl(url: String): String = Source.fromURL(url).mkString
 }
 
 object DlpTestSuiteApp extends App {
   def runSuite(tenantId: String, dlpSuite: DlpSuite): Map[String, Long] = {
     val contents = (1 to dlpSuite.numTests).map(_ => {
       val nextResource = dlpSuite.nextResource
-      DlpTestSuite.openResource(nextResource)
+      DlpSuiteManager.openResource(nextResource)
     }).toVector
 
-    println("Checking Sherlock status...")
-    try {
-      val sherlockResponse = DlpTestSuite.curl("http://localhost:9000")
-      if (!sherlockResponse.toLowerCase.contains("sherlock")) {
-        println("Sherlock is not running. Shutting down...")
-        System.exit(1)
-      }
-    }
-    catch {
-      case e: ConnectException =>
-        println("Sherlock is not running. Shutting down...")
-        System.exit(1)
-    }
-
-    println("Sending dlp requests...")
+    println(s"Running suite ${dlpSuite.name} with ${contents.length} messages")
     val requestStart = System.currentTimeMillis()
     val responseTimes = Await.result(manager.sendContents(tenantId, contents), Duration.Inf)
-    println(s"dlp total response time ${System.currentTimeMillis() - requestStart} ms")
+    println(s"Finished suite ${dlpSuite.name} dlp total response time ${System.currentTimeMillis() - requestStart} ms")
 
     responseTimes
   }
 
+  checkServiceStatus("Sherlock", "http://localhost:9000")
+
   val config = ConfigFactory.load()
-  val manager = new DlpTestSuite(config)
+  val manager = new DlpSuiteManager(config)
 
   val tenantId = "tenant_a9998b6b7083490784afda48dd383928"
-  val suite = DlpSuite.mixedSuite
+  val suite = oneSmallSuite
 
   val responseTimes = runSuite(tenantId, suite)
   val avg = responseTimes.values.sum / responseTimes.values.size
-  println(s"dlp avg response time $avg ms for ${responseTimes.values.size} messages")
+
+  println(s"Suite ${suite.name} dlp avg response time $avg ms for ${responseTimes.values.size} messages")
 
   manager.shutdown()
 }

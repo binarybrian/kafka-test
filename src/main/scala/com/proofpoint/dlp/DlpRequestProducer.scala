@@ -9,14 +9,19 @@ import com.typesafe.config.Config
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class DlpRequestProducer(config: Config, dlpManager: DlpTestSuite) extends Logging {
+class DlpRequestProducer(config: Config) extends Logging {
   private val producer = new KafkaMessageProducer(config)
   private val dlpRequestTopic = config.getString("kafka.topic.dlp_request")
+  private val emailTopic = config.getString("kafka.topic.email")
 
   logger.info(s"Sending on topic $dlpRequestTopic")
 
-  def send(dlpRequest: DlpRequest): Unit = {
+  def sendRequest(dlpRequest: DlpRequest): Unit = {
     producer.send(dlpRequestTopic, Json.toString(dlpRequest))
+  }
+
+  def sendJson(jsonString: String, topic: String = emailTopic): Unit = {
+    producer.send(topic, jsonString)
   }
 
   def close(): Unit = producer.close()

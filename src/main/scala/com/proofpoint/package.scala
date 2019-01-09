@@ -1,12 +1,15 @@
 package com
 
 import java.io.{ByteArrayInputStream, ByteArrayOutputStream}
+import java.net.ConnectException
 import java.nio.charset.StandardCharsets.UTF_8
 import java.util.Base64.{getDecoder, getEncoder}
 import java.util.zip.{GZIPInputStream, GZIPOutputStream}
 
 import com.google.common.io.ByteStreams
 import com.proofpoint.commons.util.using
+
+import scala.io.Source
 
 package object proofpoint {
   def timer[F](name: String, f: => F): (F, Long) = {
@@ -45,4 +48,22 @@ package object proofpoint {
       }
     }
   }
+
+  def checkServiceStatus(serviceName: String, url: String): Unit = {
+    println(s"Checking $serviceName status...")
+    try {
+      val response = curl(url)
+      if (!response.toLowerCase.contains(serviceName)) {
+        println(s"$serviceName is not running. Shutting down...")
+        System.exit(1)
+      }
+    }
+    catch {
+      case e: ConnectException =>
+        println(s"$serviceName is not running. Shutting down...")
+        System.exit(1)
+    }
+  }
+
+  def curl(url: String): String = Source.fromURL(url).mkString
 }

@@ -8,7 +8,7 @@ import com.typesafe.config.Config
 
 import scala.util.control.NonFatal
 
-class DlpResponseConsumer(config: Config, dlpManager: DlpTestSuite) extends MessageProcessor with Logging {
+class DlpResponseConsumer(config: Config, dlpManager: DlpResponseMatcher) extends MessageProcessor with Logging {
   private val topic = config.getString("kafka.topic.dlp_response")
   private val consumer = new KafkaMessageConsumer(config, topic, this)
 

@@ -1,0 +1,51 @@
+{
+  "emailOwner": "firelayerssbx.onmicrosoft.com",
+  "transactionId": "cap_execution_plan_d36ed16cc6f84b318d0dddbe4e493fb1_1545924205000",
+  "sourceMetadata": {
+    "id": "AAMkADI3MDAxMDZkLWQwYmEtNDU3YS05OTUyLWVkN2EzNWI4OGVlMQBGAAAAAAC19w6eoVPPSKJt8fMiC4l0BwBt6mmrCQa8SpPbhe0zwNnmAAAAAAEMAABt6mmrCQa8SpPbhe0zwNnmAADbz0hTAAA=",
+    "tenant_id": "tenant_0af3291c6d8246c599b2a784ea235978",
+    "channel_source": "EmailAtRest",
+    "application_type": "Office365",
+    "application_specific_metadata": {
+      "conversationId": "AAQkADI3MDAxMDZkLWQwYmEtNDU3YS05OTUyLWVkN2EzNWI4OGVlMQAQALwrtY-dRcVGq4UbnwXYIaY="
+    },
+    "source_moniker": {
+      "id": "AAMkADI3MDAxMDZkLWQwYmEtNDU3YS05OTUyLWVkN2EzNWI4OGVlMQBGAAAAAAC19w6eoVPPSKJt8fMiC4l0BwBt6mmrCQa8SpPbhe0zwNnmAAAAAAEMAABt6mmrCQa8SpPbhe0zwNnmAADbz0hTAAA=",
+      "emailOwner": "firelayerssbx.onmicrosoft.com"
+    },
+    "subject": "Ops MS wants to share test_2913_CYWWXR6FJX.txt",
+    "from": {
+      "id": "no-reply@sharepointonline.com",
+      "name": "no-reply@sharepointonline.com",
+      "email": "no-reply@sharepointonline.com"
+    },
+    "sender": {
+      "id": "no-reply@sharepointonline.com",
+      "name": "no-reply@sharepointonline.com",
+      "email": "no-reply@sharepointonline.com"
+    },
+    "to_recipients": [
+      {
+        "id": "automation@sanity.com",
+        "name": "automation@sanity.com",
+        "email": "automation@sanity.com"
+      }
+    ],
+    "cc_recipients": [
+      {
+        "id": "ops-ms@firelayerssbx.onmicrosoft.com",
+        "name": "Ops MS",
+        "email": "ops-ms@firelayerssbx.onmicrosoft.com"
+      }
+    ],
+    "bcc_recipients": [],
+    "created_timestamp": 1510656343000,
+    "sent_timestamp": 1510656340000
+  },
+  "hasAttachments": false,
+  "body": {
+    "contentType": "text",
+    "content": "\r\n                [Office 365]\r\n\r\nHello,\r\n\r\nCheck out what Ops MS shared with you.\r\nOpen test_2913_CYWWXR6FJX.txt<https://firelayerssbx-my.sharepoint.com/personal/ops-ms_firelayerssbx_onmicrosoft_com/_layouts/15/guestaccess.aspx?docid=18e5e0ad4b8cc4af1a7072178b1259f55&authkey=ARwYPyvKyqcHvZgcWI2U0p8&expiration=2017-12-14T10%3a45%3a37.000Z>\r\n\r\n\r\n\r\n\r\nThis message was sent from an unmonitored e-mail address. Please do not reply to this message.\r\nPrivacy <https://privacy.microsoft.com/privacystatement>\r\n\r\nMicrosoft Office\r\nOne Microsoft Way\r\nRedmond, WA\r\n98052-6399 USA\r\n        [Microsoft]\r\n\r\n\r\n\r\n"
+  },
+  "attachments": []
+}
