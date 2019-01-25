@@ -2,6 +2,7 @@ package com.proofpoint.dlp
 
 import com.proofpoint.commons.logging.Implicits.NoLoggingContext
 import com.proofpoint.commons.logging.Logging
+import com.proofpoint.incidents.models.DlpResponse
 import com.proofpoint.json.Json
 import com.proofpoint.kafka.{KafkaMessageConsumer, MessageProcessor}
 import com.typesafe.config.Config

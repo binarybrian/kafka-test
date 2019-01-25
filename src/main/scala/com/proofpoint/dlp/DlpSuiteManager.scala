@@ -1,20 +1,18 @@
 package com.proofpoint.dlp
 
-import java.net.ConnectException
 import java.nio.charset.StandardCharsets
 import java.nio.file.{Files, Paths}
 import java.util.UUID
 
-import com.proofpoint.{checkServiceStatus, compress}
 import com.proofpoint.dlp.DlpSuite._
+import com.proofpoint.incidents.models.DlpResponse
 import com.proofpoint.tika.TikaExtract
+import com.proofpoint.{checkServiceStatus, compress}
 import com.typesafe.config.{Config, ConfigFactory}
-import org.omg.CORBA.portable.ResponseHandler
 
 import scala.collection.JavaConverters._
 import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Future, Promise}
-import scala.io.Source
 import scala.util.Random
 
 case class DlpSuite(name: String, resourceFiles: Seq[String], numTests: Int, weights: Seq[Double] = Seq.empty) {
