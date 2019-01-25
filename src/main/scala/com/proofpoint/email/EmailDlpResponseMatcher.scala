@@ -31,7 +31,7 @@ object EmailSendApp extends App {
   println("Sending email...")
   checkServiceStatus("jessica-jones", "http://localhost:9000")
   checkServiceStatus("watson", "http://localhost:9001")
-  checkServiceStatus("sherlock", "http://localhost:9002") //Sherlock hard codes Watson to 9001
+  checkServiceStatus("sherlock", "http://localhost:9002") //Sherlock hard codes Watson to localhost:9001 for testing.
 
   val config = ConfigFactory.load()
   val manager = new EmailDlpResponseMatcher(config)
