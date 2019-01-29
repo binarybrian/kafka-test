@@ -13,7 +13,7 @@ import org.apache.kafka.streams.StreamsConfig
 
 import scala.concurrent.ExecutionContext
 
-class KafkaMessageProducer(config: Config)(implicit executionContext: ExecutionContext) extends Logging {
+class KafkaMessageProducer(config: Config)(implicit executionContext: ExecutionContext) extends MessageSender with Logging {
   private val bootstrapServers = config.getString("kafka.bootstrap.servers")
 
   private val properties = new Properties()
@@ -24,8 +24,8 @@ class KafkaMessageProducer(config: Config)(implicit executionContext: ExecutionC
 
   private val producer = new KafkaProducer[String, String](properties)
 
-  def send(topic: String, event: String): Unit = {
-    producer.send(new ProducerRecord[String, String](topic, event), callback)
+  override def sendMessage(topic: String, message: String): Unit = {
+    producer.send(new ProducerRecord[String, String](topic, message), callback)
   }
 
   def close(): Unit = producer.close(60, TimeUnit.SECONDS)

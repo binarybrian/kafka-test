@@ -16,7 +16,8 @@ import software.amazon.awssdk.services.s3.model._
 
 import scala.collection.JavaConverters._
 import scala.compat.java8.FutureConverters._
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.duration.Duration
+import scala.concurrent.{Await, ExecutionContext, Future}
 
 object S3 {
   private val bufferSize = 5 * 1024 * 1024
@@ -182,3 +183,14 @@ class S3 @Inject()(implicit executionContext: ExecutionContext) {
   }
 }
 
+object DeleteBucketApp extends App {
+  import scala.concurrent.ExecutionContext.Implicits.global
+
+  val bucketName = "infoprtct-watson-dev"
+  val s3 = new S3
+  val s3Objects = Await.result(s3.objects(bucketName), Duration.Inf)
+  s3Objects.foreach(s3Object => {
+    println(s"Deleting ${s3Object.key()}")
+    Await.result(s3.deleteObject(bucketName, s3Object.key()), Duration.Inf)
+  })
+}

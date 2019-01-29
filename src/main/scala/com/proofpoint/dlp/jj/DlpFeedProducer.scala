@@ -1,4 +1,4 @@
-package com.proofpoint.dlp
+package com.proofpoint.dlp.jj
 
 import com.proofpoint.checkServiceStatus
 import com.proofpoint.commons.logging.Implicits.NoLoggingContext
@@ -11,18 +11,13 @@ import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Promise}
 import scala.io.Source
 
-class DlpFeedProducer(config: Config) extends Logging {
-  private val producer = new KafkaMessageProducer(config)
+class DlpFeedProducer(config: Config) extends KafkaMessageProducer(config) with Logging {
   private val dlpFeedTopic = config.getString("kafka.topic.dlp_feed")
 
-  logger.info(s"Sending on topic $dlpFeedTopic")
+  logger.info(s"Starting producer ${getClass.getSimpleName} on topic $dlpFeedTopic")
 
-  def send(jsonString: String): Unit = {
-    producer.send(dlpFeedTopic, jsonString)
-  }
-
-  def shutdown(): Unit = {
-    producer.close()
+  def sendJsonMessage(jsonMessage: String): Unit = {
+    sendMessage(dlpFeedTopic, jsonMessage)
   }
 }
 
@@ -31,9 +26,9 @@ object DlpFeedApp extends App {
   checkServiceStatus("jessica-jones", "http://localhost:9000")
 
   val config = ConfigFactory.load()
-  val manager = new DlpFeedProducer(config)
+  val dlpFeedProducer = new DlpFeedProducer(config)
 
-  manager.send(Source.fromResource("share_level.json").getLines().mkString(""))
+  dlpFeedProducer.sendJsonMessage(Source.fromResource("share_level.json").getLines().mkString(""))
 
   val p = Promise[String]()
   val f = p.future

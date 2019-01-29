@@ -12,17 +12,16 @@ import com.typesafe.config.{Config, ConfigFactory}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.Duration
-import scala.concurrent.{Await, Future, Promise}
+import scala.concurrent.{Await, Promise}
 import scala.util.{Failure, Success}
 
 case class Attachment(bucket: String, filename: String, link: String)
 
-class AttachmentProducer(config: Config) extends Logging {
+class AttachmentProducer(config: Config) extends KafkaMessageProducer(config) with Logging {
   private val s3 = new S3
   private val bucket = config.getString("s3.bucket")
-  private val attachmentTopic = config.getString("kafka.topic.attachment")
 
-  private val producer = new KafkaMessageProducer(config)
+  private val topic = config.getString("kafka.topic.attachment")
 
   def sendFiles(promise: Promise[Unit]): Unit = {
     val counter = new AtomicInteger(0)
@@ -32,7 +31,7 @@ class AttachmentProducer(config: Config) extends Logging {
       case (filename, i) =>
         s3.upload(i.toString, bucket, filename).map(_ => Json.toString(Attachment(bucket, filename, s"https://$bucket.s3.amazonaws.com/$filename"))).onComplete {
           case Success(attachmentJson) =>
-            producer.send(attachmentTopic, attachmentJson)
+            sendMessage(topic, attachmentJson)
             val count = counter.incrementAndGet()
             if (count % logStep == 0) logger.info(s"Sent $i / $numMessages message")
             if (count == numMessages) promise.success(())
@@ -61,12 +60,12 @@ object AttachmentProducerApp extends App {
 
 object RandomProducerApp extends App {
   val config = ConfigFactory.load().resolve()
-
   val producer = new KafkaMessageProducer(config)
+
   val numMessages = 10000000
   randomStringStream.take(numMessages).par.zipWithIndex.foreach {
     case (message, i) =>
       if (i % 10000 == 0) println(s"Sending $i")
-      producer.send("load-test", message)
+      producer.sendMessage("load-test", message)
   }
 }

@@ -10,7 +10,7 @@ import org.apache.kafka.streams.scala.ImplicitConversions._
 import org.apache.kafka.streams.scala._
 import org.apache.kafka.streams.{KafkaStreams, StreamsConfig}
 
-class KafkaMessageConsumer(config: Config, topic: String, messageProcessor: MessageProcessor) extends Logging {
+abstract class KafkaMessageConsumer(config: Config, topic: String) extends MessageProcessor with Logging {
   import Serdes._
 
   private val bootstrapServers = config.getString("kafka.bootstrap.servers")
@@ -24,12 +24,12 @@ class KafkaMessageConsumer(config: Config, topic: String, messageProcessor: Mess
 
   private val builder: StreamsBuilder = new StreamsBuilder
   builder.stream[Array[Byte], String](topic)
-    .foreach((_, value) => messageProcessor.processMessage(value))
+    .foreach((_, value) => processMessage(value))
 
   private val streams: KafkaStreams = new KafkaStreams(builder.build(), properties)
 
   def start(): Unit = {
-    logger.info(s"Starting $topic message consumer...")
+    logger.info(s"Starting consumer ${getClass.getSimpleName} on topic $topic...")
     streams.start()
   }
 

@@ -11,7 +11,7 @@ libraryDependencies ++= Seq(
   "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.8",
   "com.proofpoint" %% "commons-logging" % "1.0.4",
   "com.proofpoint" %% "commons-tokenizer" % "1.0.6",
-  "com.proofpoint" %% "incident-models" % "1.1.3",
+  "com.proofpoint" %% "incident-models" % "1.1.4",
   "com.typesafe" % "config" % "1.3.3",
   "log4j" % "log4j" % "1.2.17" % Runtime,
   "net.codingwell" %% "scala-guice" % "4.2.2",

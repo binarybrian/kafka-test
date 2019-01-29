@@ -2,6 +2,7 @@ package com.proofpoint.dlp
 
 import com.proofpoint.commons.logging.Implicits.NoLoggingContext
 import com.proofpoint.commons.logging.Logging
+import com.proofpoint.incidents.models.DlpRequest
 import com.proofpoint.json.Json
 import com.proofpoint.kafka.KafkaMessageProducer
 import com.proofpoint.tika.TikaExtract
@@ -9,22 +10,18 @@ import com.typesafe.config.Config
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class DlpRequestProducer(config: Config) extends Logging {
-  private val producer = new KafkaMessageProducer(config)
+class DlpRequestProducer(config: Config) extends KafkaMessageProducer(config) with Logging {
   private val dlpRequestTopic = config.getString("kafka.topic.dlp_request")
-  private val emailTopic = config.getString("kafka.topic.email")
 
-  logger.info(s"Sending on topic $dlpRequestTopic")
+  logger.info(s"Starting producer ${getClass.getSimpleName} on topic $dlpRequestTopic")
 
   def sendRequest(dlpRequest: DlpRequest): Unit = {
-    producer.send(dlpRequestTopic, Json.toString(dlpRequest))
+    sendRequestJson(Json.toString(dlpRequest))
   }
 
-  def sendJson(jsonString: String, topic: String = emailTopic): Unit = {
-    producer.send(topic, jsonString)
+  def sendRequestJson(dlpRequestJson: String): Unit = {
+    sendMessage(dlpRequestTopic, dlpRequestJson)
   }
-
-  def close(): Unit = producer.close()
 }
 
 

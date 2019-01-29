@@ -1,11 +1,12 @@
-package com.proofpoint.dlp
+package com.proofpoint.dlp.sherlock
 
 import java.nio.charset.StandardCharsets
 import java.nio.file.{Files, Paths}
 import java.util.UUID
 
-import com.proofpoint.dlp.DlpSuite._
-import com.proofpoint.incidents.models.DlpResponse
+import com.proofpoint.dlp._
+import com.proofpoint.dlp.sherlock.AnalyzeDlpSuite._
+import com.proofpoint.incidents.models._
 import com.proofpoint.tika.TikaExtract
 import com.proofpoint.{checkServiceStatus, compress}
 import com.typesafe.config.{Config, ConfigFactory}
@@ -15,7 +16,7 @@ import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Future, Promise}
 import scala.util.Random
 
-case class DlpSuite(name: String, resourceFiles: Seq[String], numTests: Int, weights: Seq[Double] = Seq.empty) {
+case class AnalyzeDlpSuite(name: String, resourceFiles: Seq[String], numTests: Int, weights: Seq[Double] = Seq.empty) {
   def nextResource: String = {
     if (weights.isEmpty || weights.length != resourceFiles.length) {
       resourceFiles(Random.nextInt(resourceFiles.size))
@@ -40,17 +41,17 @@ case class DlpSuite(name: String, resourceFiles: Seq[String], numTests: Int, wei
 
 }
 
-object DlpSuite {
-  val oneSmallSuite = DlpSuite("OneSmall", "dlp_small.docx", 1)
-  val oneLargeSuite = DlpSuite("OneLarge", "dlp_large.docx", 1)
-  val smallSuite = DlpSuite("small", "dlp_small.docx", 4000)
-  val largeSuite = DlpSuite("large" ,"dlp_large.docx", 4)
-  val mixedSuite = DlpSuite("mixed", Seq("dlp_small.docx", "dlp_large.docx"), 40, Seq(0.9, 0.1))
+object AnalyzeDlpSuite {
+  val oneSmallSuite = AnalyzeDlpSuite("OneSmall", "dlp_small.docx", 1)
+  val oneLargeSuite = AnalyzeDlpSuite("OneLarge", "dlp_large.docx", 1)
+  val smallSuite = AnalyzeDlpSuite("small", "dlp_small.docx", 4000)
+  val largeSuite = AnalyzeDlpSuite("large" ,"dlp_large.docx", 4)
+  val mixedSuite = AnalyzeDlpSuite("mixed", Seq("dlp_small.docx", "dlp_large.docx"), 40, Seq(0.9, 0.1))
 
-  def apply(name: String, resourceFile: String, numTests: Int) = new DlpSuite(name, Seq(resourceFile), numTests)
+  def apply(name: String, resourceFile: String, numTests: Int) = new AnalyzeDlpSuite(name, Seq(resourceFile), numTests)
 }
 
-class DlpSuiteManager(config: Config) extends DlpResponseMatcher {
+class AnalyzeDlpResponseMatcher(config: Config) extends DlpResponseMatcher {
   private val producer = new DlpRequestProducer(config)
   private val consumer = new DlpResponseConsumer(config, this)
 
@@ -64,7 +65,9 @@ class DlpSuiteManager(config: Config) extends DlpResponseMatcher {
 
   def sendContents(tenantId: String, contents: Seq[String]): Future[Map[String, Long]] = {
     val dlpRequests = contents.zipWithIndex.map {
-      case (content, index) => DlpRequest(s"$index-${UUID.randomUUID().toString}", tenantId, compress(content))
+      case (content, index) =>
+        val logKey = s"$index-${UUID.randomUUID().toString}"
+        DlpRequest(logKey, tenantId, compress(content), SaaSFileSourceMetadata(logKey, tenantId, ChannelSource.PCASB, ApplicationType.Office365, None, None, None, None, None, None, None, None, None, None, None, None, None, None))
     }
 
     waitingDlp = dlpRequests.map(request => {
@@ -97,7 +100,7 @@ class DlpSuiteManager(config: Config) extends DlpResponseMatcher {
   }
 }
 
-object DlpSuiteManager {
+object AnalyzeDlpResponseMatcher {
   def openResource(resourceName: String): String = {
     val tempDir = Paths.get(System.getProperty("java.io.tmpdir"))
     val filePath = tempDir.resolve(resourceName)
@@ -122,11 +125,11 @@ object DlpSuiteManager {
   }
 }
 
-object DlpTestSuiteApp extends App {
-  def runSuite(tenantId: String, dlpSuite: DlpSuite): Map[String, Long] = {
+object AnalyzeDlpApp extends App {
+  def runSuite(tenantId: String, dlpSuite: AnalyzeDlpSuite): Map[String, Long] = {
     val contents = (1 to dlpSuite.numTests).map(_ => {
       val nextResource = dlpSuite.nextResource
-      DlpSuiteManager.openResource(nextResource)
+      AnalyzeDlpResponseMatcher.openResource(nextResource)
     }).toVector
 
     println(s"Running suite ${dlpSuite.name} with ${contents.length} messages")
@@ -137,10 +140,10 @@ object DlpTestSuiteApp extends App {
     responseTimes
   }
 
-  checkServiceStatus("Sherlock", "http://localhost:9000")
+  checkServiceStatus("sherlock", "http://localhost:9002")
 
   val config = ConfigFactory.load()
-  val manager = new DlpSuiteManager(config)
+  val manager = new AnalyzeDlpResponseMatcher(config)
 
   val tenantId = "tenant_a9998b6b7083490784afda48dd383928"
   val suite = oneSmallSuite

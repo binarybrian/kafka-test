@@ -4,18 +4,15 @@ import com.proofpoint.commons.logging.Implicits.NoLoggingContext
 import com.proofpoint.commons.logging.Logging
 import com.proofpoint.incidents.models.DlpResponse
 import com.proofpoint.json.Json
-import com.proofpoint.kafka.{KafkaMessageConsumer, MessageProcessor}
+import com.proofpoint.kafka.KafkaMessageConsumer
 import com.typesafe.config.Config
 
 import scala.util.control.NonFatal
 
-class DlpResponseConsumer(config: Config, dlpManager: DlpResponseMatcher) extends MessageProcessor with Logging {
-  private val topic = config.getString("kafka.topic.dlp_response")
-  private val consumer = new KafkaMessageConsumer(config, topic, this)
-
+class DlpResponseConsumer(config: Config, dlpResponseMatcher: DlpResponseMatcher) extends KafkaMessageConsumer(config, config.getString("kafka.topic.dlp_response")) with Logging {
   override def processMessage(message: String): Unit = {
     try {
-      dlpManager.matchResponse(Json.parse[DlpResponse](message))
+      dlpResponseMatcher.matchResponse(Json.parse[DlpResponse](message))
     }
     catch {
       case NonFatal(e) =>
@@ -24,7 +21,4 @@ class DlpResponseConsumer(config: Config, dlpManager: DlpResponseMatcher) extend
         s"$message: $e"
     }
   }
-
-  def start(): Unit = consumer.start()
-  def stop(): Unit = consumer.stop()
 }

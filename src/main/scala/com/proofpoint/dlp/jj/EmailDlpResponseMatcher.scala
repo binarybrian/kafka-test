@@ -1,20 +1,22 @@
-package com.proofpoint.email
+package com.proofpoint.dlp.jj
 
 import com.proofpoint.checkServiceStatus
 import com.proofpoint.dlp.{DlpRequestProducer, DlpResponseConsumer, DlpResponseMatcher}
 import com.proofpoint.incidents.models.DlpResponse
+import com.proofpoint.kafka.KafkaMessageProducer
 import com.typesafe.config.{Config, ConfigFactory}
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Promise}
 import scala.io.Source
 
-class EmailDlpResponseMatcher(config: Config) extends DlpResponseMatcher {
-  private val producer = new DlpRequestProducer(config)
+class EmailDlpResponseMatcher(config: Config) extends KafkaMessageProducer(config) with DlpResponseMatcher {
+  private val dlpRequestProducer = new DlpRequestProducer(config)
   private val consumer = new DlpResponseConsumer(config, this)
 
-  def send(jsonString: String): Unit = {
-    producer.sendJson(jsonString)
+  def sendRequest(jsonString: String): Unit = {
+    dlpRequestProducer.sendRequestJson(jsonString)
   }
 
   override def matchResponse(dlpResponse: DlpResponse): Unit = {
@@ -22,7 +24,7 @@ class EmailDlpResponseMatcher(config: Config) extends DlpResponseMatcher {
   }
 
   def shutdown(): Unit = {
-    producer.close()
+    dlpRequestProducer.close()
     consumer.stop()
   }
 }
@@ -36,7 +38,7 @@ object EmailSendApp extends App {
   val config = ConfigFactory.load()
   val manager = new EmailDlpResponseMatcher(config)
 
-  manager.send(Source.fromResource("email_attach.json").getLines().mkString(""))
+  manager.sendRequest(Source.fromResource("email_attach.json").getLines().mkString(""))
 
   val p = Promise[String]()
   val f = p.future
