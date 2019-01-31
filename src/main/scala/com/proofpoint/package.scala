@@ -65,5 +65,11 @@ package object proofpoint {
     }
   }
 
+  def checkServiceStatusAll(): Unit = {
+    Seq("jessica-jones" -> "http://localhost:9000", "watson" -> "http://localhost:9001", "sherlock" -> "http://localhost:9002").foreach({
+      case (serviceName, url) => checkServiceStatus(serviceName, url)
+    })
+  }
+
   def curl(url: String): String = Source.fromURL(url).mkString
 }

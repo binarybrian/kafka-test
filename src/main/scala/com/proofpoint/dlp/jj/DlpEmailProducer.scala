@@ -11,7 +11,7 @@ import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Promise}
 import scala.io.Source
 
-class EmailDlpResponseMatcher(config: Config) extends KafkaMessageProducer(config) with DlpResponseMatcher {
+class DlpEmailProducer(config: Config) extends KafkaMessageProducer(config) with DlpResponseMatcher {
   private val dlpRequestProducer = new DlpRequestProducer(config)
   private val consumer = new DlpResponseConsumer(config, this)
 
@@ -36,9 +36,9 @@ object EmailSendApp extends App {
   checkServiceStatus("sherlock", "http://localhost:9002") //Sherlock hard codes Watson to localhost:9001 for testing.
 
   val config = ConfigFactory.load()
-  val manager = new EmailDlpResponseMatcher(config)
+  val producer = new DlpEmailProducer(config)
 
-  manager.sendRequest(Source.fromResource("email_attach.json").getLines().mkString(""))
+  producer.sendRequest(Source.fromResource("email_attach.json").getLines().mkString(""))
 
   val p = Promise[String]()
   val f = p.future

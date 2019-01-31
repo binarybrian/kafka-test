@@ -22,8 +22,8 @@ class DlpFeedProducer(config: Config) extends KafkaMessageProducer(config) with 
 }
 
 object DlpFeedApp extends App {
-  println("Sending dlp_feed")
   checkServiceStatus("jessica-jones", "http://localhost:9000")
+  println("Sending on topic dlp_feed")
 
   val config = ConfigFactory.load()
   val dlpFeedProducer = new DlpFeedProducer(config)

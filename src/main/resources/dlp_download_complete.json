@@ -1,0 +1,52 @@
+{
+  "so_id": "2198f92743bd28872ccd5b29b8643c92",
+  "s3_bucket_name": "infoprtct-watson-dev",
+  "s3_file_name": "jj-tests.zip",
+  "s3_download_url": "https://s3.console.aws.amazon.com/s3/buckets/infoprtct-watson-dev/jj-tests.zip",
+  "event_id": "execution_plan_id: cap_execution_plan_d9d90b80606e4472a138226bb658ed09 job_id: cap_job_c2918889f673dddca55411425991fe09 transaction_id: cap_execution_plan_d9d90b80606e4472a138226bb658ed09_1548805779981 entity: 2198f92743bd28872ccd5b29b8643c92",
+  "source_metadata": {
+    "channel_type": "SaaSFile",
+    "id": "2198f92743bd28872ccd5b29b8643c92",
+    "tenant_id": "tenant_99da1321d75f41d4935ffffcd16593c6",
+    "channel_source": "PCASB",
+    "application_type": "Office365",
+    "application_specific_metadata": {
+      "owner_id": "omegahelix@gmail.com",
+      "raw_so_id": "7a1ba454-e969-4e61-a83d-b9e99084e3c1",
+      "session_id": "flevent_549685dfcd78e7d4a0a9a97e4100cc38",
+      "event_id": "flevent_549685dfcd78e7d4a0a9a97e4100cc38",
+      "source": "office365native_cap",
+      "sub_source": "O365",
+      "scan_source_type": "FILE_EVENT"
+    },
+    "source_moniker": {
+      "kloudless_so_id": "FIyS49Q0WK2kDIjbPAeYkrw==",
+      "kloudless_owner_id": "uMTE4MTAyMTQ1Mg==",
+      "tenant_id": "tenant_99da1321d75f41d4935ffffcd16593c6",
+      "application_id": 20,
+      "sub_source": "O365",
+      "file_extension": "html"
+    },
+    "title": "jj-tests.zip",
+    "extension": "zip",
+    "size": 25346,
+    "link": "https://app.box.com/file/392453406649",
+    "location": "V11",
+    "origin": "ONEDRIVE",
+    "mimetype": "application/zip",
+    "trashed": false,
+    "owner": {
+      "id": "user_d30773b74d7d2457940801e4cc0eb458",
+      "name": "Omega Helix",
+      "email": "omegahelix@gmail.com",
+      "ip": "4.16.194.43",
+      "location": {
+        "country": "United States",
+        "country_iso_code": "US",
+        "region": "California",
+        "city": "Concord"
+      }
+    },
+    "share_level": 5
+  }
+}
