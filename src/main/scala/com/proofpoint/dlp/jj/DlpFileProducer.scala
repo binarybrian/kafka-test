@@ -1,12 +1,12 @@
 package com.proofpoint.dlp.jj
 
-import com.proofpoint.checkServiceStatusAll
-import com.proofpoint.commons.logging.Logging
-import com.proofpoint.kafka.KafkaMessageProducer
-import com.typesafe.config.{Config, ConfigFactory}
+import com.proofpoint.checkServiceStatus
 import com.proofpoint.commons.logging.Implicits.NoLoggingContext
+import com.proofpoint.commons.logging.Logging
 import com.proofpoint.dlp.DlpResponseMatcher
 import com.proofpoint.incidents.models.DlpResponse
+import com.proofpoint.kafka.KafkaMessageProducer
+import com.typesafe.config.{Config, ConfigFactory}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.Duration
@@ -26,8 +26,8 @@ class DlpFileProducer(config: Config) extends KafkaMessageProducer(config) with 
 }
 
 object DlpFileApp extends App {
-  checkServiceStatusAll()
-  println("Sending on topic dlp_download_complete")
+  checkServiceStatus("jessica-jones", "http://localhost:9000")
+  println("Sending on topic 'dlp_download_complete'")
 
   val config = ConfigFactory.load()
   val fileProducer = new DlpFileProducer(config)
