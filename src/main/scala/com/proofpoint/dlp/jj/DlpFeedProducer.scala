@@ -3,6 +3,7 @@ package com.proofpoint.dlp.jj
 import com.proofpoint.checkServiceStatus
 import com.proofpoint.commons.logging.Implicits.NoLoggingContext
 import com.proofpoint.commons.logging.Logging
+import com.proofpoint.factory.WordOrNumberDocumentFactory
 import com.proofpoint.kafka.KafkaMessageProducer
 import com.typesafe.config.{Config, ConfigFactory}
 
@@ -21,12 +22,14 @@ class DlpFeedProducer(config: Config) extends KafkaMessageProducer(config) with 
   }
 }
 
-object DlpFeedApp extends App {
+object DlpShareLevelApp extends App {
   checkServiceStatus("jessica-jones", "http://localhost:9000")
+
   println("Sending on topic dlp_feed")
 
   val config = ConfigFactory.load()
   val dlpFeedProducer = new DlpFeedProducer(config)
+  val documentFactory = new WordOrNumberDocumentFactory()
 
   dlpFeedProducer.sendJsonMessage(Source.fromResource("share_level.json").getLines().mkString(""))
 

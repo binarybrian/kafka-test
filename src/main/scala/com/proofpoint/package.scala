@@ -1,17 +1,19 @@
 package com
 
-import java.io.{ByteArrayInputStream, ByteArrayOutputStream}
+import java.io.{ByteArrayInputStream, ByteArrayOutputStream, Closeable}
 import java.net.ConnectException
 import java.nio.charset.StandardCharsets.UTF_8
 import java.util.Base64.{getDecoder, getEncoder}
 import java.util.zip.{GZIPInputStream, GZIPOutputStream}
 
 import com.google.common.io.ByteStreams
-import com.proofpoint.commons.util.using
 
 import scala.io.Source
+import scala.util.control.NonFatal
 
 package object proofpoint {
+  val s3BucketName: String = "infoprtct-watson-dev"
+
   def timer[F](name: String, f: => F): (F, Long) = {
     val startTime = System.currentTimeMillis()
     val result = f
@@ -72,4 +74,29 @@ package object proofpoint {
   }
 
   def curl(url: String): String = Source.fromURL(url).mkString
+
+  def using[A <: Closeable, B](resource: A)(f: A => B): B = {
+    var exception: Throwable = null
+    try {
+      f(resource)
+    }
+    catch {
+      case NonFatal(e) =>
+        exception = e
+        throw e
+    }
+    finally {
+      if (exception != null) {
+        try {
+          resource.close()
+        }
+        catch {
+          case NonFatal(e) => exception.addSuppressed(e)
+        }
+      }
+      else {
+        resource.close()
+      }
+    }
+  }
 }
