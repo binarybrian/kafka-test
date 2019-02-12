@@ -22,6 +22,10 @@ class DlpFeedProducer(config: Config) extends KafkaMessageProducer(config) with 
   }
 }
 
+/*
+Send a DlpScanRequest to test the Stanford hard coded share level.  The share level can be changed
+in share_level.json to see (via logs) if the scan request is skipped or processed accordingly.
+ */
 object DlpShareLevelApp extends App {
   checkServiceStatus("jessica-jones", "http://localhost:9000")
 
@@ -29,7 +33,6 @@ object DlpShareLevelApp extends App {
 
   val config = ConfigFactory.load()
   val dlpFeedProducer = new DlpFeedProducer(config)
-  val documentFactory = new WordOrNumberDocumentFactory()
 
   dlpFeedProducer.sendJsonMessage(Source.fromResource("share_level.json").getLines().mkString(""))
 

@@ -51,7 +51,7 @@ object AnalyzeDlpSuite {
   def apply(name: String, resourceFile: String, numTests: Int) = new AnalyzeDlpSuite(name, Seq(resourceFile), numTests)
 }
 
-class AnalyzeDlpResponseMatcher(config: Config) extends DlpResponseMatcher {
+class AnalyzeDlpResponseMatcher(val config: Config) extends DlpResponseMatcher {
   private val producer = new DlpRequestProducer(config)
   private val consumer = new DlpResponseConsumer(config, this)
 

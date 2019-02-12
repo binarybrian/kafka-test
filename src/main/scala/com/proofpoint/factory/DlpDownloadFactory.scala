@@ -8,14 +8,17 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import com.fasterxml.jackson.databind.{JsonSerializer, SerializerProvider}
 
 @JsonSerialize(using = classOf[DlpDownloadSerializer])
-case class DlpDownload(filename: String, s3Path: String, filesize: Int)
+case class DlpDownload(bucketName: String, filename: String, filesize: Int, tenantId: String = "tenant_99da1321d75f41d4935ffffcd16593c6") {
+  def s3Path: String = s"s3://$bucketName/$filename"
+  def s3PathPublic: String = s"https://s3.amazonaws.com/$bucketName/$filename"
+}
 
 class DlpDownloadSerializer extends JsonSerializer[DlpDownload] {
   override def serialize(dlpDownload: DlpDownload, generator: JsonGenerator, serializers: SerializerProvider): Unit = {
     generator.writeStartObject()
 
     generator.writeStringField("so_id", UUID.randomUUID().toString)
-    generator.writeStringField("s3_bucket_name", s3BucketName)
+    generator.writeStringField("s3_bucket_name", dlpDownload.bucketName)
     generator.writeStringField("s3_file_name", dlpDownload.filename)
     generator.writeStringField("s3_download_url", dlpDownload.s3Path)
     generator.writeStringField("event_id", "execution_plan_id: cap_execution_plan_d9d90b80606e4472a138226bb658ed09 job_id: cap_job_c2918889f673dddca55411425991fe09 transaction_id: cap_execution_plan_d9d90b80606e4472a138226bb658ed09_1548805779981 entity: 2198f92743bd28872ccd5b29b8643c92")
@@ -23,7 +26,7 @@ class DlpDownloadSerializer extends JsonSerializer[DlpDownload] {
     generator.writeObjectFieldStart("source_metadata")
     generator.writeStringField("channel_type", "SaaSFile")
     generator.writeStringField("id", "2198f92743bd28872ccd5b29b8643c92")
-    generator.writeStringField("tenant_id", "tenant_99da1321d75f41d4935ffffcd16593c6")
+    generator.writeStringField("tenant_id", dlpDownload.tenantId)
     generator.writeStringField("channel_source", "PCASB")
     generator.writeStringField("application_type", "Office365")
 
@@ -40,7 +43,7 @@ class DlpDownloadSerializer extends JsonSerializer[DlpDownload] {
     generator.writeObjectFieldStart("source_moniker")
     generator.writeStringField("kloudless_so_id", "FIyS49Q0WK2kDIjbPAeYkrw==")
     generator.writeStringField("kloudless_owner_id", "uMTE4MTAyMTQ1Mg==")
-    generator.writeStringField("tenant_id", "tenant_99da1321d75f41d4935ffffcd16593c6")
+    generator.writeStringField("tenant_id", dlpDownload.tenantId)
     generator.writeStringField("application_id", "20")
     generator.writeStringField("sub_source", "O365")
     generator.writeStringField("file_extension", "zip")

@@ -3,9 +3,9 @@ package dlp.jj
 
 import com.proofpoint.commons.logging.Implicits.NoLoggingContext
 import com.proofpoint.commons.logging.Logging
-import com.proofpoint.dlp.jj.DlpFileProducer.{filenamePrefix, numBytes}
-import com.proofpoint.dlp.{DlpResponseConsumer, DlpResponseMatcher}
-import com.proofpoint.factory.{DlpDocument, DlpDownload, WordOrNumberDocumentFactory}
+import com.proofpoint.dlp.DlpResponseMatcher
+import com.proofpoint.dlp.jj.DlpFilePubSub.{filenamePrefix, numBytes}
+import com.proofpoint.factory.{DlpDownload, WordOrNumberDocumentFactory}
 import com.proofpoint.incidents.models.DlpResponse
 import com.proofpoint.json.Json
 import com.proofpoint.kafka.KafkaMessageProducer
@@ -18,28 +18,39 @@ import scala.concurrent.{Await, Promise}
 import scala.util.Random
 import scala.util.control.Breaks._
 
-class DlpFileProducer(config: Config) extends KafkaMessageProducer(config) with DlpResponseMatcher with Logging {
+class DlpFilePubSub(val config: Config) extends KafkaMessageProducer(config) with DlpResponseMatcher with Logging {
   private val dlpDownloadCompleteTopic = config.getString("kafka.topic.download_file_response")
-
-  logger.info(s"Starting producer ${getClass.getSimpleName} on topic $dlpDownloadCompleteTopic")
 
   def sendJsonMessage(jsonMessage: String): Unit = sendMessage(dlpDownloadCompleteTopic, jsonMessage)
 
   override def matchResponse(dlpResponse: DlpResponse): Unit = {
-    println(s"Received dlpResponse $dlpResponse")
+    println(s"Received dlpResponse with result ${dlpResponse.result} for logKey ${dlpResponse.logKey}")
   }
+
+  def shutdown(): Unit = {
+    super.close()
+    super.stop()
+  }
+
+  logger.info(s"Starting producer ${getClass.getSimpleName} on topic $dlpDownloadCompleteTopic")
 }
 
-object DlpFileProducer {
+object DlpFilePubSub {
   val numBytes = 4000000
   val filenamePrefix = "jj-test-%d"
 }
 
+/*
+For 5 minutes:
+- Randomly generate documents
+- Upload to S3
+- Post file to "dlp_download_complete" kafka topic
+*/
 object TimedLoadApp extends App {
   checkServiceStatus("jessica-jones", "http://localhost:9000")
 
   val config = ConfigFactory.load()
-  val fileProducer = new DlpFileProducer(config)
+  val fileProducer = new DlpFilePubSub(config)
 
   val dlpDownloadCompleteTopic = config.getString("kafka.topic.download_file_response")
   val dlpFeedProducer = new DlpFeedProducer(config)
@@ -51,8 +62,8 @@ object TimedLoadApp extends App {
   while(true) {
     val index = Random.nextInt(10) + 1
     val filename = filenamePrefix.format(index)
-    val s3Path = s"https://s3.amazonaws.com/$s3BucketName/$filename"
-    val dlpDownload = DlpDownload(filename, s3Path, numBytes)
+    val s3Bucket = config.getString("s3.bucket.default")
+    val dlpDownload = DlpDownload(s3Bucket, filename, numBytes)
     val dlpDownloadJson = Json.toString(dlpDownload)
 
     fileProducer.sendJsonMessage(dlpDownloadJson)
@@ -68,18 +79,22 @@ object TimedLoadApp extends App {
   val f = p.future
   val result = Await.result(f, Duration.Inf)
   println(result)
+  fileProducer.close()
 }
 
+/*
+Test text extraction load on JJ.  It doesn't test Sherlock dlpRequest or dlpResponse
+Generate N number of events to kafka topic "dlp_download_complete"
+See "DlpFileGenerateAndUploadApp" to generate the random document files.
+ */
 object FixedSizeLoadApp extends App {
   checkServiceStatus("jessica-jones", "http://localhost:9000")
 
   val config = ConfigFactory.load()
-  val fileProducer = new DlpFileProducer(config)
+  val fileProducer = new DlpFilePubSub(config)
 
   val dlpDownloadCompleteTopic = config.getString("kafka.topic.download_file_response")
-  val dlpFeedProducer = new DlpFeedProducer(config)
-  val documentFactory = new WordOrNumberDocumentFactory()
-  val p = Promise[String]()
+  val s3Bucket = config.getString("s3.bucket.default")
 
   val numMessages = 20000
 
@@ -87,24 +102,59 @@ object FixedSizeLoadApp extends App {
   (0 to numMessages).foreach(i => {
     val index = Random.nextInt(10) + 1
     val filename = filenamePrefix.format(index)
-    val s3Path = s"https://s3.amazonaws.com/$s3BucketName/$filename"
-    val dlpDownload = DlpDownload(filename, s3Path, numBytes)
+    //val s3Path = s"https://s3.amazonaws.com/$s3BucketName/$filename"
+    val dlpDownload = DlpDownload(s3Bucket, filename, numBytes)
     val dlpDownloadJson = Json.toString(dlpDownload)
 
     fileProducer.sendJsonMessage(dlpDownloadJson)
   })
+
+  fileProducer.close()
 }
 
+/*
+For use with "FixedSizeLoadApp" to generate events on the "dlp_download_complete" kafka topic
+- Generate 10 random document files
+- Upload them to S3
+ */
 object DlpFileGenerateAndUploadApp extends App {
   val s3 = new S3()
   val documentFactory = new WordOrNumberDocumentFactory()
+  val config = ConfigFactory.load()
+  val s3Bucket = config.getString("s3.bucket.default")
 
   (1 to 10).foreach(i => {
     val filename = filenamePrefix.format(i)
     val document = documentFactory.makeDocumentOfSizeBytes(filename, numBytes)
     val zipPath = document.toZipFile
-    Await.result(s3.upload(zipPath.toFile, s3BucketName, filename), Duration.Inf)
-    val s3Path = s"https://s3.amazonaws.com/$s3BucketName/$filename"
+    Await.result(s3.upload(zipPath.toFile, s3Bucket, filename), Duration.Inf)
+    val s3Path = s"https://s3.amazonaws.com/$s3Bucket/$filename"
     println(s"Finished uploading document of size ${document.words.size} bytes to $s3Path")
   })
+}
+
+object SingleFileDlpApp extends App {
+  checkServiceStatusAll()
+
+  val s3 = new S3()
+  val bucketName = "flp-dlp-stg"
+  val filename = "ed5745ee17514ad85b98dd138108405a"
+  val tenantId = "tenant_10da1867d943489ebe6120ab0b6a1c26"
+  val s3Path = s"s3://$bucketName/$filename"
+  val numBytes = 71
+  val dlpDownload = DlpDownload(bucketName, filename, 71, tenantId)
+
+  val config = ConfigFactory.load()
+  val topic = config.getString("kafka.topic.download_file_response")
+  val fileProducer = new DlpFilePubSub(config)
+
+  println(s"Sending $s3Path to topic $topic for tenant ${dlpDownload.tenantId}")
+  fileProducer.sendJsonMessage(Json.toString(dlpDownload))
+
+  val p = Promise[String]()
+  val f = p.future
+  Await.result(f, Duration.Inf)
+
+  fileProducer.shutdown()
+  println("SingleFileDlpApp Finished.")
 }

@@ -12,8 +12,6 @@ import scala.io.Source
 import scala.util.control.NonFatal
 
 package object proofpoint {
-  val s3BucketName: String = "infoprtct-watson-dev"
-
   def timer[F](name: String, f: => F): (F, Long) = {
     val startTime = System.currentTimeMillis()
     val result = f
@@ -43,7 +41,8 @@ package object proofpoint {
       using(new GZIPInputStream(getDecoder.wrap(new ByteArrayInputStream(encodedString.getBytes(UTF_8))))) {
         decompressingInputStream => {
           using(new ByteArrayOutputStream(encodedString.length)) {
-            outputStream => ByteStreams.copy(decompressingInputStream, outputStream)
+            outputStream =>
+              ByteStreams.copy(decompressingInputStream, outputStream)
               new String(outputStream.toByteArray, UTF_8)
           }
         }
@@ -68,9 +67,13 @@ package object proofpoint {
   }
 
   def checkServiceStatusAll(): Unit = {
-    Seq("jessica-jones" -> "http://localhost:9000", "watson" -> "http://localhost:9001", "sherlock" -> "http://localhost:9002").foreach({
-      case (serviceName, url) => checkServiceStatus(serviceName, url)
-    })
+    Seq(
+      "jessica-jones" -> "http://localhost:9000",
+      "watson" -> "http://localhost:9001",//Sherlock hard codes Watson to localhost:9001 for testing.
+      "sherlock" -> "http://localhost:9002")
+      .foreach({
+        case (serviceName, url) => checkServiceStatus(serviceName, url)
+      })
   }
 
   def curl(url: String): String = Source.fromURL(url).mkString

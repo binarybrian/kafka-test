@@ -2,7 +2,14 @@
 <properties>
     <parsers>
         <parser class="org.apache.tika.parser.DefaultParser">
-            <parser-exclude class="org.apache.tika.parser.ocr.TesseractOCRParser"/>
+		<parser-exclude class="org.apache.tika.parser.ocr.TesseractOCRParser"/>
+        </parser>
+        <parser class="org.apache.tika.parser.microsoft.ooxml.OOXMLParser">
+            <params>
+                <param name="useSAXDocxExtractor" type="bool">true</param>
+                <param name="useSAXPptxExtractor" type="bool">true</param>
+                <param name="includeDeletedContent" type="bool">true</param>
+            </params>
         </parser>
     </parsers>
 </properties>
