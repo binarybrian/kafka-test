@@ -1,7 +1,7 @@
 package com.proofpoint
 package dlp.jj
 
-import com.proofpoint.dlp.{DlpRequestProducer, DlpResponseConsumer, DlpResponseMatcher}
+import com.proofpoint.dlp.{DlpMessageProducer, DlpResponseConsumer, DlpResponseMatcher}
 import com.proofpoint.incidents.models.DlpResponse
 import com.proofpoint.kafka.KafkaMessageProducer
 import com.typesafe.config.{Config, ConfigFactory}
@@ -11,8 +11,9 @@ import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Promise}
 import scala.io.Source
 
-class DlpEmailProducer(val config: Config) extends KafkaMessageProducer(config) with DlpResponseMatcher {
-  private val dlpRequestProducer = new DlpRequestProducer(config)
+class EmailDlpProducer(val config: Config) extends KafkaMessageProducer(config) with DlpResponseMatcher {
+  private val dlpRequestProducer = new DlpMessageProducer("kafka.topic.email", config)
+
   private val consumer = new DlpResponseConsumer(config, this)
 
   def sendRequest(jsonString: String): Unit = {
@@ -20,7 +21,7 @@ class DlpEmailProducer(val config: Config) extends KafkaMessageProducer(config) 
   }
 
   override def matchResponse(dlpResponse: DlpResponse): Unit = {
-    println(s"$dlpResponse")
+    println(s"!!!! $dlpResponse")
   }
 
   def shutdown(): Unit = {
@@ -30,19 +31,23 @@ class DlpEmailProducer(val config: Config) extends KafkaMessageProducer(config) 
 }
 
 /*
-Send a hard code email attachment on kafka topic "cap_emailsetl_output"
+Send a hard coded email attachment on kafka topic "cap_emailsetl_output"
 A dlpResponse message should be returned from Sherlock.
  */
-object EmailSendApp extends App {
+object EmailProducerApp extends App {
+  val emailAttachmentOne = Source.fromResource("email_attach.json")
+  val emailAttachmentTwo = Source.fromResource("email_attach_2.json")
+
   println("Sending email...")
   checkServiceStatusAll()
 
   val config = ConfigFactory.load()
-  val producer = new DlpEmailProducer(config)
+  val producer = new EmailDlpProducer(config)
 
-  producer.sendRequest(Source.fromResource("email_attach.json").getLines().mkString(""))
+  producer.sendRequest(emailAttachmentTwo.getLines().mkString(""))
 
   val p = Promise[String]()
   val f = p.future
   Await.result(f, Duration.Inf)
 }
+

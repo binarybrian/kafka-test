@@ -1,8 +1,8 @@
 package com.proofpoint.kafka
 
+import com.proofpoint.commons.json.Json._
 import com.proofpoint.commons.logging.Implicits.NoLoggingContext
 import com.proofpoint.commons.logging.Logging
-import com.proofpoint.json.Json
 import com.proofpoint.s3.S3
 import com.typesafe.config.{Config, ConfigFactory}
 
@@ -13,7 +13,7 @@ class AttachmentConsumer(config: Config) extends KafkaMessageConsumer(config, co
   private val s3 = new S3
 
   override def processMessage(message: String): Unit = {
-    val attachment = Json.parse[Attachment](message)
+    val attachment = message.as[Attachment]
     s3.downloadToString(attachment.bucket, attachment.filename)
       .andThen {
         case Success(_) => s3.deleteObject(attachment.bucket, attachment.filename)

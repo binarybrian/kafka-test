@@ -4,10 +4,10 @@ package dlp.jj
 import com.proofpoint.commons.logging.Implicits.NoLoggingContext
 import com.proofpoint.commons.logging.Logging
 import com.proofpoint.dlp.DlpResponseMatcher
-import com.proofpoint.dlp.jj.DlpFilePubSub.{filenamePrefix, numBytes}
+import com.proofpoint.dlp.jj.FileDlpProducer.{filenamePrefix, numBytes}
 import com.proofpoint.factory.{DlpDownload, WordOrNumberDocumentFactory}
 import com.proofpoint.incidents.models.DlpResponse
-import com.proofpoint.json.Json
+import com.proofpoint.commons.json.Json._
 import com.proofpoint.kafka.KafkaMessageProducer
 import com.proofpoint.s3.S3
 import com.typesafe.config.{Config, ConfigFactory}
@@ -18,7 +18,7 @@ import scala.concurrent.{Await, Promise}
 import scala.util.Random
 import scala.util.control.Breaks._
 
-class DlpFilePubSub(val config: Config) extends KafkaMessageProducer(config) with DlpResponseMatcher with Logging {
+class FileDlpProducer(val config: Config) extends KafkaMessageProducer(config) with DlpResponseMatcher with Logging {
   private val dlpDownloadCompleteTopic = config.getString("kafka.topic.download_file_response")
 
   def sendJsonMessage(jsonMessage: String): Unit = sendMessage(dlpDownloadCompleteTopic, jsonMessage)
@@ -35,7 +35,7 @@ class DlpFilePubSub(val config: Config) extends KafkaMessageProducer(config) wit
   logger.info(s"Starting producer ${getClass.getSimpleName} on topic $dlpDownloadCompleteTopic")
 }
 
-object DlpFilePubSub {
+object FileDlpProducer {
   val numBytes = 4000000
   val filenamePrefix = "jj-test-%d"
 }
@@ -50,7 +50,7 @@ object TimedLoadApp extends App {
   checkServiceStatus("jessica-jones", "http://localhost:9000")
 
   val config = ConfigFactory.load()
-  val fileProducer = new DlpFilePubSub(config)
+  val fileProducer = new FileDlpProducer(config)
 
   val dlpDownloadCompleteTopic = config.getString("kafka.topic.download_file_response")
   val dlpFeedProducer = new DlpFeedProducer(config)
@@ -64,7 +64,7 @@ object TimedLoadApp extends App {
     val filename = filenamePrefix.format(index)
     val s3Bucket = config.getString("s3.bucket.default")
     val dlpDownload = DlpDownload(s3Bucket, filename, numBytes)
-    val dlpDownloadJson = Json.toString(dlpDownload)
+    val dlpDownloadJson = dlpDownload.stringify
 
     fileProducer.sendJsonMessage(dlpDownloadJson)
     if (System.currentTimeMillis() - startTime > 300000) {
@@ -91,7 +91,7 @@ object FixedSizeLoadApp extends App {
   checkServiceStatus("jessica-jones", "http://localhost:9000")
 
   val config = ConfigFactory.load()
-  val fileProducer = new DlpFilePubSub(config)
+  val fileProducer = new FileDlpProducer(config)
 
   val dlpDownloadCompleteTopic = config.getString("kafka.topic.download_file_response")
   val s3Bucket = config.getString("s3.bucket.default")
@@ -104,7 +104,7 @@ object FixedSizeLoadApp extends App {
     val filename = filenamePrefix.format(index)
     //val s3Path = s"https://s3.amazonaws.com/$s3BucketName/$filename"
     val dlpDownload = DlpDownload(s3Bucket, filename, numBytes)
-    val dlpDownloadJson = Json.toString(dlpDownload)
+    val dlpDownloadJson = dlpDownload.stringify
 
     fileProducer.sendJsonMessage(dlpDownloadJson)
   })
@@ -146,10 +146,10 @@ object SingleFileDlpApp extends App {
 
   val config = ConfigFactory.load()
   val topic = config.getString("kafka.topic.download_file_response")
-  val fileProducer = new DlpFilePubSub(config)
+  val fileProducer = new FileDlpProducer(config)
 
   println(s"Sending $s3Path to topic $topic for tenant ${dlpDownload.tenantId}")
-  fileProducer.sendJsonMessage(Json.toString(dlpDownload))
+  fileProducer.sendJsonMessage(dlpDownload.stringify)
 
   val p = Promise[String]()
   val f = p.future

@@ -51,8 +51,10 @@ object AnalyzeDlpSuite {
   def apply(name: String, resourceFile: String, numTests: Int) = new AnalyzeDlpSuite(name, Seq(resourceFile), numTests)
 }
 
+class DlpRequestProcessor(config: Config) extends DlpMessageProducer("kafka.topic.dlp_request", config)
+
 class AnalyzeDlpResponseMatcher(val config: Config) extends DlpResponseMatcher {
-  private val producer = new DlpRequestProducer(config)
+  private val producer = new DlpRequestProcessor(config)
   private val consumer = new DlpResponseConsumer(config, this)
 
   private val p = Promise[Map[String, Long]]()

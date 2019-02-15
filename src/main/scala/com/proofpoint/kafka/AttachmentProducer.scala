@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger
 
 import com.proofpoint.commons.logging.Implicits.NoLoggingContext
 import com.proofpoint.commons.logging.Logging
-import com.proofpoint.json.Json
+import com.proofpoint.commons.json.Json._
 import com.proofpoint.kafka.AttachmentProducer.randomStringStream
 import com.proofpoint.s3.S3
 import com.typesafe.config.{Config, ConfigFactory}
@@ -29,7 +29,7 @@ class AttachmentProducer(config: Config) extends KafkaMessageProducer(config) wi
     val logStep = Math.max(numMessages / 100, 10)
     randomStringStream.take(numMessages).zipWithIndex.foreach {
       case (filename, i) =>
-        s3.upload(i.toString, bucket, filename).map(_ => Json.toString(Attachment(bucket, filename, s"https://$bucket.s3.amazonaws.com/$filename"))).onComplete {
+        s3.upload(i.toString, bucket, filename).map(_ => Attachment(bucket, filename, s"https://$bucket.s3.amazonaws.com/$filename").stringify).onComplete {
           case Success(attachmentJson) =>
             sendMessage(topic, attachmentJson)
             val count = counter.incrementAndGet()
