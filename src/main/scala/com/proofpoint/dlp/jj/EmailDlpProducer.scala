@@ -37,6 +37,7 @@ A dlpResponse message should be returned from Sherlock.
 object EmailProducerApp extends App {
   val emailAttachmentOne = Source.fromResource("email_attach.json")
   val emailAttachmentTwo = Source.fromResource("email_attach_2.json")
+  val emailAttachmentTwoB = Source.fromResource("email_attach_2b.json")
 
   println("Sending email...")
   checkServiceStatusAll()
@@ -44,7 +45,7 @@ object EmailProducerApp extends App {
   val config = ConfigFactory.load()
   val producer = new EmailDlpProducer(config)
 
-  producer.sendRequest(emailAttachmentTwo.getLines().mkString(""))
+  producer.sendRequest(emailAttachmentTwoB.getLines().mkString(""))
 
   val p = Promise[String]()
   val f = p.future

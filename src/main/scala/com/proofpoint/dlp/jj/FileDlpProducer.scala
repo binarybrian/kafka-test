@@ -85,7 +85,10 @@ object TimedLoadApp extends App {
 /*
 Test text extraction load on JJ.  It doesn't test Sherlock dlpRequest or dlpResponse
 Generate N number of events to kafka topic "dlp_download_complete"
+
 See "DlpFileGenerateAndUploadApp" to generate the random document files.
+
+Change "numMessages" to generate "N" number of events
  */
 object FixedSizeLoadApp extends App {
   checkServiceStatus("jessica-jones", "http://localhost:9000")
@@ -115,24 +118,29 @@ object FixedSizeLoadApp extends App {
 /*
 For use with "FixedSizeLoadApp" to generate events on the "dlp_download_complete" kafka topic
 - Generate 10 random document files
-- Upload them to S3
+- Compress to zip files
+- Upload to S3
  */
 object DlpFileGenerateAndUploadApp extends App {
   val s3 = new S3()
   val documentFactory = new WordOrNumberDocumentFactory()
   val config = ConfigFactory.load()
   val s3Bucket = config.getString("s3.bucket.default")
+  val isZip = false
 
   (1 to 10).foreach(i => {
     val filename = filenamePrefix.format(i)
     val document = documentFactory.makeDocumentOfSizeBytes(filename, numBytes)
-    val zipPath = document.toZipFile
-    Await.result(s3.upload(zipPath.toFile, s3Bucket, filename), Duration.Inf)
+    val filePath = if (isZip) document.toZipFile else document.toFile
+    Await.result(s3.upload(filePath.toFile, s3Bucket, filename), Duration.Inf)
     val s3Path = s"https://s3.amazonaws.com/$s3Bucket/$filename"
     println(s"Finished uploading document of size ${document.words.size} bytes to $s3Path")
   })
 }
 
+/*
+Send a single file on the "dlp_download_complete" topic
+ */
 object SingleFileDlpApp extends App {
   checkServiceStatusAll()
 

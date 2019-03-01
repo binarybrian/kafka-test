@@ -6,6 +6,7 @@ import java.nio.file.{Files, Path, StandardOpenOption}
 import java.util.zip.{Deflater, ZipEntry, ZipOutputStream}
 
 import com.proofpoint.factory.DocumentFactory.{charset, newlineBytes}
+import scala.collection.JavaConverters._
 
 import scala.collection.mutable.ListBuffer
 
@@ -54,5 +55,12 @@ case class DlpDocument(filename: String, words: Seq[String]) {
         zipStream.closeEntry()
     }
     zipFile
+  }
+
+  def toFile: Path = {
+    val tempPath = Files.createTempFile(s"$filename", ".txt")
+    Files.write(tempPath, words.asJava)
+    println(s"Finished ${tempPath.toString}")
+    tempPath
   }
 }
