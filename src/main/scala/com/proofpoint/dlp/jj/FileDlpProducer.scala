@@ -126,16 +126,25 @@ object DlpFileGenerateAndUploadApp extends App {
   val documentFactory = new WordOrNumberDocumentFactory()
   val config = ConfigFactory.load()
   val s3Bucket = config.getString("s3.bucket.default")
-  val isZip = false
+  val fileType = FileType.Pdf
 
   (1 to 10).foreach(i => {
     val filename = filenamePrefix.format(i)
     val document = documentFactory.makeDocumentOfSizeBytes(filename, numBytes)
-    val filePath = if (isZip) document.toZipFile else document.toFile
-    Await.result(s3.upload(filePath.toFile, s3Bucket, filename), Duration.Inf)
+    val filePath = fileType match {
+      case FileType.Zip => document.toZipFile
+      case FileType.Plain =>  document.toFile(true)
+      case FileType.Pdf => document.toPdfBox
+    }
     val s3Path = s"https://s3.amazonaws.com/$s3Bucket/$filename"
+    println(s"Uploading $filePath to $s3Path")
+    Await.result(s3.upload(filePath.toFile, s3Bucket, filename), Duration.Inf)
     println(s"Finished uploading document of size ${document.words.size} bytes to $s3Path")
   })
+}
+
+object FileType extends Enumeration {
+  val Plain, Zip, Pdf = Value
 }
 
 /*

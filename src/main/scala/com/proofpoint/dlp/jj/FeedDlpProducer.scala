@@ -3,7 +3,6 @@ package com.proofpoint.dlp.jj
 import com.proofpoint.checkServiceStatus
 import com.proofpoint.commons.logging.Implicits.NoLoggingContext
 import com.proofpoint.commons.logging.Logging
-import com.proofpoint.factory.WordOrNumberDocumentFactory
 import com.proofpoint.kafka.KafkaMessageProducer
 import com.typesafe.config.{Config, ConfigFactory}
 

@@ -1,13 +1,17 @@
 package com.proofpoint
 package factory
 
-import java.io.{BufferedOutputStream, OutputStream}
+import java.io.{BufferedOutputStream, FileOutputStream, OutputStream}
 import java.nio.file.{Files, Path, StandardOpenOption}
 import java.util.zip.{Deflater, ZipEntry, ZipOutputStream}
 
+import com.itextpdf.text.{BaseColor, Chunk, Document, FontFactory}
+import com.itextpdf.text.pdf.PdfWriter
 import com.proofpoint.factory.DocumentFactory.{charset, newlineBytes}
-import scala.collection.JavaConverters._
+import org.apache.pdfbox.pdmodel.font.PDType1Font
+import org.apache.pdfbox.pdmodel.{PDDocument, PDPage, PDPageContentStream}
 
+import scala.collection.JavaConverters._
 import scala.collection.mutable.ListBuffer
 
 abstract class DocumentFactory {
@@ -57,10 +61,51 @@ case class DlpDocument(filename: String, words: Seq[String]) {
     zipFile
   }
 
-  def toFile: Path = {
-    val tempPath = Files.createTempFile(s"$filename", ".txt")
-    Files.write(tempPath, words.asJava)
+  def toFile(isCsv: Boolean = false): Path = {
+    val suffix = if (isCsv) ".csv" else ".txt"
+    val tempPath = Files.createTempFile(s"$filename", suffix)
+    val lines = if (isCsv) words.grouped(10).map(_.mkString(",")).toSeq else words
+    Files.write(tempPath, lines.asJava)
     println(s"Finished ${tempPath.toString}")
+    tempPath
+  }
+
+  def toPdf: Path = {
+    val tempPath = Files.createTempFile(s"$filename", ".pdf")
+    val document = new Document()
+    PdfWriter.getInstance(document, new FileOutputStream(tempPath.toFile))
+
+    document.open()
+    val font = FontFactory.getFont(FontFactory.HELVETICA, 13, BaseColor.BLACK)
+    words.foreach(word => document.add(new Chunk(word)))
+
+    document.close()
+    tempPath
+  }
+
+  def toPdfBox: Path = {
+    val tempPath = Files.createTempFile(s"$filename", ".pdf")
+
+    val document = new PDDocument()
+    val page = new PDPage()
+    document.addPage(page)
+
+    val contentStream = new PDPageContentStream(document, page)
+    contentStream.setFont(PDType1Font.HELVETICA, 16)
+
+    contentStream.beginText()
+    words.grouped(10).map(_.mkString(",")).foreach(line => {
+      contentStream.showText(line)
+      contentStream.newLine()
+    })
+    contentStream.endText()
+
+
+    contentStream.close()
+
+    document.save(tempPath.toString)
+    document.close()
+
     tempPath
   }
 }
