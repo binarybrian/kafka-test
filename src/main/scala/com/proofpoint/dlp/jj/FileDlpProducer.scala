@@ -7,10 +7,11 @@ import com.proofpoint.dlp.DlpResponseMatcher
 import com.proofpoint.dlp.jj.FileDlpProducer.{filenamePrefix, numBytes}
 import com.proofpoint.factory.{DlpDownload, WordOrNumberDocumentFactory}
 import com.proofpoint.incidents.models.DlpResponse
-import com.proofpoint.commons.json.Json._
+import com.proofpoint.commons.json.Implicits._
 import com.proofpoint.kafka.KafkaMessageProducer
 import com.proofpoint.s3.S3
 import com.typesafe.config.{Config, ConfigFactory}
+import com.proofpoint.commons.json.Implicits._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.Duration
@@ -91,6 +92,7 @@ See "DlpFileGenerateAndUploadApp" to generate the random document files.
 Change "numMessages" to generate "N" number of events
  */
 object FixedSizeLoadApp extends App {
+  import com.proofpoint.commons.json.Implicits._
   checkServiceStatus("jessica-jones", "http://localhost:9000")
 
   val config = ConfigFactory.load()

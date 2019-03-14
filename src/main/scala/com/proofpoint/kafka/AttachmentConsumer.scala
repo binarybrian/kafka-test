@@ -1,6 +1,6 @@
 package com.proofpoint.kafka
 
-import com.proofpoint.commons.json.Json._
+import com.proofpoint.commons.json.Implicits._
 import com.proofpoint.commons.logging.Implicits.NoLoggingContext
 import com.proofpoint.commons.logging.Logging
 import com.proofpoint.s3.S3

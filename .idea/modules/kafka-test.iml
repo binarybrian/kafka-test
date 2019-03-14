@@ -15,9 +15,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sbt: org.scala-lang.modules:scala-java8-compat_2.12:0.9.0:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.proofpoint:incident-models_2.12:1.2.1:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.proofpoint:commons-json_2.12:1.2:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.7:jar" level="project" />
     <orderEntry type="library" name="sbt: org.xerial.snappy:snappy-java:1.1.7.2:jar" level="project" />
     <orderEntry type="library" name="sbt: org.rocksdb:rocksdbjni:5.14.2:jar" level="project" />
     <orderEntry type="library" name="sbt: org.lz4:lz4-java:1.5.0:jar" level="project" />
@@ -127,7 +124,6 @@
     <orderEntry type="library" name="sbt: com.proofpoint:commons-logging_2.12:1.0.4:jar" level="project" />
     <orderEntry type="library" name="sbt: com.typesafe.scala-logging:scala-logging_2.12:3.9.0:jar" level="project" />
     <orderEntry type="library" name="sbt: javax.inject:javax.inject:1:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.thoughtworks.paranamer:paranamer:2.8:jar" level="project" />
     <orderEntry type="library" name="sbt: com.typesafe.netty:netty-reactive-streams:2.0.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.typesafe.netty:netty-reactive-streams-http:2.0.0:jar" level="project" />
     <orderEntry type="library" name="sbt: commons-logging:commons-logging:1.2:jar" level="project" />
@@ -215,8 +211,6 @@
     <orderEntry type="library" name="sbt: com.fasterxml.jackson.core:jackson-annotations:2.9.8:jar" level="project" />
     <orderEntry type="library" name="sbt: com.fasterxml.jackson.core:jackson-core:2.9.8:jar" level="project" />
     <orderEntry type="library" name="sbt: com.fasterxml.jackson.core:jackson-databind:2.9.8:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.fasterxml.jackson.module:jackson-module-paranamer:2.9.8:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.fasterxml.jackson.module:jackson-module-scala_2.12:2.9.8:jar" level="project" />
     <orderEntry type="library" name="sbt: com.google.errorprone:error_prone_annotations:2.2.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.google.guava:failureaccess:1.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.google.guava:guava:27.0-jre:jar" level="project" />
@@ -228,5 +222,19 @@
     <orderEntry type="library" name="sbt: org.checkerframework:checker-qual:2.5.2:jar" level="project" />
     <orderEntry type="library" name="sbt: org.codehaus.mojo:animal-sniffer-annotations:1.17:jar" level="project" />
     <orderEntry type="library" name="sbt: com.itextpdf:itextpdf:5.5.13:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.8:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.8:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.proofpoint:commons-json_2.12:2.1.0-DPR-2212-upgrade-to-play-json-2.7.1.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.proofpoint:incident-models_2.12:2.1.0-DPR-2212-fix-source-metadata-serialization.4:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.typesafe:ssl-config-core_2.12:0.3.7:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.typesafe.akka:akka-actor_2.12:2.5.19:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.typesafe.akka:akka-protobuf_2.12:2.5.19:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.typesafe.akka:akka-stream_2.12:2.5.19:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.typesafe.play:play-functional_2.12:2.7.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.typesafe.play:play-json_2.12:2.7.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.typesafe.play:play-ws-standalone-json_2.12:2.0.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.typesafe.play:play-ws-standalone_2.12:2.0.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-lang.modules:scala-parser-combinators_2.12:1.1.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:macro-compat_2.12:1.1.1:jar" level="project" />
   </component>
 </module>

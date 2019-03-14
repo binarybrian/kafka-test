@@ -5,10 +5,11 @@ import java.util.concurrent.atomic.AtomicInteger
 
 import com.proofpoint.commons.logging.Implicits.NoLoggingContext
 import com.proofpoint.commons.logging.Logging
-import com.proofpoint.commons.json.Json._
+import com.proofpoint.commons.json.Implicits._
 import com.proofpoint.kafka.AttachmentProducer.randomStringStream
 import com.proofpoint.s3.S3
 import com.typesafe.config.{Config, ConfigFactory}
+import play.api.libs.json.{Format, Json}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.Duration
@@ -16,6 +17,10 @@ import scala.concurrent.{Await, Promise}
 import scala.util.{Failure, Success}
 
 case class Attachment(bucket: String, filename: String, link: String)
+
+object Attachment {
+  implicit val format: Format[Attachment] = Json.format[Attachment]
+}
 
 class AttachmentProducer(config: Config) extends KafkaMessageProducer(config) with Logging {
   private val s3 = new S3
