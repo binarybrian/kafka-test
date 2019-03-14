@@ -1,0 +1,75 @@
+{
+  "emailOwner": "ralbrecht@proofpointfl.onmicrosoft.com",
+  "transactionId": "cap_execution_plan_e634fda0ad5649438e0f6af5ed1970b2_1550187541439",
+  "sourceMetadata": {
+    "id": "attachment-test-1",
+    "tenant_id": "tenant_a9998b6b7083490784afda48dd383928",
+    "channel_source": "EmailAtRest",
+    "application_type": "Office365",
+    "application_specific_metadata": {
+      "conversationId": "AAQkAGE4MThjZWM5LTgzODMtNDJmNS1hZDQzLWRhODMwMWI0NzA4MgAQAFHaYUs4ftVGotdPT6oNJWg="
+    },
+    "source_moniker": {
+      "id": "attachment-test-1",
+      "emailOwner": "ralbrecht@proofpointfl.onmicrosoft.com"
+    },
+    "subject": "identical name attachment test",
+    "from": {
+      "id": "ralbrecht@proofpointfl.onmicrosoft.com",
+      "service_provider_id": "Rachel Albrecht",
+      "name": "ralbrecht@proofpointfl.onmicrosoft.com"
+    },
+    "sender": {
+      "id": "ralbrecht@proofpointfl.onmicrosoft.com",
+      "service_provider_id": "Rachel Albrecht",
+      "name": "ralbrecht@proofpointfl.onmicrosoft.com"
+    },
+    "to_recipients": [
+      {
+        "id": "gandalf.grey@proofpointfl.onmicrosoft.com",
+        "service_provider_id": "Gandalf The Grey",
+        "name": "gandalf.grey@proofpointfl.onmicrosoft.com"
+      }
+    ],
+    "cc_recipients": [],
+    "bcc_recipients": [],
+    "created_timestamp": 1550186021000,
+    "sent_timestamp": 1550186122000,
+    "hash": "ce34b9a9aaacdf3b5c393184736744c9"
+  },
+  "hasAttachments": true,
+  "body": {
+    "contentType": "text",
+    "content": "ok. lessee how this goes."
+  },
+  "attachments": [
+    {
+      "dataType": "#microsoft.graph.fileAttachment",
+      "id": "attachment-test-1",
+      "lastModifiedDateTime": 1550186122000,
+      "name": "dlp_small.docx",
+      "contentType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 12127,
+      "isInline": false,
+      "s3DownloadDetails": {
+        "s3BucketName": "infoprtct-watson-dev",
+        "fileName": "dlp_small.docx",
+        "s3DownloadUrl": "https://infoprtct-watson-dev.amazonaws.com/dlp_small.docx"
+      }
+    },
+    {
+      "dataType": "#microsoft.graph.fileAttachment",
+      "id": "attachment-test-2",
+      "lastModifiedDateTime": 1550186122000,
+      "name": "attachmentTwin.docx",
+      "contentType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 13356,
+      "isInline": false,
+      "s3DownloadDetails": {
+        "s3BucketName": "infoprtct-watson-dev",
+        "fileName": "jj-test-1",
+        "s3DownloadUrl": "https://infoprtct-watson-dev.s3.amazonaws.com/jj-test-1"
+      }
+    }
+  ]
+}

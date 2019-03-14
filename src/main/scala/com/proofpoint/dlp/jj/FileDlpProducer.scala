@@ -99,7 +99,7 @@ object FixedSizeLoadApp extends App {
   val dlpDownloadCompleteTopic = config.getString("kafka.topic.download_file_response")
   val s3Bucket = config.getString("s3.bucket.default")
 
-  val numMessages = 20000
+  val numMessages = 1
 
   println(s"Sending $numMessages on topic '$dlpDownloadCompleteTopic'")
   (0 to numMessages).foreach(i => {
@@ -154,9 +154,9 @@ object SingleFileDlpApp extends App {
   checkServiceStatusAll()
 
   val s3 = new S3()
-  val bucketName = "flp-dlp-stg"
-  val filename = "ed5745ee17514ad85b98dd138108405a"
-  val tenantId = "tenant_10da1867d943489ebe6120ab0b6a1c26"
+  val bucketName = "infoprtct-watson-dev"
+  val filename = "dlp_small.docx"
+  val tenantId = "tenant_a9998b6b7083490784afda48dd383928"
   val s3Path = s"s3://$bucketName/$filename"
   val numBytes = 71
   val dlpDownload = DlpDownload(bucketName, filename, 71, tenantId)

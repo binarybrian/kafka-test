@@ -88,7 +88,7 @@ object S3TikaExtractApp extends App {
 }
 
 object LocalTikaExtractApp extends App {
-  val inputStream = Files.newInputStream(Paths.get("/Users/bmerrill/pfpt/jj/test_files/large_message_list.gz"))
+  val inputStream = Files.newInputStream(Paths.get("/Users/bmerrill/workspace/md-test.md"))
 
   val startTime = System.currentTimeMillis()
   val content = TikaExtract.extract(inputStream)

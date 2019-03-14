@@ -1,6 +1,6 @@
 package com
 
-import java.io.{ByteArrayInputStream, ByteArrayOutputStream, Closeable}
+import java.io.{ByteArrayInputStream, ByteArrayOutputStream, Closeable, IOException}
 import java.net.ConnectException
 import java.nio.charset.StandardCharsets.UTF_8
 import java.util.Base64.{getDecoder, getEncoder}
@@ -62,6 +62,9 @@ package object proofpoint {
     catch {
       case e: ConnectException =>
         println(s"$serviceName is not running. Shutting down...")
+        System.exit(1)
+      case i: IOException =>
+        println(s"$serviceName returned ${i.getMessage}.  Shutting down...")
         System.exit(1)
     }
   }
