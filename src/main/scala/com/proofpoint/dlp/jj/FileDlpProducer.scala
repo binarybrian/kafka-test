@@ -7,7 +7,6 @@ import com.proofpoint.dlp.DlpResponseMatcher
 import com.proofpoint.dlp.jj.FileDlpProducer.{filenamePrefix, numBytes}
 import com.proofpoint.factory.{DlpDownload, WordOrNumberDocumentFactory}
 import com.proofpoint.incidents.models.DlpResponse
-import com.proofpoint.commons.json.Implicits._
 import com.proofpoint.kafka.KafkaMessageProducer
 import com.proofpoint.s3.S3
 import com.typesafe.config.{Config, ConfigFactory}
@@ -103,11 +102,10 @@ object FixedSizeLoadApp extends App {
 
   val numMessages = 1
 
-  println(s"Sending $numMessages on topic '$dlpDownloadCompleteTopic'")
-  (0 to numMessages).foreach(i => {
+  println(s"Sending $numMessages message(s) on topic '$dlpDownloadCompleteTopic'")
+  (1 to numMessages).foreach(i => {
     val index = Random.nextInt(10) + 1
     val filename = filenamePrefix.format(index)
-    //val s3Path = s"https://s3.amazonaws.com/$s3BucketName/$filename"
     val dlpDownload = DlpDownload(s3Bucket, filename, numBytes)
     val dlpDownloadJson = dlpDownload.stringify
 
