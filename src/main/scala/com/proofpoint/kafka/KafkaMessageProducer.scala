@@ -38,5 +38,3 @@ class KafkaMessageProducer(config: Config)(implicit executionContext: ExecutionC
     producer.close(10, TimeUnit.SECONDS)
   }
 }
-
-

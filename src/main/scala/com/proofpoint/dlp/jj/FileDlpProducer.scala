@@ -100,19 +100,21 @@ object FixedSizeLoadApp extends App {
   val dlpDownloadCompleteTopic = config.getString("kafka.topic.download_file_response")
   val s3Bucket = config.getString("s3.bucket.default")
 
-  val numMessages = 1
+  val numMessages = 1000
 
   println(s"Sending $numMessages message(s) on topic '$dlpDownloadCompleteTopic'")
   (1 to numMessages).foreach(i => {
-    val index = Random.nextInt(10) + 1
+    val index = Random.nextInt(100) + 1
     val filename = filenamePrefix.format(index)
     val dlpDownload = DlpDownload(s3Bucket, filename, numBytes)
     val dlpDownloadJson = dlpDownload.stringify
 
     fileProducer.sendJsonMessage(dlpDownloadJson)
+    if (i % 10 == 0) println (s"Sent $i of $numMessages messages")
   })
 
   fileProducer.close()
+  System.exit(0)
 }
 
 /*
