@@ -20,6 +20,27 @@ object DlpDownload {
         "s3_file_name" -> dlpDownload.filename,
         "s3_download_url" -> dlpDownload.s3Path,
         "event_id" -> "execution_plan_id: cap_execution_plan_d9d90b80606e4472a138226bb658ed09 job_id: cap_job_c2918889f673dddca55411425991fe09 transaction_id: cap_execution_plan_d9d90b80606e4472a138226bb658ed09_1548805779981 entity: 2198f92743bd28872ccd5b29b8643c92",
+        "title" -> dlpDownload.filename,
+        "extension" -> "zip",
+        "size" -> dlpDownload.filesize.toString,
+        "link" -> "https://app.box.com/file/392453406649",
+        "location" -> "V11",
+        "origin" -> "ONEDRIVE",
+        "mimetype" -> "application/zip",
+        "trashed" -> "false",
+        "share_level" -> 5,
+        "owner" -> Json.obj(
+          "id" -> "user_d30773b74d7d2457940801e4cc0eb458",
+          "name" -> "Omega Helix",
+          "email" -> "omegahelix@gmail.com",
+          "ip" -> "192.168.1.101",
+          "location" -> Json.obj(
+            "country" -> "United States",
+            "country_iso_code" -> "US",
+            "region" -> "California",
+            "city" -> "Concord",
+          ),
+        ),
         "source_metadata" -> Json.obj(
           "channel_type" -> "SaaSFile",
           "id" -> "2198f92743bd28872ccd5b29b8643c92",
@@ -43,28 +64,7 @@ object DlpDownload {
           "application_id" -> "20",
           "sub_source" -> "O365",
           "file_extension" -> "zip",
-        ),
-        "title" -> dlpDownload.filename,
-        "extension" -> "zip",
-        "size" -> dlpDownload.filesize.toString,
-        "link" -> "https://app.box.com/file/392453406649",
-        "location" -> "V11",
-        "origin" -> "ONEDRIVE",
-        "mimetype" -> "application/zip",
-        "trashed" -> "false",
-        "owner" -> Json.obj(
-          "id" -> "user_d30773b74d7d2457940801e4cc0eb458",
-          "name" -> "Omega Helix",
-          "email" -> "omegahelix@gmail.com",
-          "ip" -> "192.168.1.101",
-          "location" -> Json.obj(
-            "country" -> "United States",
-            "country_iso_code" -> "US",
-            "region" -> "California",
-            "city" -> "Concord",
-          ),
-        ),
-        "share_level" -> 5
+        )
       )
     }
   }

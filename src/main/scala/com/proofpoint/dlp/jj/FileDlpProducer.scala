@@ -104,7 +104,7 @@ object FixedSizeLoadApp extends App {
 
   println(s"Sending $numMessages message(s) on topic '$dlpDownloadCompleteTopic'")
   (1 to numMessages).foreach(i => {
-    val index = Random.nextInt(100) + 1
+    val index = Random.nextInt(2) + 1
     val filename = filenamePrefix.format(index)
     val dlpDownload = DlpDownload(s3Bucket, filename, numBytes)
     val dlpDownloadJson = dlpDownload.stringify
