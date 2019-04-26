@@ -68,8 +68,8 @@ class AnalyzeDlpResponseMatcher(val config: Config) extends DlpResponseMatcher {
   def sendContents(tenantId: String, contents: Seq[String]): Future[Map[String, Long]] = {
     val dlpRequests = contents.zipWithIndex.map {
       case (content, index) =>
-        val logKey = s"$index-${UUID.randomUUID().toString}"
-        DlpRequest(logKey, tenantId, compress(content), SaaSFileSourceMetadata(logKey, tenantId, ChannelSource.PCASB, ApplicationType.Office365, None, None, None, None, None, None, None, None, None, None, None, None, None, None))
+        val id = s"$index-${UUID.randomUUID().toString}"
+        DlpRequest(id, tenantId, compress(content), SaaSFileSourceMetadata(ChannelType.SaaSFile, id, tenantId, ChannelSource.PCASB, ApplicationType.Office365, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None))
     }
 
     waitingDlp = dlpRequests.map(request => {
