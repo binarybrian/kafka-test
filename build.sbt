@@ -11,7 +11,7 @@ libraryDependencies ++= Seq(
   "com.itextpdf" % "itextpdf" % "5.5.13",
   "com.proofpoint" %% "commons-logging" % "1.0.4",
   "com.proofpoint" %% "commons-tokenizer" % "1.0.6",
-  "com.proofpoint" %% "incident-models" % "2.7.0-DPR-2155-slack-im-attach.104",
+  "com.proofpoint" %% "incident-models" % "2.7.0",
   "com.typesafe" % "config" % "1.3.3",
   "log4j" % "log4j" % "1.2.17" % Runtime,
   "net.codingwell" %% "scala-guice" % "4.2.2",

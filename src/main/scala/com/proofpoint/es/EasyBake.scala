@@ -5,12 +5,16 @@ import java.io.Closeable
 import java.util.UUID.randomUUID
 
 import com.proofpoint.commons.json.Implicits._
-import com.proofpoint.incidents.models.{ApplicationType, ChannelSource, ChannelType, Incident, IncidentStatus, MetadataType, SaaSFileSourceMetadata, SummaryInfo}
+import com.proofpoint.incidents.models.{ApplicationType, ChannelSource, ChannelType, Incident, IncidentStatus, SaaSFileSourceMetadata, SummaryInfo}
 import org.apache.http.HttpHost
+import org.elasticsearch.action.DocWriteRequest.OpType
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest
 import org.elasticsearch.action.admin.indices.settings.put.UpdateSettingsRequest
-import org.elasticsearch.action.index.IndexRequest
+import org.elasticsearch.action.bulk.BulkRequest
+import org.elasticsearch.action.delete.DeleteResponse
+import org.elasticsearch.action.index.{IndexRequest, IndexResponse}
 import org.elasticsearch.action.search.SearchRequest
+import org.elasticsearch.action.update.UpdateResponse
 import org.elasticsearch.client.indices.{CreateIndexRequest, GetIndexRequest, GetMappingsRequest}
 import org.elasticsearch.client.{RequestOptions, RestClient, RestHighLevelClient}
 import org.elasticsearch.common.xcontent.XContentType
@@ -56,13 +60,47 @@ class EasyBake(val indexName: String, hostname: String = "localhost", port: Int 
     response.status().getStatus
   }
 
+  def writeDocuments(documents: Seq[String], indexName: String = this.indexName): Unit = {
+    val bulkRequest = new BulkRequest()
+    documents.zipWithIndex.foreach {
+      case (document, documentIndex) =>
+        val id = documentIndex.toString
+        val indexRequest = new IndexRequest(indexName)
+        indexRequest.id(id)
+        indexRequest.`type`("_doc")
+        indexRequest.source(document, XContentType.JSON)
+        bulkRequest.add(indexRequest)
+    }
+    val response = client.bulk(bulkRequest, RequestOptions.DEFAULT)
+    response.asScala.foreach(itemResponse => itemResponse.getOpType match {
+      case OpType.INDEX | OpType.CREATE =>
+        val indexResponse = itemResponse.getResponse.asInstanceOf[IndexResponse]
+        println(s"CreateResponse: ${indexResponse.toString}")
+      case OpType.UPDATE =>
+        val updateResponse = itemResponse.getResponse.asInstanceOf[UpdateResponse]
+        println(s"UpdateResponse: ${updateResponse.toString}")
+      case OpType.DELETE =>
+        val deleteResponse = itemResponse.getResponse.asInstanceOf[DeleteResponse]
+        println(s"DeleteResponse: ${deleteResponse.toString}")
+    })
+  }
+
   def getDocuments(indexName: String = this.indexName): String = {
     val searchRequest = new SearchRequest(indexName)
     val searchSourceBuilder = new SearchSourceBuilder()
     searchSourceBuilder.query(QueryBuilders.matchAllQuery())
     searchRequest.source(searchSourceBuilder)
     val response = client.search(searchRequest, RequestOptions.DEFAULT)
-    response.getHits.getHits.toVector.map(hit => hit.toString).mkString("{\n",",\n","\n}")
+    response.getHits.getHits.toVector.map(hit => hit.toString).mkString("{\n", ",\n", "\n}")
+  }
+
+  def totalDocuments(indexName: String = this.indexName): Long = {
+    val searchRequest = new SearchRequest(indexName)
+    val searchSourceBuilder = new SearchSourceBuilder()
+    searchSourceBuilder.query(QueryBuilders.matchAllQuery())
+    searchRequest.source(searchSourceBuilder)
+    val response = client.search(searchRequest, RequestOptions.DEFAULT)
+    response.getHits.totalHits
   }
 
   def getMappings(indexName: String = this.indexName): String = {
@@ -113,14 +151,17 @@ object DeleteIndex extends App {
 }
 
 object PopulateIndex extends App {
-  val numIncidents = 10
+  val numIncidents = 1000
   val easyBake = new EasyBake(EasyBake.indexName)
   val response = easyBake.createIndex()
   println(s"Creating $numIncidents documents...")
-  (1 to numIncidents).map(index => {
-    val incident = IncidentGenerator.createLegacyIncident
-    easyBake.writeDocument(index.toString, incident)
-  })
+  val incidents = (1 to numIncidents).map(_ => IncidentGenerator.createLegacyIncident).toVector
+  easyBake.writeDocuments(incidents)
+  easyBake.close()
+//  (1 to numIncidents).map(index => {
+//    val incident = IncidentGenerator.createLegacyIncident
+//    easyBake.writeDocument(index.toString, incident)
+//  })
 }
 
 object PrintIndexMappings extends App {
@@ -141,7 +182,13 @@ object PrintIndices extends App {
 
 object PrintDocuments extends App {
   using(new EasyBake(EasyBake.indexName)) {
-    easyBake => println(s"~~~~ ${easyBake.getDocuments()} ~~~~")
+    easyBake => println(s"~~~~ ${easyBake.getDocuments().take(10000)} ~~~~")
+  }
+}
+
+object PrintTotalDocuments extends App {
+  using(new EasyBake(EasyBake.indexName)) {
+    easyBake => println(s"~~~~ ${easyBake.totalDocuments()} ~~~~")
   }
 }
 
@@ -150,7 +197,7 @@ object IncidentGenerator {
     val id = randomUUID().toString.replace("-", "")
     val tenantId = "tenant_12345"
     val sourceMetadata = SaaSFileSourceMetadata(ChannelType.SaaSFile, id, tenantId, ChannelSource.PCASB, ApplicationType.Slack, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None)
-    val incident = Incident(id, tenantId, MetadataType.SaaSFile, ChannelType.SaaSFile, ChannelSource.PCASB, ApplicationType.Slack, flagged = false, None, SummaryInfo(Seq.empty), IncidentStatus.New, System.currentTimeMillis(), System.currentTimeMillis(), Seq.empty, sourceMetadata, None, None)
+    val incident = Incident(id, tenantId, ChannelType.SaaSFile, ChannelSource.PCASB, ApplicationType.Slack, flagged = false, None, SummaryInfo(Seq.empty), IncidentStatus.New, System.currentTimeMillis(), System.currentTimeMillis(), Seq.empty, sourceMetadata, None, None)
     val incidentJson = incident.as[JsObject]
     val legacyJson = incidentJson - "metadata_type"
     legacyJson.stringify

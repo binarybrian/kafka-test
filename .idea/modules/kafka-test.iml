@@ -15,6 +15,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sbt: org.scala-lang.modules:scala-java8-compat_2.12:0.9.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.proofpoint:incident-models_2.12:2.7.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.elasticsearch.plugin:rank-eval-client:6.7.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.elasticsearch.plugin:parent-join-client:6.7.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.elasticsearch.plugin:lang-mustache-client:6.7.1:jar" level="project" />
@@ -264,6 +265,5 @@
     <orderEntry type="library" name="sbt: org.rocksdb:rocksdbjni:5.14.2:jar" level="project" />
     <orderEntry type="library" name="sbt: org.xerial.snappy:snappy-java:1.1.7.2:jar" level="project" />
     <orderEntry type="library" name="sbt: com.proofpoint:commons-json_2.12:2.1.2:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.proofpoint:incident-models_2.12:2.7.0-DPR-2155-slack-im-attach.104:jar" level="project" />
   </component>
 </module>
