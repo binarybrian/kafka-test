@@ -1,0 +1,149 @@
+{
+  "log_key": "tenant_10da1867d943489ebe6120ab0b6a1c26 6e640ff1c4ee2a352ca1a568c285d03f Some(flevent_f5c8d8889ac7adfba33db72d57ccc009)",
+  "tenant_id": "tenant_10da1867d943489ebe6120ab0b6a1c26",
+  "result": {
+    "detector_matches": [
+      {
+        "id": "tenant_10da1867d943489ebe6120ab0b6a1c26/Detector-CCardwithTermsANDnotNEAR",
+        "name": "CCard with Terms AND not NEAR",
+        "segments": {
+          "text": [
+            {
+              "rule_type": "SmartId",
+              "rule_name": "Credit Card Number",
+              "snippet_offset": 152,
+              "content": "stay.6227-5234-8190-3511 The information used",
+              "offset": 19,
+              "length": 19
+            },
+            {
+              "rule_type": "Dictionary",
+              "rule_name": "Credit Card Terms",
+              "snippet_offset": 330,
+              "content": "legal = action. * Bank Card 6227-5234-8190-3511",
+              "offset": 19,
+              "length": 9
+            },
+            {
+              "rule_type": "SmartId",
+              "rule_name": "Credit Card Number",
+              "snippet_offset": 338,
+              "content": "action. * Bank Card 6227-5234-8190-3511  Thanks, QA --",
+              "offset": 21,
+              "length": 19
+            }
+          ]
+        }
+      },
+      {
+        "id": "Detector_PaymentCardIndustryWithTerms",
+        "name": "Credit Card Information with Terms",
+        "segments": {
+          "text": [
+            {
+              "rule_type": "SmartId",
+              "rule_name": "Credit Card Number",
+              "snippet_offset": 152,
+              "content": "stay.  6227-5234-8190-3511 The information used",
+              "offset": 19,
+              "length": 19
+            },
+            {
+              "rule_type": "Dictionary",
+              "rule_name": "Credit Card Terms",
+              "snippet_offset": 330,
+              "content": "legal = action. *  Bank Card 6227-5234-8190-3511",
+              "offset": 19,
+              "length": 9
+            },
+            {
+              "rule_type": "SmartId",
+              "rule_name": "Credit Card Number",
+              "snippet_offset": 338,
+              "content": "action. * Bank Card 6227-5234-8190-3511  Thanks, QA --",
+              "offset": 21,
+              "length": 19
+            }
+          ]
+        }
+      },
+      {
+        "id": "Detector_PaymentCardIndustry",
+        "name": "Credit Card Information",
+        "segments": {
+          "text": [
+            {
+              "rule_type": "SmartId",
+              "rule_name": "Credit Card Number",
+              "snippet_offset": 152,
+              "content": "stay. 6227-5234-8190-3511 The information used",
+              "offset": 19,
+              "length": 19
+            },
+            {
+              "rule_type": "SmartId",
+              "rule_name": "Credit Card Number",
+              "snippet_offset": 338,
+              "content": "action. * Bank Card 6227-5234-8190-3511  Thanks, QA --",
+              "offset": 21,
+              "length": 19
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "source_metadata": {
+    "metadata_type": "SaaSFile",
+    "channel_type": "IM",
+    "id": "6e640ff1c4ee2a352ca1a568c285d03f",
+    "tenant_id": "tenant_10da1867d943489ebe6120ab0b6a1c26",
+    "channel_source": "PCASB",
+    "application_type": "Slack",
+    "application_specific_metadata": {
+      "owner_id": "obodner+slacktest@proofpoint.com",
+      "raw_so_id": "FJB4WTTPE",
+      "session_id": "flevent_f5c8d8889ac7adfba33db72d57ccc009",
+      "event_id": "flevent_f5c8d8889ac7adfba33db72d57ccc009",
+      "source": "slack_cap",
+      "sub_source": "SLACK",
+      "scan_source_type": "FILE_EVENT"
+    },
+    "source_moniker": {
+      "download_url": "https://files.slack.com/files-pri/TCPHTEARY-FJB4WTTPE/download/slackattachtest1may1.docx",
+      "file_extension": "docx"
+    },
+    "title": "slackAttachTest1May1.docx",
+    "extension": "docx",
+    "created_timestamp": 1556732880000,
+    "modified_timestamp": 1556732880000,
+    "size": 12089,
+    "link": "https://files.slack.com/files-pri/TCPHTEARY-FJB4WTTPE/download/slackattachtest1may1.docx",
+    "origin": "SLACK",
+    "mimetype": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "event_actor": {
+      "id": "user_d876949828eb2aed819d163ff25bd068",
+      "name": "obodner_slacktest",
+      "display_name": "obodner_slacktest",
+      "email": "obodner+slacktest@proofpoint.com",
+      "groups": [],
+      "ip": "72.174.136.44",
+      "location": {
+        "country": "United States",
+        "country_iso_code": "US",
+        "region": "Montana",
+        "city": "Missoula"
+      }
+    },
+    "owner": {
+      "id": "user_d876949828eb2aed819d163ff25bd068",
+      "service_provider_id": "WDG12G1LK",
+      "name": "obodner_slacktest",
+      "display_name": "obodner_slacktest",
+      "email": "obodner+slacktest@proofpoint.com",
+      "groups": []
+    },
+    "share_level": 2,
+    "full_path": ""
+  }
+}
