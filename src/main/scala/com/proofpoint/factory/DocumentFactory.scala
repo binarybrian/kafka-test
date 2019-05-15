@@ -1,12 +1,12 @@
 package com.proofpoint
 package factory
 
-import java.io.{BufferedOutputStream, FileOutputStream, OutputStream}
+import java.io.{BufferedOutputStream, FileOutputStream}
 import java.nio.file.{Files, Path, StandardOpenOption}
 import java.util.zip.{Deflater, ZipEntry, ZipOutputStream}
 
-import com.itextpdf.text.{BaseColor, Chunk, Document, FontFactory}
 import com.itextpdf.text.pdf.PdfWriter
+import com.itextpdf.text.{BaseColor, Chunk, Document, FontFactory}
 import com.proofpoint.factory.DocumentFactory.{charset, newlineBytes}
 import org.apache.pdfbox.pdmodel.font.PDType1Font
 import org.apache.pdfbox.pdmodel.{PDDocument, PDPage, PDPageContentStream}
