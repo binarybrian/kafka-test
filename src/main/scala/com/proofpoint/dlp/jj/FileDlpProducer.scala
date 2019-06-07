@@ -153,11 +153,12 @@ object FileType extends Enumeration {
 Send a single file on the "dlp_download_complete" topic
  */
 object SingleFileDlpApp extends App {
-  checkServiceStatusAll()
+  //checkServiceStatusAll()
+  checkServiceStatus("jessica-jones", "http://localhost:9000")
 
   val s3 = new S3()
   val bucketName = "infoprtct-watson-dev"
-  val filename = "dlp_small.docx"
+  val filename = "embedded-image-dlp.pdf"//"dlp_small.docx"
   val tenantId = "tenant_a9998b6b7083490784afda48dd383928"
   val s3Path = s"s3://$bucketName/$filename"
   val numBytes = 71

@@ -1,8 +1,10 @@
 package com.proofpoint.tika
 
 import java.io.{File, InputStream}
-import java.nio.file.{Files, Paths}
-import java.util.concurrent.atomic.AtomicBoolean
+import java.nio.file.attribute.FileAttribute
+import java.nio.file.{Files, Path, Paths, StandardCopyOption}
+import java.time.Instant
+import java.util.concurrent.atomic.{AtomicBoolean, AtomicReference}
 
 import awscala.CredentialsLoader
 import awscala.Region0.US_EAST_1
@@ -10,9 +12,12 @@ import awscala.s3.S3
 import com.amazonaws.ClientConfiguration
 import com.proofpoint.tika.TikaExtract.maxExtractLength
 import org.apache.tika.config.TikaConfig
+import org.apache.tika.extractor.EmbeddedDocumentExtractor
 import org.apache.tika.metadata.Metadata
+import org.apache.tika.parser.pdf.PDFParser
 import org.apache.tika.parser.{AutoDetectParser, ParseContext}
 import org.apache.tika.sax.{BodyContentHandler, ContentHandlerDecorator}
+import org.xml.sax.ContentHandler
 
 object TikaExtract {
   val maxExtractLength = 20000000
@@ -23,12 +28,39 @@ object TikaExtract {
     val metadata = new Metadata()
     val handler = new SizeLimitContentHandler()
     //val handler = new BodyContentHandler(-1)
-    val parseContext = new ParseContext
 
-    parser.parse(inputStream, handler, metadata, parseContext)
+    val embeddedPath = new AtomicReference[Path]()
+    val embeddedDocumentExtractor = new EmbeddedDocumentExtractor() {
+      override def shouldParseEmbedded(metadata: Metadata): Boolean = {
+        val names = metadata.names().toVector
+        names.foreach(name => {
+          println(s"$name --> ${metadata.get(name)}")
+        })
+        true
+      }
+
+      override def parseEmbedded(stream: InputStream, handler: ContentHandler, metadata: Metadata, outputHtml: Boolean): Unit = {
+        println("I AM HERE 22222 !!!!")
+        val tempFile = Files.createTempFile(Instant.now().toEpochMilli.toString, "image")
+        try {
+          println(s"Copying embedded image to ${tempFile.toString} -- available: ${stream.available()}")
+          Files.copy(stream, tempFile, StandardCopyOption.REPLACE_EXISTING)
+        }
+        catch {
+          case e: Exception => println(s"Failed to write to $tempFile with ${e.getMessage} -- ${e.printStackTrace()}")
+        }
+        embeddedPath.set(tempFile)
+      }
+    }
+    val context = new ParseContext
+    context.set(classOf[EmbeddedDocumentExtractor], embeddedDocumentExtractor)
+
+    parser.parse(inputStream, handler, metadata, context)
     if  (handler.exceededLength.get()) {
       println("Tika extraction truncated.")
     }
+    println(s"!!!! Metadata: $metadata with $embeddedPath")
+
     handler.content.toString()
   }
 }
@@ -88,7 +120,8 @@ object S3TikaExtractApp extends App {
 }
 
 object LocalTikaExtractApp extends App {
-  val inputStream = Files.newInputStream(Paths.get("/Users/bmerrill/workspace/md-test.md"))
+  //val inputStream = Files.newInputStream(Paths.get("/Users/bmerrill/workspace/md-test.md"))
+  val inputStream = Files.newInputStream(Paths.get("/Users/bmerrill/workspace/pfpt/hackday/embedded-image-dlp.pdf"))
 
   val startTime = System.currentTimeMillis()
   val content = TikaExtract.extract(inputStream)

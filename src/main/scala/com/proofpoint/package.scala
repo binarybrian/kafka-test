@@ -73,7 +73,8 @@ package object proofpoint {
     Seq(
       "jessica-jones" -> "http://localhost:9000",
       "watson" -> "http://localhost:9001",//Sherlock hard codes Watson to localhost:9001 for testing.
-      "sherlock" -> "http://localhost:9002")
+      "sherlock" -> "http://localhost:9002",
+      "mycroft" -> "http://localhost:9003")
       .foreach({
         case (serviceName, url) => checkServiceStatus(serviceName, url)
       })

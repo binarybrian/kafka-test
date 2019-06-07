@@ -12,6 +12,7 @@ libraryDependencies ++= Seq(
   "com.proofpoint" %% "commons-logging" % "1.0.4",
   "com.proofpoint" %% "commons-tokenizer" % "1.0.6",
   "com.proofpoint" %% "incident-models" % "2.7.0",
+  "com.proofpoint" %% "unified-dlp" % "0.2.0-DPR-2918-base64-encode-smartids.62",
   "com.typesafe" % "config" % "1.3.3",
   "log4j" % "log4j" % "1.2.17" % Runtime,
   "net.codingwell" %% "scala-guice" % "4.2.2",

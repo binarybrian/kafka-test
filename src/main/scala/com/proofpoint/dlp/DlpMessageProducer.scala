@@ -32,3 +32,12 @@ object DlpRequestProducerApp extends App {
   println(s"Extract time: ${System.currentTimeMillis() - startTime} ms")
   inputStream.close()
 }
+
+object HackdaysApp extends App {
+  val startTime = System.currentTimeMillis()
+  val inputStream = getClass.getResourceAsStream("/embedded-image-dlp.pdf")
+  val content = TikaExtract.extract(inputStream)
+  println(s"Extracted: $content")
+  println(s"Extract time: ${System.currentTimeMillis() - startTime} ms")
+  inputStream.close()
+}

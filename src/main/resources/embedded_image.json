@@ -1,0 +1,270 @@
+{
+  "guid": "e606c685a13458f63010477b4d8b4cf7",
+  "show_in_analyze": "true",
+  "_id": "flevent_e606c685a13458f63010477b4d8b4cf7",
+  "_type": "flevent",
+  "timestamp": 1547511064605,
+  "transaction_id": "cap_execution_plan_3462cda0840b471086eedaabd797d2cc_1547511061539",
+  "trimmed_id": "e606c",
+  "tenant_id": "tenant_df44631cfc254951a385e0d90ee3c673",
+  "tenant_name": "BOX Kloudless DEV",
+  "user_id": "user_1ccad2458d5300a66d8344a186220ee2",
+  "user_name": "qa_automation@engineer.com",
+  "user_groups_v2": [],
+  "user_is_external": false,
+  "user_is_virtual": false,
+  "event_type_id": 1,
+  "event_type_name": "Allowed with no user interaction",
+  "raw_event_type": "events",
+  "raw_event_sub_type": "add",
+  "raw_event_so_type": "file",
+  "so_id": "5c9d760215a5e047b7d8297832e04df5",
+  "so_owner_id": "qa_automation@engineer.com",
+  "source": "box_cap",
+  "sub_source": "BOX",
+  "source_type": "api_polling",
+  "application_id": 20,
+  "application_name": "Box",
+  "control_id": 9665,
+  "control_name": "Add File/Folder in Box",
+  "control_short_name": "Add File/Folder",
+  "control_action_id": 3,
+  "control_action_name": "Create / Add",
+  "control_resource_id": 2,
+  "control_resource_name": "File",
+  "threat_id": 3,
+  "threat_name": "Availability",
+  "rule_id": "",
+  "mission_type_id": 0,
+  "mission_sub_type_id": 0,
+  "mission_name": "N/A",
+  "mission_result": 0,
+  "mission_result_name": "PENDING",
+  "request_url": "",
+  "action_name": "ALLOW",
+  "request_ip": "34.232.218.151",
+  "request_date_time_epoch": "1547510880000",
+  "request_date_time": "2019-01-15T00:08:00.000Z",
+  "time_day_of_week": 2,
+  "time_day_of_month": 15,
+  "time_month_of_year": 1,
+  "time_year": 2019,
+  "time_hour_of_day": 0,
+  "time_minute_of_hour": 8,
+  "time_second_of_minute": 0,
+  "request_agent": "",
+  "proxy_node_name": "",
+  "user_agent_string": "",
+  "user_agent_os_id": 0,
+  "user_agent_device_type_id": 0,
+  "user_agent_browser_id": 0,
+  "endpoint": "OTHER",
+  "geo_location": [
+    -77.48748779296875,
+    39.04372024536133
+  ],
+  "geo_country_name": "United States",
+  "geo_country_iso_code": "US",
+  "geo_city": "Ashburn",
+  "geo_postal_code": "EMPTY",
+  "geo_subdivision": "Virginia",
+  "geo_subdivision_iso_code": "EMPTY",
+  "is_replay_event": false,
+  "replay_count": 0,
+  "fl_metadata": {
+    "raw_so_id": "383681940286",
+    "share_level": 5,
+    "sha1": "6934835498ffe4ee9b277332686661ce1120fc8b",
+    "file_created_date": "2019-01-15T00:08:00Z",
+    "mimetype": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "file_size": "13067",
+    "file_title": "hackday-dlp.docx",
+    "file_modified_date": "2019-01-15T00:08:00Z",
+    "file_extension": "docx",
+    "file_link": "https://app.box.com/file/383681940286",
+    "owner_domain": "engineer.com",
+    "owner_type": "User",
+    "externally_owned": false,
+    "owner_id": "qa_automation@engineer.com",
+    "raw_file_permissions": [
+      {
+        "role": "owner",
+        "share_level": 1,
+        "name": "QA Automation",
+        "email": "qa_automation@engineer.com"
+      }
+    ],
+    "file_permissions": [
+      {
+        "role": "owner",
+        "share_level": 1,
+        "name": "QA Automation",
+        "email": "qa_automation@engineer.com"
+      }
+    ],
+    "trashed": false,
+    "first_level_parent": [
+      {
+        "title": "Automation"
+      }
+    ],
+    "source_moniker": {
+      "kloudless_so_id": "F_eAap60fOtgCfjiDxcjkJw==",
+      "kloudless_owner_id": "uMzE5MDMwMTk0OA==",
+      "tenant_id": "tenant_df44631cfc254951a385e0d90ee3c673",
+      "application_id": 20,
+      "sub_source": "BOX",
+      "file_extension": "docx"
+    },
+    "origin": "BOX",
+    "kloudless_so_id": "F_eAap60fOtgCfjiDxcjkJw==",
+    "file_category": "Document",
+    "user_id": "user_1ccad2458d5300a66d8344a186220ee2",
+    "tenant": {
+      "_id": "tenant_df44631cfc254951a385e0d90ee3c673",
+      "name": "BOX Kloudless DEV"
+    },
+    "email": "qa_automation@engineer.com",
+    "user_first_name": "QA",
+    "user_surname": "Automation",
+    "user_groups_v2": [],
+    "service_providers_data": {
+      "20": {
+        "is_admin": true,
+        "is_suspended": false,
+        "is_deleted": false,
+        "is_external": false,
+        "raw_user_id": "3190301948",
+        "provider_user_id": "uMzE5MDMwMTk0OA=="
+      }
+    },
+    "user_is_external": false,
+    "user_is_virtual": false,
+    "transaction": {
+      "_id": "transaction_latest.tenant_df44631cfc254951a385e0d90ee3c673.20.file"
+    },
+    "id": 9727,
+    "application": {
+      "id": 20,
+      "name": "Box"
+    },
+    "action": {
+      "id": 3,
+      "name": "Create / Add"
+    },
+    "resource": {
+      "id": 6,
+      "name": "Object"
+    },
+    "short_name": "Box PEP Service Object",
+    "name": "Box PEP Service Object",
+    "show_in_analyze": false
+  },
+  "user_data": {
+    "user_id": "user_1ccad2458d5300a66d8344a186220ee2",
+    "tenant": {
+      "_id": "tenant_df44631cfc254951a385e0d90ee3c673",
+      "name": "BOX Kloudless DEV"
+    },
+    "email": "qa_automation@engineer.com",
+    "user_first_name": "QA",
+    "user_surname": "Automation",
+    "user_groups_v2": [],
+    "service_providers_data": {
+      "20": {
+        "is_admin": true,
+        "is_suspended": false,
+        "is_deleted": false,
+        "is_external": false,
+        "raw_user_id": "3190301948",
+        "provider_user_id": "uMzE5MDMwMTk0OA=="
+      }
+    },
+    "user_is_external": false,
+    "user_is_virtual": false
+  },
+  "intelligence": [
+    {
+      "risk": {
+        "tags": []
+      },
+      "email": {
+        "email_threats": {
+          "tags": []
+        },
+        "external_domains": {
+          "tags": []
+        }
+      },
+      "ip": {
+        "geo_data": {
+          "tags": [
+            "geocountry_US"
+          ],
+          "city": "Ashburn",
+          "latitude": 39.04372024536133,
+          "domain": "amazon.com",
+          "isp_name": "Amazon Technologies Inc.",
+          "country_iso_code": "US",
+          "longitude": -77.48748779296875,
+          "subdivision": "Virginia",
+          "usage_type": "DCH",
+          "mobile_brand": "-",
+          "proxy_type": "DCH",
+          "continent_name": "North America",
+          "country_name": "United States"
+        },
+        "networks": {
+          "tags": []
+        },
+        "threats": {
+          "tags": [],
+          "total_threats": 1,
+          "items": [
+            {
+              "ip_address": "34.232.218.151",
+              "categories_data": [
+                {
+                  "category_name": "Cloud Services",
+                  "subcategory_name": [
+                    "Amazon"
+                  ],
+                  "et_ip_risk_score": -1
+                }
+              ]
+            }
+          ]
+        },
+        "address": "34.232.218.151"
+      },
+      "user_agent": {
+        "tags": []
+      }
+    }
+  ],
+  "is_system_event": false,
+  "tenant_license": "CASB",
+  "audit_data": [
+    {
+      "128328": "[\"file\"]"
+    },
+    {
+      "128330": "[\"Automation\"]"
+    },
+    {
+      "128326": "[\"pps_qa_clean_SSNProbableTrue#2AYhdDwLG.docx\"]"
+    },
+    {
+      "128327": "[\"docx\",\"docx\"]"
+    },
+    {
+      "128443": "[\"qa_automation@engineer.com\"]"
+    },
+    {
+      "128444": "[\"QA Automation\"]"
+    },
+    {
+      "128453": "[\"owner\"]"
+    }
+  ]
+}

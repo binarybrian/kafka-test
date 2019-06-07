@@ -3,7 +3,7 @@ package com.proofpoint
 import scala.sys.process._
 
 object VaultReader {
-  val resource = "sherlock.conf"
+  val resource = "pfpt-api-gw.conf"
   private val regex = "export ([^=]+)='([^']+)'".r
   def readVaultProperties(env: String): Unit = {
     println(s"Loading $resource variables from $env vault...")

@@ -1,0 +1,15 @@
+{
+  "log_key": "{\"scan_id\":\"SCANAu3wF9iiS7qDGdrdTRPxjW0Kpunh3XiJ\",\"job_id\":\"SCANAu3wF9iiS7qDGdrdTRPxjW0Kpunh3XiJ:unified_dlp\",\"customer\":\"c21fb865-91e8-4ca6-b9e0-bf265623e32f\",\"service\":\"farmd\"}",
+  "tenant_id": "8fc6e791-64ad-49f9-8a11-d8d5903db83c",
+  "content": "H4sIAAAAAAAAAG2RSY/aQBBG/wriSjS0jTE4Ug5esIH21l6w8c0b3cZ4ARtvUf57mMwoikapqlMd6n169XMO3l49/z7fM82B/1vdcRQHj4fQvsq2XJuja1eeTR0qm1x6QFxbZhonxvXgkmRymae642TE+RnDZ4Pmd2L/fuTH/NvH+bc2HdqvDMPMcCWiqzZkgs3fR5ecbK027ydU2SGo3JiY7osEdxtNjcnxFBNdtdeGs1uemIWf8ViwOJwPOvqD+mA1z+iaxu8oh2TN7DUtSWef21l1mYWzJizqWzor0qYJcfqZkPoaTvKNZ8+K2isZE9C7ZCJDzBviuPOvgS9ZBJ1W8V3Yh/jYRmhRdypgC3PacMNCqxM9MQm1PYMShdGOB+tWMHtJYDxLwVUR94yc5dpQlKOTLrgrpW3jfP0g/hjcBkN4XGmS0qoIyGME62rtXbMhAOVeAqFScA8It/B+GB/RoUeij+06WiS66TYGDkyxKvg0L7LlsW1hB/lSckMsLQO+pKQEbRMPmWO65SSJSVc9DPr+H3EvBf99kuQZDXr3gHhujLY985SUyYZQeLi96/pyu9LBxNRiZFOX0Bk5+q7duK4jJrEMd7HJaEa6KJYeq/pdgGcfrwCPGilNEOLImdeDUAxWbgQVRfM2WC/rQ9RETzttkpyV2bXZqSpNpImSjz2F0doDUbRX77BkHXLMVjB4FMGtxBiI1SZng+2ipJvzBvGWFBgi7QxmBjxWvSVqr7GhUKiq8qycAirLPFzm3AQsBtPNqbPJxH+6+PUboYOvKxEDAAA=",
+  "source_metadata": {
+    "send_response_to": "https://scancloud-unified-dlp-prestaging.esp.lab.ppops.net:443/v1/results",
+    "request_details": {
+      "scan_id": "SCANAu3wF9iiS7qDGdrdTRPxjW0Kpunh3XiJ",
+      "job_id": "SCANAu3wF9iiS7qDGdrdTRPxjW0Kpunh3XiJ:unified_dlp",
+      "customer": "c21fb865-91e8-4ca6-b9e0-bf265623e32f",
+      "service": "farmd"
+    },
+    "start_time": "2019-06-04T18:35:05.185Z"
+  }
+}
