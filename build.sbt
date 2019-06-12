@@ -24,6 +24,8 @@ libraryDependencies ++= Seq(
   "com.amazonaws" % "aws-java-sdk-core" % "1.11.475",
   "com.amazonaws" % "aws-java-sdk-s3" % "1.11.475",
   "com.github.seratch" %% "awscala" % "0.8.1",
+  "com.github.blemale" %% "scaffeine" % "2.6.0",
+  "com.github.ben-manes.caffeine" % "caffeine" % "2.6.2",
   "org.apache.pdfbox" % "pdfbox" % "2.0.13",
   "org.apache.tika" % "tika-core" % "1.20",
   "org.apache.tika" % "tika-parsers" % "1.20"

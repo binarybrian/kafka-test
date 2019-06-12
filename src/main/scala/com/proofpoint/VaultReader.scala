@@ -18,6 +18,7 @@ object VaultReader {
   }
 }
 
+//dev/do-vault/do-vault.sh --entity configfile --conf dev/do-vault/config/dev.conf --files dev/sherlock/conf/service.conf
 object VaultReaderApp extends App {
   VaultReader.readVaultProperties("dev")
 }

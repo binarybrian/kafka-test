@@ -51,4 +51,3 @@ object EmailProducerApp extends App {
   val f = p.future
   Await.result(f, Duration.Inf)
 }
-
