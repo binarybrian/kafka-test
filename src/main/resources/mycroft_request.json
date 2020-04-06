@@ -1,0 +1,26 @@
+{
+  "context" : {
+    "customer_id" : "6a45d1a7-9df6-3d1e-b085-59d364a55db0",
+    "mode" : "not_mock"
+  },
+  "send_response_to" : "https://scancloud-unified-dlp-prestaging.esp.lab.ppops.net:443/v1/results",
+  "request_details" : {
+    "scan_id" : "SCANxQEPdoqHqtvQKth22qZ6qbGTnqGqmTmM",
+    "job_id" : "SCANxQEPdoqHqtvQKth22qZ6qbGTnqGqmTmM:unified_dlp",
+    "customer" : "c21fb865-91e8-4ca6-b9e0-bf265623e32f",
+    "service" : "farmd"
+  },
+  "content_parts" : {
+    "0.0.1.text" : {
+      "content" : "H4sIAAAAAAAAAE3PMU/DMBQE4N1S/8OJoVsSIZomRS0MLLB0KXv1Gj/iSIlt/F5k8u8JQkh8uv3ujPl1jImf3t0gWKOOcQt2gfKXInyAIDTFkTGxCPVcwqnGx6rKOZfSzVqyncvOV89K/SlGuX7SVV1i0m1iicELvwTLp4nGTIm3y11Rt/uiuW8fNoa8xSsn/qu+XM5YwoxMXtmibg5FvSsObbMHjcH3yIM6nN/g5+nGaV0pitgNqP/ZrY7Vz6uNMd8ZuAHh5gAAAA==",
+      "encoding" : "GZIP/BASE64"
+    },
+    "0.0.0.text" : {
+      "content" : "H4sIAAAAAAAAAOPigoCS1OIShYLkTAVTJGACBArBwX4KpuaWuqYmupYW5ma8XFwAdFrTbTQAAAA=",
+      "encoding" : "GZIP/BASE64"
+    },
+    "0.subject" : {
+      "content" : "This is the subject of a sample message with SSN 123-45-6789"
+    }
+  }
+}

@@ -12,13 +12,13 @@ import scala.concurrent.{Await, Promise}
 import scala.io.Source
 
 class SlackResponseDlpProducer(config: Config) extends KafkaMessageProducer(config) with Logging {
-  val dlpResponseTopic: String = config.getString("kafka.topic.dlp_response")
-
-  logger.info(s"Starting producer ${getClass.getSimpleName} on topic $dlpResponseTopic")
+  override val topic: String = config.getString("kafka.topic.dlp_response")
 
   def sendJsonMessage(jsonMessage: String): Unit = {
-    sendMessage(dlpResponseTopic, jsonMessage)
+    sendMessage(topic, jsonMessage)
   }
+
+  logger.info(s"Starting producer ${getClass.getSimpleName} on topic $topic")
 }
 
 object SlackResponseDlpProducerApp extends App {
@@ -27,7 +27,7 @@ object SlackResponseDlpProducerApp extends App {
   val config = ConfigFactory.load()
   val dlpResponseProducer = new SlackResponseDlpProducer(config)
 
-  println(s"Sending on topic ${dlpResponseProducer.dlpResponseTopic}")
+  println(s"Sending on topic ${dlpResponseProducer.topic}")
 
   dlpResponseProducer.sendJsonMessage(Source.fromResource("slack_dlp_response.json").getLines().mkString(""))
 

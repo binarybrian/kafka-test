@@ -12,13 +12,13 @@ import scala.concurrent.{Await, Promise}
 import scala.io.Source
 
 class DlpFeedProducer(config: Config) extends KafkaMessageProducer(config) with Logging {
-  private val dlpFeedTopic = config.getString("kafka.topic.dlp_feed")
-
-  logger.info(s"Starting producer ${getClass.getSimpleName} on topic $dlpFeedTopic")
+  override val topic: String = config.getString("kafka.topic.dlp_feed")
 
   def sendJsonMessage(jsonMessage: String): Unit = {
-    sendMessage(dlpFeedTopic, jsonMessage)
+    sendMessage(topic, jsonMessage)
   }
+
+  logger.info(s"Starting producer ${getClass.getSimpleName} on topic $topic")
 }
 
 /*

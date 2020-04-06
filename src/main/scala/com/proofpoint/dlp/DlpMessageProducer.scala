@@ -11,16 +11,16 @@ import com.typesafe.config.Config
 import scala.concurrent.ExecutionContext.Implicits.global
 
 class DlpMessageProducer(topicPath: String, config: Config) extends KafkaMessageProducer(config) with Logging {
-  private val dlpTopic = config.getString(topicPath)
+  override val topic: String = config.getString(topicPath)
 
-  logger.info(s"Starting producer ${getClass.getSimpleName} on topic $dlpTopic")
+  logger.info(s"Starting producer ${getClass.getSimpleName} on topic $topic")
 
   def sendRequest(dlpRequest: DlpRequest): Unit = {
     sendRequestJson(dlpRequest.stringify)
   }
 
   def sendRequestJson(dlpMessageJson: String): Unit = {
-    sendMessage(dlpTopic, dlpMessageJson)
+    sendMessage(topic, dlpMessageJson)
   }
 }
 

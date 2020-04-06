@@ -1,0 +1,19 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <ScalaCodeStyleSettings>
+      <option name="alwaysUsedImports">
+        <array>
+          <option value="com.firelayers.commons.cap.enums.executor.ApplicationImplicit._" />
+          <option value="com.firelayers.commons.cap.enums.executor.ResourceImplicit._" />
+          <option value="com.proofpoint.cap.enums.executor.ApplicationImplicit._" />
+          <option value="com.proofpoint.cap.enums.executor.ConnectorImplicit._" />
+          <option value="com.proofpoint.cap.enums.executor.EntityTypeImplicit._" />
+          <option value="com.proofpoint.cap.models.emails.etl.EmailSerilizationImplicits._" />
+          <option value="import com.firelayers.commons.cap.enums.executor.ExecutionPlanClassificationImplicit._" />
+          <option value="models.enums.ScanSourceTypeImplicit._" />
+          <option value="scala.concurrent.ExecutionContext.Implicits.global" />
+        </array>
+      </option>
+    </ScalaCodeStyleSettings>
+  </code_scheme>
+</component>

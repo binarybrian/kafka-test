@@ -26,7 +26,7 @@ class AttachmentProducer(config: Config) extends KafkaMessageProducer(config) wi
   private val s3 = new S3
   private val bucket = config.getString("s3.bucket")
 
-  private val topic = config.getString("kafka.topic.attachment")
+  override val topic: String = config.getString("kafka.topic.attachment")
 
   def sendFiles(promise: Promise[Unit]): Unit = {
     val counter = new AtomicInteger(0)
@@ -65,12 +65,14 @@ object AttachmentProducerApp extends App {
 
 object RandomProducerApp extends App {
   val config = ConfigFactory.load().resolve()
-  val producer = new KafkaMessageProducer(config)
+  val producer = new KafkaMessageProducer(config) {
+    override val topic: String = "load-test"
+  }
 
   val numMessages = 10000000
   randomStringStream.take(numMessages).par.zipWithIndex.foreach {
     case (message, i) =>
       if (i % 10000 == 0) println(s"Sending $i")
-      producer.sendMessage("load-test", message)
+      producer.sendMessage(message)
   }
 }

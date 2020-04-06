@@ -1,7 +1,7 @@
 package com.proofpoint
 package dlp.jj
 
-import com.proofpoint.dlp.{DlpMessageProducer, DlpResponseConsumer, DlpResponseMatcher}
+import com.proofpoint.dlp.{DlpResponseConsumer, DlpResponseMatcher}
 import com.proofpoint.incidents.models.DlpResponse
 import com.proofpoint.kafka.KafkaMessageProducer
 import com.typesafe.config.{Config, ConfigFactory}
@@ -12,21 +12,21 @@ import scala.concurrent.{Await, Promise}
 import scala.io.Source
 
 class EmailDlpProducer(val config: Config) extends KafkaMessageProducer(config) with DlpResponseMatcher {
-  private val dlpRequestProducer = new DlpMessageProducer("kafka.topic.email", config)
-
   private val consumer = new DlpResponseConsumer(config, this)
 
+  override val topic: String = config.getString("kafka.topic.email")
+
   def sendRequest(jsonString: String): Unit = {
-    dlpRequestProducer.sendRequestJson(jsonString)
+    sendMessage(topic, jsonString)
   }
 
   override def matchResponse(dlpResponse: DlpResponse): Unit = {
     println(s"!!!! $dlpResponse")
   }
 
-  def shutdown(): Unit = {
-    dlpRequestProducer.close()
-    consumer.stop()
+  override def shutdown(): Unit = {
+    consumer.shutdown()
+    super.shutdown()
   }
 }
 

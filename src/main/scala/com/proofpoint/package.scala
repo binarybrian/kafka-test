@@ -7,6 +7,9 @@ import java.util.Base64.{getDecoder, getEncoder}
 import java.util.zip.{GZIPInputStream, GZIPOutputStream}
 
 import com.google.common.io.ByteStreams
+import play.api.libs.json.{Json, JsonConfiguration}
+import play.api.libs.json.JsonConfiguration.Aux
+import play.api.libs.json.JsonNaming.SnakeCase
 
 import scala.io.Source
 import scala.util.control.NonFatal
@@ -106,4 +109,6 @@ package object proofpoint {
       }
     }
   }
+
+  implicit val config: Aux[Json.MacroOptions] = JsonConfiguration(SnakeCase)
 }

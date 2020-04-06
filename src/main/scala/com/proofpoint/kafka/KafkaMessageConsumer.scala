@@ -11,6 +11,7 @@ import org.apache.kafka.streams.scala._
 import org.apache.kafka.streams.{KafkaStreams, StreamsConfig}
 
 abstract class KafkaMessageConsumer(config: Config, topic: String) extends MessageProcessor with Logging {
+
   import Serdes._
 
   private val bootstrapServers = config.getString("kafka.bootstrap.servers")
@@ -27,15 +28,16 @@ abstract class KafkaMessageConsumer(config: Config, topic: String) extends Messa
     .foreach((_, value) => processMessage(value))
 
   private val streams: KafkaStreams = new KafkaStreams(builder.build(), properties)
+  private val shutdownStreams = () => streams.close(Duration.ofSeconds(60))
 
   def start(): Unit = {
     logger.info(s"Starting consumer ${getClass.getSimpleName} on topic $topic...")
     streams.start()
   }
 
-  def stop(): Unit = streams.close(Duration.ofSeconds(60))
+  def shutdown(): Unit = shutdownStreams()
 
   sys.ShutdownHookThread {
-    streams.close(Duration.ofSeconds(60))
+    shutdownStreams()
   }
 }

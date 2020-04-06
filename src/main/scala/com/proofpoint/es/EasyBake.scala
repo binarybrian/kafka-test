@@ -196,8 +196,8 @@ object IncidentGenerator {
   def createLegacyIncident: String = {
     val id = randomUUID().toString.replace("-", "")
     val tenantId = "tenant_12345"
-    val sourceMetadata = SaaSFileSourceMetadata(ChannelType.SaaSFile, id, tenantId, ChannelSource.PCASB, ApplicationType.Slack, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None)
-    val incident = Incident(id, tenantId, ChannelType.SaaSFile, ChannelSource.PCASB, ApplicationType.Slack, flagged = false, None, SummaryInfo(Seq.empty), IncidentStatus.New, System.currentTimeMillis(), System.currentTimeMillis(), Seq.empty, sourceMetadata, None, None)
+    val sourceMetadata = SaaSFileSourceMetadata(id, tenantId, ChannelType.SaaSFile, ChannelSource.PCASB, ApplicationType.Slack, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None)
+    val incident = Incident(id, tenantId, ChannelType.SaaSFile, ChannelSource.PCASB, ApplicationType.Slack, flagged = false, None, SummaryInfo(Seq.empty), IncidentStatus.New, System.currentTimeMillis(), System.currentTimeMillis(), Seq.empty, sourceMetadata, Seq.empty)
     val incidentJson = incident.as[JsObject]
     val legacyJson = incidentJson - "metadata_type"
     legacyJson.stringify

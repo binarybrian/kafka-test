@@ -2,8 +2,9 @@ package com.proofpoint.scratch
 
 import java.io.{Closeable, IOException}
 import java.nio.file.{Files, Paths}
-import java.time.LocalDateTime
+import java.time.{Duration, Instant, LocalDateTime}
 import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 import com.google.common.base.{CharMatcher, Splitter}
 
@@ -74,4 +75,41 @@ object TestTimer {
     println(s"Test took ${(System.currentTimeMillis() - startTime).toString}")
     result
   }
+}
+
+object HappyFunTime extends App {
+  import scala.concurrent.ExecutionContext.Implicits.global
+  import scala.concurrent.duration.Duration
+  import scala.concurrent.{Await, Future}
+  import scala.util.Random
+
+  private def happyFuture(id: Int): Future[String] = {
+    Future {
+      if (id %5 == 0) throw new java.lang.Exception("Stinky Sad Reality")
+      Thread.sleep(Random.nextInt(500))
+      s"Finished $id"
+    }
+  }
+
+  val parts = 1 until 10
+  val futureHappys: Seq[Future[Option[String]]] = parts.map(happyFuture)
+    .map(result => result.map(Some(_)).recover {
+      case t => None
+    })
+
+  val results: Future[Seq[String]] = Future.sequence(futureHappys).map(_.flatten)
+  println(Await.result(results, Duration.Inf))
+}
+
+object Timestamp extends App {
+  //EU2 1568844638.363
+  //US1 1568844209.039
+
+  val startTime = Instant.ofEpochMilli(1568844209).minus(2, ChronoUnit.HOURS)
+  val diff = Duration.between(startTime, Instant.now())
+  println(s"$diff --> ${diff.toMillis}")
+}
+
+object TimeFormatKafka extends App {
+
 }

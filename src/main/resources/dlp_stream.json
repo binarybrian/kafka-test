@@ -1,0 +1,580 @@
+{
+  "events": [
+    {
+      "tenant_id": "tenant_10da1867d943489ebe6120ab0b6a1c26",
+      "audit_content": "{\"id\":\"OTZhY2E5ODYtMjU1OC00YzQ3LTljMzEtNjIzOTY5NTkxYTBm\",\"account\":81381,\"action\":\"+\",\"ip\":\"18.207.170.46\",\"modified\":\"2019-06-17T15:49:03Z\",\"type\":\"add\",\"user_id\":\"uMzI2ODM2NjEwMg==\",\"metadata\":{\"raw\":{\"object\":{\"item_id\":\"476727131985\",\"item_type\":\"file\",\"item_name\":\"pps_qa_clean_BDD15True#1Otlt7DZS.docx\",\"parent\":{\"type\":\"folder\",\"name\":\"Automation\",\"id\":\"57502004416\",\"etag\":\"0\",\"sequence_id\":\"0\"},\"owned_by\":{\"login\":\"charlesdarwin@techie.com\",\"type\":\"user\",\"id\":\"3268366102\",\"name\":\"Charles Darwin\"},\"sha1\":\"d9c4fba60513c87f7a0fd2e380fbc5c6239d5166\",\"etag\":\"0\",\"created_by\":{\"login\":\"charlesdarwin@techie.com\",\"type\":\"user\",\"id\":\"3268366102\",\"name\":\"Charles Darwin\"},\"name\":\"pps_qa_clean_BDD15True#1Otlt7DZS.docx\",\"sequence_id\":\"0\",\"success\":true,\"size\":11902,\"path_collection\":{\"total_count\":2,\"entries\":[{\"sequence_id\":null,\"etag\":null,\"type\":\"folder\",\"id\":\"0\",\"name\":\"All Files\"},{\"sequence_id\":\"0\",\"etag\":\"0\",\"type\":\"folder\",\"id\":\"57502004416\",\"name\":\"Automation\"}]},\"description\":\"\",\"shared_link\":null,\"content_created_at\":\"2019-06-17T08:49:02-07:00\",\"purged_at\":null,\"id\":\"476727131985\",\"modified_by\":{\"login\":\"charlesdarwin@techie.com\",\"type\":\"user\",\"id\":\"3268366102\",\"name\":\"Charles Darwin\"},\"trashed_at\":null,\"modified_at\":\"2019-06-17T08:49:02-07:00\",\"file_shared_link\":\"\",\"created_at\":\"2019-06-17T08:49:02-07:00\",\"file_version\":{\"sha1\":\"d9c4fba60513c87f7a0fd2e380fbc5c6239d5166\",\"type\":\"file_version\",\"id\":\"504636081585\"},\"type\":\"file\",\"content_modified_at\":\"2019-06-17T08:49:02-07:00\",\"item_status\":\"active\"},\"id\":\"476727131985\"},\"id\":\"Fldyvn_HWBJxRPHEZj7VWKg==\",\"raw_id\":\"476727131985\",\"created\":\"2019-06-17T15:49:02Z\",\"modified\":\"2019-06-17T15:49:02Z\",\"name\":\"pps_qa_clean_BDD15True#1Otlt7DZS.docx\",\"type\":\"file\",\"size\":11902,\"path\":\"/All Files/Automation/pps_qa_clean_BDD15True#1Otlt7DZS.docx\",\"mime_type\":\"application/vnd.openxmlformats-officedocument.wordprocessingml.document\",\"downloadable\":true,\"ancestors\":[{\"id\":\"FqhklVPGVTNLEVyvhTPwp9w==\",\"name\":\"Automation\"},{\"id\":\"root\",\"name\":\"All Files\"}],\"parent\":{\"id\":\"FqhklVPGVTNLEVyvhTPwp9w==\",\"name\":\"Automation\"},\"creator\":{\"api\":\"team\",\"type\":\"user\",\"id\":\"uMzI2ODM2NjEwMg==\",\"name\":\"Charles Darwin\",\"email\":\"charlesdarwin@techie.com\"},\"owner\":{\"api\":\"team\",\"type\":\"user\",\"id\":\"uMzI2ODM2NjEwMg==\",\"name\":\"Charles Darwin\",\"email\":\"charlesdarwin@techie.com\"},\"last_modifier\":{\"api\":\"team\",\"type\":\"user\",\"id\":\"uMzI2ODM2NjEwMg==\",\"name\":\"Charles Darwin\",\"email\":\"charlesdarwin@techie.com\"},\"account\":81381,\"parent_file_title\":\"Automation\",\"permissions\":[{\"api\":\"team\",\"type\":\"user\",\"id\":\"uMzI2ODM2NjEwMg==\",\"role\":\"owner\",\"name\":\"Charles Darwin\",\"email\":\"charlesdarwin@techie.com\",\"raw\":{\"object\":{\"item_status\":\"active\",\"content_created_at\":\"2019-06-17T08:49:02-07:00\",\"id\":\"476727131985\",\"size\":11902,\"modified_by\":{\"login\":\"charlesdarwin@techie.com\",\"type\":\"user\",\"id\":\"3268366102\",\"name\":\"Charles Darwin\"},\"file_version\":{\"sha1\":\"d9c4fba60513c87f7a0fd2e380fbc5c6239d5166\",\"type\":\"file_version\",\"id\":\"504636081585\"},\"created_by\":{\"login\":\"charlesdarwin@techie.com\",\"type\":\"user\",\"id\":\"3268366102\",\"name\":\"Charles Darwin\"},\"etag\":\"0\",\"purged_at\":null,\"shared_link\":null,\"path_collection\":{\"total_count\":2,\"entries\":[{\"sequence_id\":null,\"etag\":null,\"type\":\"folder\",\"id\":\"0\",\"name\":\"All Files\"},{\"sequence_id\":\"0\",\"etag\":\"0\",\"type\":\"folder\",\"id\":\"57502004416\",\"name\":\"Automation\"}]},\"description\":\"\",\"parent\":{\"sequence_id\":\"0\",\"etag\":\"0\",\"type\":\"folder\",\"id\":\"57502004416\",\"name\":\"Automation\"},\"trashed_at\":null,\"content_modified_at\":\"2019-06-17T08:49:02-07:00\",\"sequence_id\":\"0\",\"sha1\":\"d9c4fba60513c87f7a0fd2e380fbc5c6239d5166\",\"name\":\"pps_qa_clean_BDD15True#1Otlt7DZS.docx\",\"success\":true,\"type\":\"file\",\"created_at\":\"2019-06-17T08:49:02-07:00\",\"modified_at\":\"2019-06-17T08:49:02-07:00\",\"owned_by\":{\"login\":\"charlesdarwin@techie.com\",\"type\":\"user\",\"id\":\"3268366102\",\"name\":\"Charles Darwin\"}}},\"domain\":\"techie.com\"}],\"api\":\"storage\"},\"raw\":{\"object\":{\"event_type\":\"UPLOAD\",\"event_id\":\"96aca986-2558-4c47-9c31-623969591a0f\",\"ip_address\":\"18.207.170.46\",\"created_at\":\"2019-06-17T08:49:03-07:00\",\"created_by\":{\"login\":\"charlesdarwin@techie.com\",\"type\":\"user\",\"id\":\"3268366102\",\"name\":\"Charles Darwin\"},\"source\":{\"item_id\":\"476727131985\",\"item_type\":\"file\",\"item_name\":\"pps_qa_clean_BDD15True#1Otlt7DZS.docx\",\"parent\":{\"type\":\"folder\",\"name\":\"Automation\",\"id\":\"57502004416\"},\"owned_by\":{\"login\":\"charlesdarwin@techie.com\",\"type\":\"user\",\"id\":\"3268366102\",\"name\":\"Charles Darwin\"}},\"session_id\":null,\"additional_details\":{\"service_id\":\"532654\",\"size\":11902,\"ekm_id\":\"289e9e4b-96f3-4731-b584-d76d345637f1\",\"version_id\":\"504636081585\",\"service_name\":\"Automation-Staging-JWT\"},\"action_by\":null,\"type\":\"event\"}}}",
+      "sub_source": "BOX",
+      "raw_so": {
+        "transaction_id": "cap_execution_plan_6048059b975242f68f737eef59f41246_1560787201699",
+        "instance_name": "cap-etl-i-05671280c607c75fe-stg.fl.internal",
+        "user_name": "charlesdarwin@techie.com",
+        "source": "box_cap",
+        "sub_source": "BOX",
+        "source_type": "service_object",
+        "raw_event_type": "file",
+        "raw_event_sub_type": "file",
+        "guid": "3b7b52c112bfe17e1653987e2523cd1d",
+        "pep_timestamp": 1560787742285,
+        "tenant_id": "tenant_10da1867d943489ebe6120ab0b6a1c26",
+        "entity": {
+          "owner": {
+            "api": "team",
+            "type": "user",
+            "id": "uMzI2ODM2NjEwMg==",
+            "name": "Charles Darwin",
+            "email": "charlesdarwin@techie.com"
+          },
+          "parent": {
+            "id": "FqhklVPGVTNLEVyvhTPwp9w==",
+            "name": "Automation"
+          },
+          "downloadable": true,
+          "creator": {
+            "api": "team",
+            "type": "user",
+            "id": "uMzI2ODM2NjEwMg==",
+            "name": "Charles Darwin",
+            "email": "charlesdarwin@techie.com"
+          },
+          "raw_id": "476727131985",
+          "parent_file_title": "Automation",
+          "created": "2019-06-17T15:49:02Z",
+          "raw": {
+            "id": "476727131985",
+            "object": {
+              "file_version": {
+                "sha1": "d9c4fba60513c87f7a0fd2e380fbc5c6239d5166",
+                "type": "file_version",
+                "id": "504636081585"
+              },
+              "parent": {
+                "type": "folder",
+                "name": "Automation",
+                "id": "57502004416",
+                "etag": "0",
+                "sequence_id": "0"
+              },
+              "item_type": "file",
+              "description": "",
+              "content_created_at": "2019-06-17T08:49:02-07:00",
+              "created_at": "2019-06-17T08:49:02-07:00",
+              "type": "file",
+              "sequence_id": "0",
+              "id": "476727131985",
+              "modified_at": "2019-06-17T08:49:02-07:00",
+              "path_collection": {
+                "total_count": 2,
+                "entries": [
+                  {
+                    "sequence_id": null,
+                    "etag": null,
+                    "type": "folder",
+                    "id": "0",
+                    "name": "All Files"
+                  },
+                  {
+                    "sequence_id": "0",
+                    "etag": "0",
+                    "type": "folder",
+                    "id": "57502004416",
+                    "name": "Automation"
+                  }
+                ]
+              },
+              "UniqueId": "476727131985",
+              "item_id": "476727131985",
+              "file_shared_link": "",
+              "item_name": "pps_qa_clean_BDD15True#1Otlt7DZS.docx",
+              "owned_by": {
+                "login": "charlesdarwin@techie.com",
+                "type": "user",
+                "id": "3268366102",
+                "name": "Charles Darwin"
+              },
+              "item_status": "active",
+              "created_by": {
+                "login": "charlesdarwin@techie.com",
+                "type": "user",
+                "id": "3268366102",
+                "name": "Charles Darwin"
+              },
+              "trashed_at": null,
+              "sha1": "d9c4fba60513c87f7a0fd2e380fbc5c6239d5166",
+              "size": 11902,
+              "success": true,
+              "name": "pps_qa_clean_BDD15True#1Otlt7DZS.docx",
+              "purged_at": null,
+              "modified_by": {
+                "login": "charlesdarwin@techie.com",
+                "type": "user",
+                "id": "3268366102",
+                "name": "Charles Darwin"
+              },
+              "shared_link": null,
+              "etag": "0",
+              "content_modified_at": "2019-06-17T08:49:02-07:00"
+            }
+          },
+          "type": "file",
+          "last_modifier": {
+            "api": "team",
+            "type": "user",
+            "id": "uMzI2ODM2NjEwMg==",
+            "name": "Charles Darwin",
+            "email": "charlesdarwin@techie.com"
+          },
+          "path": "/All Files/Automation/pps_qa_clean_BDD15True#1Otlt7DZS.docx",
+          "event_type": "add",
+          "size": 11902,
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "permissions": [
+            {
+              "api": "team",
+              "type": "user",
+              "id": "uMzI2ODM2NjEwMg==",
+              "role": "owner",
+              "name": "Charles Darwin",
+              "email": "charlesdarwin@techie.com",
+              "raw": {
+                "object": {
+                  "item_status": "active",
+                  "content_created_at": "2019-06-17T08:49:02-07:00",
+                  "id": "476727131985",
+                  "size": 11902,
+                  "modified_by": {
+                    "login": "charlesdarwin@techie.com",
+                    "type": "user",
+                    "id": "3268366102",
+                    "name": "Charles Darwin"
+                  },
+                  "file_version": {
+                    "sha1": "d9c4fba60513c87f7a0fd2e380fbc5c6239d5166",
+                    "type": "file_version",
+                    "id": "504636081585"
+                  },
+                  "created_by": {
+                    "login": "charlesdarwin@techie.com",
+                    "type": "user",
+                    "id": "3268366102",
+                    "name": "Charles Darwin"
+                  },
+                  "etag": "0",
+                  "purged_at": null,
+                  "shared_link": null,
+                  "path_collection": {
+                    "total_count": 2,
+                    "entries": [
+                      {
+                        "sequence_id": null,
+                        "etag": null,
+                        "type": "folder",
+                        "id": "0",
+                        "name": "All Files"
+                      },
+                      {
+                        "sequence_id": "0",
+                        "etag": "0",
+                        "type": "folder",
+                        "id": "57502004416",
+                        "name": "Automation"
+                      }
+                    ]
+                  },
+                  "description": "",
+                  "parent": {
+                    "sequence_id": "0",
+                    "etag": "0",
+                    "type": "folder",
+                    "id": "57502004416",
+                    "name": "Automation"
+                  },
+                  "trashed_at": null,
+                  "content_modified_at": "2019-06-17T08:49:02-07:00",
+                  "sequence_id": "0",
+                  "sha1": "d9c4fba60513c87f7a0fd2e380fbc5c6239d5166",
+                  "name": "pps_qa_clean_BDD15True#1Otlt7DZS.docx",
+                  "success": true,
+                  "type": "file",
+                  "created_at": "2019-06-17T08:49:02-07:00",
+                  "modified_at": "2019-06-17T08:49:02-07:00",
+                  "owned_by": {
+                    "login": "charlesdarwin@techie.com",
+                    "type": "user",
+                    "id": "3268366102",
+                    "name": "Charles Darwin"
+                  }
+                }
+              },
+              "domain": "techie.com"
+            }
+          ],
+          "name": "pps_qa_clean_BDD15True#1Otlt7DZS.docx",
+          "modified": "2019-06-17T15:49:02Z",
+          "event_creator": {
+            "email": "charlesdarwin@techie.com"
+          },
+          "id": "Fldyvn_HWBJxRPHEZj7VWKg==",
+          "api": "storage",
+          "ancestors": [
+            {
+              "id": "FqhklVPGVTNLEVyvhTPwp9w==",
+              "name": "Automation"
+            },
+            {
+              "id": "root",
+              "name": "All Files"
+            }
+          ],
+          "account": 81381
+        },
+        "fl_metadata": {
+          "sha1": "d9c4fba60513c87f7a0fd2e380fbc5c6239d5166",
+          "file_created_date": "2019-06-17T15:49:02Z",
+          "mimetype": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "file_extension": "docx",
+          "file_link": "https://app.box.com/file/476727131985",
+          "file_title": "pps_qa_clean_BDD15True#1Otlt7DZS.docx",
+          "file_modified_date": "2019-06-17T15:49:02Z",
+          "file_size": "11902",
+          "raw_file_permissions": [
+            {
+              "role": "owner",
+              "share_level": 1,
+              "name": "Charles Darwin",
+              "email": "charlesdarwin@techie.com"
+            }
+          ],
+          "externally_owned": false,
+          "owner_id": "charlesdarwin@techie.com",
+          "owner_domain": "techie.com",
+          "share_level": 1,
+          "owner_type": "User",
+          "file_permissions": [
+            {
+              "role": "owner",
+              "share_level": 1,
+              "name": "Charles Darwin",
+              "email": "charlesdarwin@techie.com"
+            }
+          ],
+          "trashed": false,
+          "raw_so_id": "476727131985",
+          "first_level_parent": [
+            {
+              "title": "Automation"
+            }
+          ],
+          "kloudless_so_id": "Fldyvn_HWBJxRPHEZj7VWKg==",
+          "source_moniker": {
+            "kloudless_so_id": "Fldyvn_HWBJxRPHEZj7VWKg==",
+            "kloudless_owner_id": "uMzI2ODM2NjEwMg==",
+            "tenant_id": "tenant_10da1867d943489ebe6120ab0b6a1c26",
+            "application_id": 20,
+            "sub_source": "BOX",
+            "file_extension": "docx",
+            "file_id": "476727131985",
+            "user_id": "3268366102"
+          },
+          "origin": "BOX",
+          "full_path": "",
+          "file_category": "Document"
+        },
+        "app_id": "20"
+      },
+      "user_name": "charlesdarwin@techie.com",
+      "source": "box_cap",
+      "raw_event_sub_type": "add",
+      "provider_guid": "96aca986-2558-4c47-9c31-623969591a0f",
+      "so_id": "3b7b52c112bfe17e1653987e2523cd1d",
+      "action_name": "ALLOW",
+      "action": "CREATE",
+      "app_id": "20",
+      "transaction_id": "cap_execution_plan_6048059b975242f68f737eef59f41246_1560787201699",
+      "request_ip": "18.207.170.46",
+      "instance_name": "cap-etl-i-05671280c607c75fe-stg.fl.internal",
+      "fl_metadata": {
+        "raw_so_id": "476727131985",
+        "share_level": 1,
+        "sha1": "d9c4fba60513c87f7a0fd2e380fbc5c6239d5166"
+      },
+      "resource": "FILE",
+      "proxy_node_name": "",
+      "audit_headers": "Content-Type: application/json",
+      "request_date_time_epoch": 1560786543000,
+      "source_type": "api_polling",
+      "raw_event_so_type": "file",
+      "raw_event_type": "events",
+      "so_owner_id": "charlesdarwin@techie.com",
+      "raw_so_id": "476727131985",
+      "pep_timestamp": 1560787742286,
+      "guid": "c3e8c9688a806d7d073545fadf317785",
+      "entity": {
+        "id": "OTZhY2E5ODYtMjU1OC00YzQ3LTljMzEtNjIzOTY5NTkxYTBm",
+        "account": 81381,
+        "action": "+",
+        "ip": "18.207.170.46",
+        "modified": "2019-06-17T15:49:03Z",
+        "type": "add",
+        "user_id": "uMzI2ODM2NjEwMg==",
+        "metadata": {
+          "raw": {
+            "object": {
+              "item_id": "476727131985",
+              "item_type": "file",
+              "item_name": "pps_qa_clean_BDD15True#1Otlt7DZS.docx",
+              "parent": {
+                "type": "folder",
+                "name": "Automation",
+                "id": "57502004416",
+                "etag": "0",
+                "sequence_id": "0"
+              },
+              "owned_by": {
+                "login": "charlesdarwin@techie.com",
+                "type": "user",
+                "id": "3268366102",
+                "name": "Charles Darwin"
+              },
+              "sha1": "d9c4fba60513c87f7a0fd2e380fbc5c6239d5166",
+              "etag": "0",
+              "created_by": {
+                "login": "charlesdarwin@techie.com",
+                "type": "user",
+                "id": "3268366102",
+                "name": "Charles Darwin"
+              },
+              "name": "pps_qa_clean_BDD15True#1Otlt7DZS.docx",
+              "sequence_id": "0",
+              "success": true,
+              "size": 11902,
+              "path_collection": {
+                "total_count": 2,
+                "entries": [
+                  {
+                    "sequence_id": null,
+                    "etag": null,
+                    "type": "folder",
+                    "id": "0",
+                    "name": "All Files"
+                  },
+                  {
+                    "sequence_id": "0",
+                    "etag": "0",
+                    "type": "folder",
+                    "id": "57502004416",
+                    "name": "Automation"
+                  }
+                ]
+              },
+              "description": "",
+              "shared_link": null,
+              "content_created_at": "2019-06-17T08:49:02-07:00",
+              "purged_at": null,
+              "id": "476727131985",
+              "modified_by": {
+                "login": "charlesdarwin@techie.com",
+                "type": "user",
+                "id": "3268366102",
+                "name": "Charles Darwin"
+              },
+              "trashed_at": null,
+              "modified_at": "2019-06-17T08:49:02-07:00",
+              "file_shared_link": "",
+              "created_at": "2019-06-17T08:49:02-07:00",
+              "file_version": {
+                "sha1": "d9c4fba60513c87f7a0fd2e380fbc5c6239d5166",
+                "type": "file_version",
+                "id": "504636081585"
+              },
+              "type": "file",
+              "content_modified_at": "2019-06-17T08:49:02-07:00",
+              "item_status": "active"
+            },
+            "id": "476727131985"
+          },
+          "id": "Fldyvn_HWBJxRPHEZj7VWKg==",
+          "raw_id": "476727131985",
+          "created": "2019-06-17T15:49:02Z",
+          "modified": "2019-06-17T15:49:02Z",
+          "name": "pps_qa_clean_BDD15True#1Otlt7DZS.docx",
+          "type": "file",
+          "size": 11902,
+          "path": "/All Files/Automation/pps_qa_clean_BDD15True#1Otlt7DZS.docx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "downloadable": true,
+          "ancestors": [
+            {
+              "id": "FqhklVPGVTNLEVyvhTPwp9w==",
+              "name": "Automation"
+            },
+            {
+              "id": "root",
+              "name": "All Files"
+            }
+          ],
+          "parent": {
+            "id": "FqhklVPGVTNLEVyvhTPwp9w==",
+            "name": "Automation"
+          },
+          "creator": {
+            "api": "team",
+            "type": "user",
+            "id": "uMzI2ODM2NjEwMg==",
+            "name": "Charles Darwin",
+            "email": "charlesdarwin@techie.com"
+          },
+          "owner": {
+            "api": "team",
+            "type": "user",
+            "id": "uMzI2ODM2NjEwMg==",
+            "name": "Charles Darwin",
+            "email": "charlesdarwin@techie.com"
+          },
+          "last_modifier": {
+            "api": "team",
+            "type": "user",
+            "id": "uMzI2ODM2NjEwMg==",
+            "name": "Charles Darwin",
+            "email": "charlesdarwin@techie.com"
+          },
+          "account": 81381,
+          "parent_file_title": "Automation",
+          "permissions": [
+            {
+              "api": "team",
+              "type": "user",
+              "id": "uMzI2ODM2NjEwMg==",
+              "role": "owner",
+              "name": "Charles Darwin",
+              "email": "charlesdarwin@techie.com",
+              "raw": {
+                "object": {
+                  "item_status": "active",
+                  "content_created_at": "2019-06-17T08:49:02-07:00",
+                  "id": "476727131985",
+                  "size": 11902,
+                  "modified_by": {
+                    "login": "charlesdarwin@techie.com",
+                    "type": "user",
+                    "id": "3268366102",
+                    "name": "Charles Darwin"
+                  },
+                  "file_version": {
+                    "sha1": "d9c4fba60513c87f7a0fd2e380fbc5c6239d5166",
+                    "type": "file_version",
+                    "id": "504636081585"
+                  },
+                  "created_by": {
+                    "login": "charlesdarwin@techie.com",
+                    "type": "user",
+                    "id": "3268366102",
+                    "name": "Charles Darwin"
+                  },
+                  "etag": "0",
+                  "purged_at": null,
+                  "shared_link": null,
+                  "path_collection": {
+                    "total_count": 2,
+                    "entries": [
+                      {
+                        "sequence_id": null,
+                        "etag": null,
+                        "type": "folder",
+                        "id": "0",
+                        "name": "All Files"
+                      },
+                      {
+                        "sequence_id": "0",
+                        "etag": "0",
+                        "type": "folder",
+                        "id": "57502004416",
+                        "name": "Automation"
+                      }
+                    ]
+                  },
+                  "description": "",
+                  "parent": {
+                    "sequence_id": "0",
+                    "etag": "0",
+                    "type": "folder",
+                    "id": "57502004416",
+                    "name": "Automation"
+                  },
+                  "trashed_at": null,
+                  "content_modified_at": "2019-06-17T08:49:02-07:00",
+                  "sequence_id": "0",
+                  "sha1": "d9c4fba60513c87f7a0fd2e380fbc5c6239d5166",
+                  "name": "pps_qa_clean_BDD15True#1Otlt7DZS.docx",
+                  "success": true,
+                  "type": "file",
+                  "created_at": "2019-06-17T08:49:02-07:00",
+                  "modified_at": "2019-06-17T08:49:02-07:00",
+                  "owned_by": {
+                    "login": "charlesdarwin@techie.com",
+                    "type": "user",
+                    "id": "3268366102",
+                    "name": "Charles Darwin"
+                  }
+                }
+              },
+              "domain": "techie.com"
+            }
+          ],
+          "api": "storage"
+        },
+        "raw": {
+          "object": {
+            "event_type": "UPLOAD",
+            "event_id": "96aca986-2558-4c47-9c31-623969591a0f",
+            "ip_address": "18.207.170.46",
+            "created_at": "2019-06-17T08:49:03-07:00",
+            "created_by": {
+              "login": "charlesdarwin@techie.com",
+              "type": "user",
+              "id": "3268366102",
+              "name": "Charles Darwin"
+            },
+            "source": {
+              "item_id": "476727131985",
+              "item_type": "file",
+              "item_name": "pps_qa_clean_BDD15True#1Otlt7DZS.docx",
+              "parent": {
+                "type": "folder",
+                "name": "Automation",
+                "id": "57502004416"
+              },
+              "owned_by": {
+                "login": "charlesdarwin@techie.com",
+                "type": "user",
+                "id": "3268366102",
+                "name": "Charles Darwin"
+              }
+            },
+            "session_id": null,
+            "additional_details": {
+              "service_id": "532654",
+              "size": 11902,
+              "ekm_id": "289e9e4b-96f3-4731-b584-d76d345637f1",
+              "version_id": "504636081585",
+              "service_name": "Automation-Staging-JWT"
+            },
+            "action_by": null,
+            "type": "event"
+          }
+        }
+      }
+    }
+  ],
+  "RouterMetadata": {
+    "errorList": [],
+    "tags": [
+      "EVENT",
+      "MUTATION",
+      "CREATE",
+      "FILE_EVENT"
+    ],
+    "etlSource": "CAP-ETL",
+    "tenantId": "tenant_10da1867d943489ebe6120ab0b6a1c26",
+    "transactionId": "cap_execution_plan_6048059b975242f68f737eef59f41246_1560787201699"
+  }
+}

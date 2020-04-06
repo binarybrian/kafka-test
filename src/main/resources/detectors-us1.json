@@ -1,0 +1,554 @@
+{
+  "tenant_f60ba6c2aff24cd08d00baf77c003fd1": [
+    "Detector_NationalHealthServiceNumber_UnitedKingdom",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_NationalIdentification_EuropeanUnion",
+    "Detector_PaymentCardIndustry",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_b581ecc9b32d4aa8becc89cbdc4e8124": [
+    "tenant_b581ecc9b32d4aa8becc89cbdc4e8124/Detector-W2-Form",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates"
+  ],
+  "tenant_220f740d8eba4913a8207be6ea120064": [
+    "tenant_220f740d8eba4913a8207be6ea120064/Detector-zzxx"
+  ],
+  "tenant_8aeb1e4435e943d58a6d4a0048602b11": [
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates"
+  ],
+  "tenant_f907ab7aead9424492a3d884cbbc4439": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_NationalHealthServiceNumber_UnitedKingdom",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_NationalIdentification_EuropeanUnion",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_ef22bb40eb5343e2945f3474cb865066": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates"
+  ],
+  "tenant_eba65c88678d468a9607f0aa2b7b67ad": [
+    "tenant_eba65c88678d468a9607f0aa2b7b67ad/Detector-NationalIdentificationCardFrance",
+    "tenant_eba65c88678d468a9607f0aa2b7b67ad/Detector-NationalIdentificationNumberINSEEFrance",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "tenant_eba65c88678d468a9607f0aa2b7b67ad/Detector-PassportNumberFrance",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "tenant_eba65c88678d468a9607f0aa2b7b67ad/Detector-DriversLicenseFrance"
+  ],
+  "tenant_48d93fbba9014642872778c8851fae37": [],
+  "tenant_ee277db8b94f46b4a32c920054ae5e3e": [
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_8ee36fa4738f47f091fecfec94935a84": [
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates"
+  ],
+  "tenant_1477327d878f4d81a0da4cb282b5bdb4": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates"
+  ],
+  "tenant_c192b5eb03884dbeb722ad0adb94b869": [
+    "tenant_c192b5eb03884dbeb722ad0adb94b869/Detector-SSHPrivateKeyDetection",
+    "Detector_PaymentCardIndustry",
+    "tenant_c192b5eb03884dbeb722ad0adb94b869/Detector-MHSRecords",
+    "tenant_c192b5eb03884dbeb722ad0adb94b869/Detector-DKCPRNumber-CustomRegEx",
+    "tenant_c192b5eb03884dbeb722ad0adb94b869/Detector-DKCPRNumber",
+    "tenant_c192b5eb03884dbeb722ad0adb94b869/Detector-AUSMedicareNumber"
+  ],
+  "tenant_0767e4cc9c454fd29e1f7df8c16b0593": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates"
+  ],
+  "tenant_d1f1fd7602f24dc3bd1d9099cc90777b": [
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates"
+  ],
+  "tenant_03101b025ae6428982a6c45744cdde12": [
+    "Detector_NationalHealthServiceNumber_UnitedKingdom",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_NationalIdentification_EuropeanUnion",
+    "Detector_PaymentCardIndustry",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_41ff5ba1cfa34a7a8a2151b5f6aa2f57": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates"
+  ],
+  "tenant_8d1f352fd96243c5a33a9fd6e3fe45d2": [
+    "Detector_PaymentCardIndustry",
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_64fb5002c31545bf800b0c8af5db4f6b": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_NationalHealthServiceNumber_UnitedKingdom",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_NationalIdentification_EuropeanUnion",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_0c7b431c0fff4f31932a2e931da70be1": [
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_b7f49f2288b34674b6f14982fb51cb1b": [
+    "tenant_b7f49f2288b34674b6f14982fb51cb1b/Detector-IdentificationCardGermany",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_NationalIdentification_EuropeanUnion",
+    "Detector_PaymentCardIndustry",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_47b86c5d8b054fd08927f97cdb887c99": [
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-AptivSales",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-Aptiv-InternalAudit",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-Aptiv-ITARPhase1Keywords",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-PII",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-Aptiv-ITARAviation",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-Aptiv-Finance",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-Aptiv-INTERNALAUDITASIAMANDARIN",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-Aptiv-RecordofInvention",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-Aptiv-ACTIVESAFETY",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-Aptiv-ENGSPEC",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-Aptiv-PackardConfidential",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-Aptiv-GBOX",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-Aptiv-Cables-Wiring-ConnectionsSystems-ElectricalCenters-Ignition-Velocity",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-Aptiv-EandS",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-Aptiv-Asia",
+    "tenant_47b86c5d8b054fd08927f97cdb887c99/Detector-Aptiv-RestrictedEngineeringSpecifications"
+  ],
+  "tenant_ac9de7054a0847629b8359a968d12c3f": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_PaymentCardIndustryWithTerms",
+    "tenant_ac9de7054a0847629b8359a968d12c3f/Detector-HIPAADefinite",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_a08f63504d5247f497dfa1e62711a227": [
+    "Detector_PaymentCardIndustry",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustryWithTerms"
+  ],
+  "tenant_7f6b0e66097b48a8969efb7698bb0554": [
+    "Detector_PaymentCardIndustry",
+    "tenant_7f6b0e66097b48a8969efb7698bb0554/Detector-NationalIdentificationEuropeanUnion-withoutGermany",
+    "Detector_PaymentCardIndustryWithTerms"
+  ],
+  "tenant_51f4ee39016f4f8fa8dfb3c6a5c3580f": [
+    "Detector_PaymentCardIndustry",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_2d66e59c89964badba08b022a0b3f18e": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_63f52970db7e4479b2ce0986b86b8268": [
+    "tenant_63f52970db7e4479b2ce0986b86b8268/Detector-DLPDetector"
+  ],
+  "tenant_5edb3e73d37245189593b33ad86e3886": [
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_57da36dff75243e496f05f0bf9790224": [
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates"
+  ],
+  "tenant_6746a2c848fe4604baf0ae094c2e3904": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_NationalHealthServiceNumber_UnitedKingdom",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_NationalIdentification_EuropeanUnion",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_adfcbb3a5e0d4d058f14eef352f19b46": [
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates"
+  ],
+  "tenant_1949c180bd2d4e35995364e228fa4e30": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_aebf569b5a90464da97fcf96db0a6391": [
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_PaymentCardIndustry"
+  ],
+  "tenant_dafaf6fa4567445497209b25a9f0ff18": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_987eb581ada44c57a9bb136589127042": [
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_5c41e5e500d34d1585cf84fffa8bbcca": [],
+  "tenant_45f09fd5d0a14c8993e2964db19c17da": [
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_4675d51da6924f77827e9c9076e51dfd": [
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms"
+  ],
+  "tenant_9b41fa60363b4ba2bcf570171c9e3a44": [],
+  "tenant_e70030f3b62141edaea18539ef08ea47": [
+    "Detector_PaymentCardIndustry",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_PaymentCardIndustryWithTerms"
+  ],
+  "tenant_461e07e8e91f4c219a86f583088eed86": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates"
+  ],
+  "tenant_b4dc26a0b4f84c9db86853ef7e610368": [
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms"
+  ],
+  "tenant_e70efd50d80541eaa1853ebb650b292c": [
+    "Detector_PaymentCardIndustry"
+  ],
+  "tenant_df09929e248d4bb5b5415aaaaed8fd1a": [
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_a941f3b5790348a48bff8e73fa1b66b6": [
+    "Detector_PaymentCardIndustry"
+  ],
+  "tenant_b10c1edf5ffc4b0b986518e5ec83d15b": [
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_78068d1e7b3d44c5a0087148d17f240c": [
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_46de423fa16e489aa5383ca5e4229e5e": [
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "tenant_46de423fa16e489aa5383ca5e4229e5e/Detector-EDM-MedicalRecordNumber",
+    "Detector_PaymentCardIndustry",
+    "tenant_46de423fa16e489aa5383ca5e4229e5e/Detector-LegalContract-Fingerprinting",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_3552739ff80c42faa5696385119f4287": [
+    "tenant_3552739ff80c42faa5696385119f4287/Detector-BDD_15",
+    "Detector_DriversLicense_UnitedStates",
+    "tenant_3552739ff80c42faa5696385119f4287/Detector-AutomationEDMNearAND",
+    "tenant_3552739ff80c42faa5696385119f4287/Detector-AutomationEDMAND",
+    "tenant_3552739ff80c42faa5696385119f4287/Detector-AutomationEDMOR",
+    "Detector_NationalHealthServiceNumber_UnitedKingdom",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "tenant_3552739ff80c42faa5696385119f4287/Detector-AutomationEDM",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_NationalIdentification_EuropeanUnion",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "tenant_3552739ff80c42faa5696385119f4287/Detector-orensfavorite",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates",
+    "tenant_3552739ff80c42faa5696385119f4287/Detector-gil__Igor_testing"
+  ],
+  "tenant_0c256d5494e94965b267f258d9adda78": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_NationalHealthServiceNumber_UnitedKingdom",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_NationalIdentification_EuropeanUnion",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_160b1aa097664194b602f2c3bc92c47c": [
+    "Detector_PaymentCardIndustry",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_03079d663e0f4278a623d44771ad1364": [
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms"
+  ],
+  "tenant_317aebf6e8e1469aafe763d7e45aa122": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "tenant_317aebf6e8e1469aafe763d7e45aa122/Detector-SelfHarm",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_b09093ff118b493fb254a0e785256b60": [
+    "tenant_b09093ff118b493fb254a0e785256b60/Detector-TEConnectivityCustomDetector",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_b02cb61545a340f8a3978a751550393f": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_38797611fc534d8481a56a9d81e13e1c": [
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_PaymentCardIndustry"
+  ],
+  "tenant_8ded8040c6374f3bab5bc84ce443e0f7": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_8c6f55a77951429289cfa1f47909be76": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_NationalHealthServiceNumber_UnitedKingdom",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_NationalIdentification_EuropeanUnion",
+    "Detector_PaymentCardIndustry",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_02a3726e7f7848b1a098086e11daa8f4": [
+    "Detector_PaymentCardIndustry",
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_PaymentCardIndustryWithTerms"
+  ],
+  "tenant_59d90c43225943f5837582fb406ce373": [],
+  "tenant_b032db4145884505a03fe78ae46c9f4f": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates"
+  ],
+  "tenant_3cdb69d757bd4d759ae7e8dc0c9010ac": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates"
+  ],
+  "tenant_a9998b6b7083490784afda48dd383928": [
+    "Detector_PaymentCardIndustry",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_032115983fc94d02b4600b561b14bda8": [
+    "tenant_032115983fc94d02b4600b561b14bda8/Detector-test"
+  ],
+  "tenant_04a420184a7b4c409955ada8a3749cae": [
+    "Detector_PaymentCardIndustry"
+  ],
+  "tenant_496a7164e3e34970933188b5b4bc3453": [
+    "tenant_496a7164e3e34970933188b5b4bc3453/Detector-CISTestHipaa",
+    "tenant_496a7164e3e34970933188b5b4bc3453/Detector-CISTestSSN",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_NationalIdentification_EuropeanUnion",
+    "Detector_PaymentCardIndustry",
+    "tenant_496a7164e3e34970933188b5b4bc3453/Detector-pci"
+  ],
+  "tenant_8e6f3d3033414227b87ee333497f2f74": [],
+  "tenant_4ed5741723814acdbfae58c8f1975acd": [
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates"
+  ],
+  "tenant_fb364569cea548f484d61b04e40d707c": [],
+  "tenant_f1b1a2f7a72a4be1a5f64b321ca2dafb": [
+    "tenant_f1b1a2f7a72a4be1a5f64b321ca2dafb/Detector-RemoveLink",
+    "Detector_DriversLicense_UnitedStates",
+    "tenant_f1b1a2f7a72a4be1a5f64b321ca2dafb/Detector-TestingKeywordDetector",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "tenant_f1b1a2f7a72a4be1a5f64b321ca2dafb/Detector-epic_data_edm",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_3ad918631bc24627bc33ac781bc959d6": [
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates"
+  ],
+  "tenant_f26bce0e389e4576bed0005f63f078a7": [
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates"
+  ],
+  "tenant_73253591423c4db2a6048d5f31adfdae": [
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_GrammLeachBlileyActAmericanBankersAssociationRoutingNumber_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefinite_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActDefiniteWithDateOfBirth_UnitedStates",
+    "Detector_HealthInsurancePortabilityAndAccountabilityActProbable_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates",
+    "Detector_SocialSecurityNumberAll_UnitedStates"
+  ],
+  "tenant_c135ab959aba425eb4a88366d023d119": [
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_DriversLicense_UnitedStates",
+    "Detector_GrammLeachBlileyActTrading_UnitedStates"
+  ],
+  "tenant_1affd2854b3647b7934a4fa1db32106f": [
+    "tenant_1affd2854b3647b7934a4fa1db32106f/Detector-SensitiveInfo",
+    "Detector_SocialSecurityNumberProbable_UnitedStates",
+    "Detector_PaymentCardIndustry",
+    "Detector_PaymentCardIndustryWithTerms",
+    "Detector_SocialSecurityNumberDefinite_UnitedStates"
+  ],
+  "tenant_0003a1ef4dfa4360bdcdc175c858e7c6": [
+    "Detector_PaymentCardIndustryWithTerms"
+  ],
+  "tenant_ace2b38ccc5b44159835986fca053d9d": [
+    "Detector_PaymentCardIndustry"
+  ]
+}

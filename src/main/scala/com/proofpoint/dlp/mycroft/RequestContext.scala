@@ -1,4 +1,5 @@
-package com.proofpoint.dlp.mycroft
+package com.proofpoint
+package dlp.mycroft
 
 import play.api.libs.json.{Format, Json}
 import com.proofpoint.dlp.api.CustomerId
