@@ -1,19 +1,14 @@
 package com.proofpoint.dlp.sherlock
 
-import java.nio.charset.StandardCharsets
-import java.nio.file.{Files, Paths}
-import java.util.UUID
-
 import com.proofpoint.checkServiceStatus
-import com.proofpoint.commons.efs.DataUri
-import com.proofpoint.commons.json.Implicits._
 import com.proofpoint.dlp._
 import com.proofpoint.dlp.sherlock.AnalyzeDlpSuite._
 import com.proofpoint.incidents.models._
 import com.proofpoint.tika.TikaExtract
 import com.typesafe.config.{Config, ConfigFactory}
-import play.api.libs.json.JsObject
 
+import java.nio.charset.StandardCharsets
+import java.nio.file.{Files, Paths}
 import scala.collection.JavaConverters._
 import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Future, Promise}
@@ -69,21 +64,22 @@ class AnalyzeDlpResponseMatcher(val config: Config) extends DlpResponseMatcher {
   consumer.start()
 
   def sendContents(tenantId: String, contents: Seq[String]): Future[Map[String, Long]] = {
-    val dlpRequests = contents.zipWithIndex.map {
-      case (content, index) =>
-        val id = s"$index-${UUID.randomUUID().toString}"
-        val sourceMetadata = SaaSFileSourceMetadata(id, tenantId, ChannelType.SaaSFile, ChannelSource.PCASB, ApplicationType.Office365, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None)
-        DlpRequest(id, "requestid", tenantId, Map("text" -> ExtractedContentPart(DataUri.encode(content.getBytes(StandardCharsets.UTF_8)))), Some(sourceMetadata.as[JsObject]))
-    }
-
-    waitingDlp = dlpRequests.map(request => {
-      val startTime = System.currentTimeMillis()
-      request.requestId -> startTime
-    }).toMap
-
-    dlpRequests.foreach(producer.sendRequest)
-
-    future
+//    val dlpRequests = contents.zipWithIndex.map {
+//      case (content, index) =>
+//        val id = s"$index-${UUID.randomUUID().toString}"
+//        val sourceMetadata = SaaSFileSourceMetadata(id, tenantId, ChannelType.SaaSFile, ChannelSource.PCASB, ApplicationType.Office365, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None)
+//        DlpRequest(id, "requestid", tenantId, Map("text" -> ExtractedContentPart(DataUri.encode(content.getBytes(StandardCharsets.UTF_8)))), Some(sourceMetadata.as[JsObject]))
+//    }
+//
+//    waitingDlp = dlpRequests.map(request => {
+//      val startTime = System.currentTimeMillis()
+//      request.requestId -> startTime
+//    }).toMap
+//
+//    dlpRequests.foreach(producer.sendRequest)
+//
+//    future
+    Future.successful(Map.empty[String, Long])
   }
 
   def matchResponse(message: DlpResponse): Unit = {
