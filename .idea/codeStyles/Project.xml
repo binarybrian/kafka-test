@@ -1,17 +1,20 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
+    <JetCodeStyleSettings>
+      <option name="PACKAGES_TO_USE_STAR_IMPORTS">
+        <value>
+          <package name="java.util" withSubpackages="false" static="false" />
+          <package name="kotlinx.android.synthetic" withSubpackages="true" static="false" />
+          <package name="tornadofx" withSubpackages="false" static="false" />
+        </value>
+      </option>
+    </JetCodeStyleSettings>
     <ScalaCodeStyleSettings>
       <option name="alwaysUsedImports">
         <array>
-          <option value="com.firelayers.commons.cap.enums.executor.ApplicationImplicit._" />
-          <option value="com.firelayers.commons.cap.enums.executor.ResourceImplicit._" />
           <option value="com.proofpoint.cap.enums.executor.ApplicationImplicit._" />
-          <option value="com.proofpoint.cap.enums.executor.ConnectorImplicit._" />
-          <option value="com.proofpoint.cap.enums.executor.EntityTypeImplicit._" />
-          <option value="com.proofpoint.cap.models.emails.etl.EmailSerilizationImplicits._" />
-          <option value="import com.firelayers.commons.cap.enums.executor.ExecutionPlanClassificationImplicit._" />
+          <option value="com.proofpoint.cap.enums.executor.ResourceImplicit._" />
           <option value="models.enums.ScanSourceTypeImplicit._" />
-          <option value="scala.concurrent.ExecutionContext.Implicits.global" />
         </array>
       </option>
     </ScalaCodeStyleSettings>

@@ -1,6 +1,7 @@
 package com.proofpoint.tika
 
-import java.io.{File, InputStream}
+import java.io.{File, InputStream, OutputStreamWriter}
+import java.nio.charset.StandardCharsets.UTF_8
 import java.nio.file.{Files, Path, Paths, StandardCopyOption}
 import java.time.Instant
 import java.util.concurrent.atomic.{AtomicBoolean, AtomicReference}
@@ -10,16 +11,16 @@ import awscala.Region0.US_EAST_1
 import awscala.s3.S3
 import com.amazonaws.ClientConfiguration
 import com.proofpoint.commons.logging.LoggingUtils.formatMillis
-import com.proofpoint.commons.logging.{Logging, LoggingContext, LoggingUtils}
-import com.proofpoint.commons.util.duration.DurationUtils
+import com.proofpoint.commons.logging.{Logging, LoggingContext}
 import com.proofpoint.tika.TikaExtract.maxExtractLength
 import com.typesafe.config.{Config, ConfigFactory, ConfigValueFactory}
 import org.apache.tika.Tika
-import org.apache.tika.config.TikaConfig
+import org.apache.tika.config.{TikaConfig, TikaConfigSerializer}
 import org.apache.tika.exception.EncryptedDocumentException
 import org.apache.tika.extractor.EmbeddedDocumentExtractor
 import org.apache.tika.metadata.Metadata
-import org.apache.tika.parser.{AutoDetectParser, ParseContext}
+import org.apache.tika.parser.pdf.PDFParser
+import org.apache.tika.parser.{AutoDetectParser, CompositeParser, ParseContext}
 import org.apache.tika.sax.{BodyContentHandler, ContentHandlerDecorator}
 import org.xml.sax.{ContentHandler, SAXException}
 
@@ -175,13 +176,15 @@ object TikaBenchmarkApp extends App {
   }
 
   val totalTime = results.map(_._1).sum
-  val average = totalTime / results.length
+  val average = Try(totalTime / results.length).getOrElse(0L)
   val sortedTimes = results.filter(_._2 > 0).sortBy(_._1).map(_._1)
-  val median = if (sortedTimes.length % 2 == 0) {
-    val (left, right) = sortedTimes.splitAt(sortedTimes.length / 2)
-    (left.last + right.head) / 2
-  } else {
-    sortedTimes(sortedTimes.length / 2)
+  val median = if (sortedTimes.isEmpty) 0 else {
+    if (sortedTimes.length % 2 == 0) {
+      val (left, right) = sortedTimes.splitAt(sortedTimes.length / 2)
+      (left.last + right.head) / 2
+    } else {
+      sortedTimes(sortedTimes.length / 2)
+    }
   }
 
   formatMillis(123)
@@ -200,7 +203,7 @@ class TikaBenchmark(config: Config) extends Logging {
 
   def extract(inputStream: InputStream)(implicit loggingContext: LoggingContext): String = {
     val contentHandler = new BodyContentHandler(maxExtractSize)
-    Try(parser.parse(inputStream, contentHandler, new Metadata())).recover {
+    Try(parser.parse(inputStream, contentHandler, new Metadata)).recover {
       case _: SAXException => logger.warn("Extracted content exceeds max extract size")
       case _: EncryptedDocumentException => logger.warn("Skipped encrypted document")
       case e => logger.error(s"Tika extract failed with message ${e.getMessage}")
@@ -216,5 +219,37 @@ class TikaBenchmark(config: Config) extends Logging {
     else {
       Seq.empty
     }
+  }
+}
+
+object TikaTestApp extends App {
+  val tikaConfig: TikaConfig = TikaConfig.getDefaultConfig
+  val tika = new Tika(tikaConfig)
+  println(tika.toString)
+  TikaConfigSerializer.serialize(tikaConfig, TikaConfigSerializer.Mode.CURRENT, new OutputStreamWriter(System.out, UTF_8), UTF_8)
+}
+
+object CustomTikaTestApp extends App {
+  val tikaConfig = new TikaConfig(getClass.getResourceAsStream("/tika-conf.xml"))
+  val tika = new Tika(tikaConfig)
+  TikaConfigSerializer.serialize(tikaConfig, TikaConfigSerializer.Mode.CURRENT, new OutputStreamWriter(System.out, UTF_8), UTF_8)
+
+  tika.getParser match {
+    case autoDetectParser: AutoDetectParser =>
+      println(autoDetectParser.getAllComponentParsers.size())
+      println(autoDetectParser.getAllComponentParsers.asScala.map(_.getClass.getCanonicalName).mkString(","))
+      autoDetectParser.getAllComponentParsers.asScala.foreach {
+        case compositeParser: CompositeParser =>
+          compositeParser.getAllComponentParsers.asScala.foreach {
+            case pdfParser: PDFParser =>
+              val pdfConfig = pdfParser.getPDFParserConfig
+              println(s"OCR Strategy: ${pdfConfig.getOcrStrategy}")
+              println(s"MaxMainMemoryBytes: ${pdfConfig.getMaxMainMemoryBytes}")
+              println(s"extract actions: ${pdfConfig.getExtractActions}")
+              println(s"inline images: ${pdfConfig.getExtractInlineImages}")
+              println(s"marked content: ${pdfConfig.getExtractMarkedContent}")
+            case _ => ()
+          }
+      }
   }
 }

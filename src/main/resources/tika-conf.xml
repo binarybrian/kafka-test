@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<properties>
+    <parsers>
+        <parser class="org.apache.tika.parser.DefaultParser" />
+        <parser class="org.apache.tika.parser.microsoft.ooxml.OOXMLParser">
+            <params>
+                <param name="useSAXDocxExtractor" type="bool">true</param>
+                <param name="useSAXPptxExtractor" type="bool">true</param>
+                <param name="includeDeletedContent" type="bool">true</param>
+            </params>
+        </parser>
+        <parser class="org.apache.tika.parser.pdf.PDFParser">
+            <params>
+                <param name="maxMainMemoryBytes" type="long">100000000</param>
+            </params>
+        </parser>
+    </parsers>
+</properties>
