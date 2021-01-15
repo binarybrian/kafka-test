@@ -25,14 +25,15 @@ import scala.collection.JavaConverters._
 
 object GeneratePartitionOffsets extends App {
   val broker = "kafka01.ius1.infoprtct.com:6667"
-  val groupId = "sherlock" //"text-extractor-v2" //sherlock group is "sherlock"
-  val topic = "dlp_request_fast" //"text_extraction_request_v2" //sherlock topic is "dlp_request_fast" or "edm_response_fast"
-  val partitions = Set(43,57)
+  val groupId = "text-extractor-v2" //sherlock group is "sherlock"
+  val topic = "text_extraction_request_v2" //sherlock topic is "dlp_request_fast" or "edm_response_fast"
+  val partitions = Set(51)
 
-  val zonedTime: ZonedDateTime = ZonedDateTime.of(2021, 1, 14, 13, 0, 0, 0, ZoneId.systemDefault())
+  val year = 2021; val month = 1; val dayOfMonth = 15; val hour = 15; val minute = 30; val seconds = 0; val nanoSeconds = 0
+  val zonedTime: ZonedDateTime = ZonedDateTime.of(year, month, dayOfMonth, hour, minute, seconds, nanoSeconds, ZoneId.systemDefault())
   val timestamp: Long = zonedTime.toInstant.toEpochMilli
 
-  val resetFilename = "reset-sherlock.csv"
+  val resetFilename = "reset.csv"
 
   val props = new Properties
   props.put("bootstrap.servers", broker)
@@ -52,11 +53,12 @@ object GeneratePartitionOffsets extends App {
       List(topicAndPartition.topic, topicAndPartition.partition, replacedOffset).mkString(",")
   }
 
-  val basePath = "/testpool/pfpt/ka"
+  val kafkaPath = "/testpool/pfpt/ka/kafka"
+  val basePath = System.getProperty("java.io.tmpdir")
   val writePath = Paths.get(basePath, resetFilename)
   Files.write(writePath, rows.asJava)
   println(s"Finished writing $writePath.  Reset command:")
-  val command = s"$basePath/kafka/bin/kafka-consumer-groups.sh --bootstrap-server $broker --topic $topic --group $groupId --reset-offsets --from-file $resetFilename --dry-run"
+  val command = s"$kafkaPath/bin/kafka-consumer-groups.sh --bootstrap-server $broker --topic $topic --group $groupId --reset-offsets --from-file $resetFilename --dry-run"
   println(command)
 
   def offsetsAtTimestamp(topic: String, partitions: Set[Int], timestamp: Long): Map[TopicPartition, OffsetAndTimestamp] = {
