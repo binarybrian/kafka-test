@@ -10,8 +10,8 @@ import java.util.Properties
 import scala.collection.JavaConverters._
 
 /*
- * 1. List offsets
- * kafka/bin/kafka-consumer-groups.sh --bootstrap-server kafka01.ius1.infoprtct.com:6667 --group text-extractor-v2 --describe | tee text-extractor-v2-lag.txt
+ * 1. List offsets and make a backup of current offsets
+ * kafka/bin/kafka-consumer-groups.sh --bootstrap-server kafka01.ius1.infoprtct.com:6667 --group text-extractor-v2 --describe | tee text-extractor-v2-offsets.txt
  * 2. Find partition(s) to reset from step 1
  * 3. Determine reset time
  * 4. Set time in GenerateOffsetResetsApp
@@ -29,7 +29,7 @@ object GeneratePartitionOffsets extends App {
   val topic = "text_extraction_request_v2" //sherlock topic is "dlp_request_fast" or "edm_response_fast"
   val partitions = Set(51)
 
-  val year = 2021; val month = 1; val dayOfMonth = 15; val hour = 15; val minute = 30; val seconds = 0; val nanoSeconds = 0
+  val year = 2021; val month = 1; val dayOfMonth = 15; val hour = 0; val minute = 20; val seconds = 0; val nanoSeconds = 0
   val zonedTime: ZonedDateTime = ZonedDateTime.of(year, month, dayOfMonth, hour, minute, seconds, nanoSeconds, ZoneId.systemDefault())
   val timestamp: Long = zonedTime.toInstant.toEpochMilli
 
@@ -49,16 +49,19 @@ object GeneratePartitionOffsets extends App {
   val rows = offsets.map {
     case (topicAndPartition, offsetAndMetadata) =>
       val resetPartition = topicAndPartition.partition
+      resetOffsets.get(resetPartition).foreach { replacedOffset =>
+        println(s"Replacing offset ${offsetAndMetadata.offset()} with $replacedOffset for partition $resetPartition")
+      }
       val replacedOffset = resetOffsets.getOrElse(resetPartition, offsetAndMetadata.offset)
       List(topicAndPartition.topic, topicAndPartition.partition, replacedOffset).mkString(",")
   }
 
   val kafkaPath = "/testpool/pfpt/ka/kafka"
-  val basePath = System.getProperty("java.io.tmpdir")
+  val basePath = System.getProperty("user.dir")
   val writePath = Paths.get(basePath, resetFilename)
   Files.write(writePath, rows.asJava)
-  println(s"Finished writing $writePath.  Reset command:")
-  val command = s"$kafkaPath/bin/kafka-consumer-groups.sh --bootstrap-server $broker --topic $topic --group $groupId --reset-offsets --from-file $resetFilename --dry-run"
+  println(s"Finished writing new offsets to $writePath.  Test for errors by running the following command.  Change '--dry-run' to '--execute' when ready:")
+  val command = s"$kafkaPath/bin/kafka-consumer-groups.sh --bootstrap-server $broker --topic $topic --group $groupId --reset-offsets --from-file $basePath/$resetFilename --dry-run"
   println(command)
 
   def offsetsAtTimestamp(topic: String, partitions: Set[Int], timestamp: Long): Map[TopicPartition, OffsetAndTimestamp] = {
